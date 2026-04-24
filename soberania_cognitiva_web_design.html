@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soberanía Cognitiva / Territorio en Disputa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0a0a0a;
+    --surface: #111111;
+    --surface2: #161616;
+    --red: #d63a2a;
+    --orange: #e05a1a;
+    --amber: #c4821a;
+    --neon-blue: #1a8cff;
+    --neon-green: #00e5a0;
+    --ocre: #c4a35a;
+    --broken-white: #e8e0d0;
+    --muted: #666;
+    --text: #d0c8b8;
+    --font-title: 'Bebas Neue', sans-serif;
+    --font-serif: 'Cormorant Garamond', serif;
+    --font-body: 'Inter', sans-serif;
+    --page-pad: clamp(20px, 4vw, 48px);
+    --section-pad-y: clamp(36px, 6vw, 64px);
+    --content-max: 1180px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background:
+      radial-gradient(circle at top left, rgba(214,58,42,0.08), transparent 32vw),
+      radial-gradient(circle at 85% 15%, rgba(26,140,255,0.08), transparent 30vw),
+      var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+    min-height: 100vh;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #app {
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: clamp(16px, 3vw, 32px);
+    padding: 14px var(--page-pad);
+    background:
+      linear-gradient(180deg, rgba(10,10,10,0.96), rgba(10,10,10,0.88)),
+      rgba(10,10,10,0.92);
+    backdrop-filter: blur(14px) saturate(130%);
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    box-shadow: 0 14px 40px rgba(0,0,0,.28);
+  }
+  nav::before {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; top: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--red), transparent 35%, rgba(26,140,255,.45), transparent 78%);
+    opacity: .85;
+  }
+  .nav-logo {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    font-family: var(--font-title);
+    font-size: 26px;
+    line-height: 1;
+    letter-spacing: 2.8px;
+    color: var(--broken-white);
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    flex: 0 0 auto;
+    min-height: 40px;
+    cursor: pointer;
+    text-shadow: 0 0 22px rgba(214,58,42,.32);
+    transition: transform .2s, filter .2s;
+  }
+  .nav-logo:hover {
+    filter: brightness(1.12);
+    transform: translateY(-1px);
+  }
+  .nav-logo::before {
+    content: '';
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--red);
+    box-shadow: 0 0 16px rgba(214,58,42,.8);
+  }
+  .nav-logo::after {
+    content: 'Soberanía Cognitiva';
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: #777;
+    padding-left: 2px;
+  }
+  .nav-links {
+    display: flex; gap: 6px; flex-wrap: wrap;
+    justify-content: flex-end;
+    padding: 5px;
+    border: 1px solid rgba(255,255,255,.07);
+    border-radius: 999px;
+    background: rgba(255,255,255,.035);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+  }
+  .nav-links button {
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    font-family: var(--font-body); font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.4px; text-transform: uppercase;
+    color: #8a8a8a; cursor: pointer;
+    min-height: 38px;
+    padding: 0 16px;
+    transition: color .2s, transform .2s, border-color .2s, background .2s, box-shadow .2s;
+  }
+  .nav-links button:hover {
+    color: var(--broken-white);
+    border-color: rgba(255,255,255,.1);
+    background: rgba(255,255,255,.045);
+  }
+  .nav-links button.active {
+    color: #fff;
+    border-color: rgba(214,58,42,.55);
+    background: linear-gradient(180deg, rgba(214,58,42,.22), rgba(214,58,42,.08));
+    box-shadow: 0 0 0 1px rgba(214,58,42,.08), 0 8px 24px rgba(214,58,42,.12);
+    transform: translateY(-1px);
+  }
+  button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 2px solid var(--neon-blue);
+    outline-offset: 3px;
+  }
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* SECTIONS */
+  .section { display: none; animation: fadeIn .4s ease; }
+  .section.visible { display: block; }
+  .section > * {
+    max-width: var(--content-max);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .section > .hero { max-width: none; }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative; min-height: min(90vh, 860px);
+    min-height: min(90dvh, 860px);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: clamp(56px, 9vw, 96px) var(--page-pad);
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(26,140,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26,140,255,0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    animation: gridDrift 30s linear infinite;
+  }
+  @keyframes gridDrift { to { background-position: 48px 48px; } }
+  .hero-noise {
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: .6; pointer-events: none;
+  }
+  .hero-tag {
+    font-family: var(--font-body);
+    font-size: 10px; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--neon-blue);
+    border: 0.5px solid rgba(26,140,255,.3);
+    padding: 4px 12px; border-radius: 2px;
+    margin-bottom: clamp(22px, 4vw, 32px); position: relative;
+    text-align: center;
+  }
+  .hero-title {
+    font-family: var(--font-title);
+    font-size: clamp(48px, 12vw, 116px);
+    line-height: .92;
+    text-align: center;
+    letter-spacing: 2px;
+    position: relative;
+    margin-bottom: 8px;
+  }
+  .hero-title .line-red { color: var(--red); }
+  .hero-title .line-dim { color: #444; }
+  .hero-sub {
+    font-family: var(--font-serif);
+    font-size: clamp(16px, 2.2vw, 22px);
+    font-style: italic;
+    color: var(--ocre);
+    text-align: center;
+    max-width: 560px;
+    line-height: 1.5;
+    margin: 16px 0 40px;
+    position: relative;
+  }
+  .hero-phrase {
+    font-family: var(--font-serif);
+    font-size: clamp(13px, 1.8vw, 15px); font-style: italic;
+    color: #777; text-align: center;
+    max-width: 520px; line-height: 1.7;
+    position: relative; margin-bottom: 40px;
+  }
+  .hero-phrase em { color: var(--broken-white); font-style: normal; }
+  .btn-primary {
+    position: relative;
+    background: none;
+    border: 0.5px solid var(--red);
+    color: var(--red);
+    font-family: var(--font-body);
+    font-size: 11px; letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 14px clamp(24px, 5vw, 40px); cursor: pointer;
+    min-height: 46px;
+    transition: all .25s;
+  }
+  .btn-primary:hover {
+    background: var(--red); color: #fff;
+    box-shadow: 0 0 24px rgba(214,58,42,.3);
+  }
+  .hero-anchors {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(120px, 1fr));
+    gap: clamp(10px, 2vw, 20px);
+    width: min(100%, 820px);
+    margin-top: clamp(36px, 6vw, 56px);
+    justify-content: center;
+  }
+  .anchor-card {
+    font: inherit;
+    color: inherit;
+    border: 0.5px solid #222;
+    padding: 12px 20px; cursor: pointer;
+    transition: border-color .2s, transform .2s;
+    min-width: 0; text-align: center;
+    background: rgba(255,255,255,.02);
+  }
+  .anchor-card:hover { border-color: #444; transform: translateY(-2px); }
+  .anchor-num { font-size: 10px; color: var(--red); letter-spacing: 1px; margin-bottom: 4px; }
+  .anchor-label { font-size: 11px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
+  .anchor-num, .anchor-label, .diag-num, .diag-name, .diag-author, .diag-text, .diag-expand { display: block; }
+  .hero-scan {
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+    animation: scan 6s ease-in-out infinite;
+    opacity: .4;
+  }
+  @keyframes scan { 0%,100%{top:0;opacity:0} 10%{opacity:.4} 90%{opacity:.4} 100%{top:100%;opacity:0} }
+
+  /* ── SECCIÓN HEADERS ── */
+  .section-header {
+    padding: var(--section-pad-y) var(--page-pad) 32px;
+    border-bottom: 0.5px solid #1a1a1a;
+  }
+  .section-eyebrow {
+    font-size: 10px; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--red);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: var(--font-title);
+    font-size: clamp(36px, 7vw, 68px);
+    letter-spacing: 2px; line-height: 1;
+    color: var(--broken-white);
+  }
+  .section-desc {
+    font-family: var(--font-serif);
+    font-size: clamp(15px, 2vw, 18px); color: var(--muted);
+    margin-top: 12px; max-width: 520px;
+    line-height: 1.6; font-style: italic;
+  }
+
+  /* ── DIAGNÓSTICO ── */
+  .diag-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+    gap: 1px; background: #1a1a1a;
+  }
+  .diag-card {
+    border: 0;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    width: 100%;
+    background: var(--bg);
+    padding: clamp(22px, 3vw, 32px) clamp(20px, 3vw, 28px);
+    cursor: pointer;
+    transition: background .2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .diag-card:hover { background: var(--surface); }
+  .diag-card:focus-visible { z-index: 1; }
+  .diag-card::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 2px; background: var(--accent, var(--red));
+    transform: scaleY(0); transition: transform .25s;
+    transform-origin: bottom;
+  }
+  .diag-card:hover::before { transform: scaleY(1); }
+  .diag-num { font-size: 10px; letter-spacing: 2px; color: var(--accent, var(--red)); margin-bottom: 10px; }
+  .diag-name {
+    font-family: var(--font-title);
+    font-size: clamp(19px, 2.5vw, 24px); letter-spacing: 1px;
+    color: var(--broken-white); margin-bottom: 8px;
+    line-height: 1.1;
+  }
+  .diag-author { font-size: 10px; color: var(--muted); letter-spacing: 1px; margin-bottom: 12px; }
+  .diag-text { font-size: clamp(13px, 1.5vw, 14px); line-height: 1.75; color: #777; }
+  .diag-card:hover .diag-text { color: #888; }
+  .diag-expand {
+    margin-top: 12px; font-size: 10px;
+    letter-spacing: 1px; text-transform: uppercase;
+    color: var(--accent, var(--red)); opacity: .7;
+  }
+  .accent-red { --accent: #d63a2a; }
+  .accent-orange { --accent: #e05a1a; }
+  .accent-amber { --accent: #c4821a; }
+  .accent-blue { --accent: #1a8cff; }
+  .accent-green { --accent: #00e5a0; }
+
+  /* Glossary */
+  .glossary-wrap { padding: 32px var(--page-pad); }
+  .glossary-title {
+    font-size: 10px; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--muted);
+    margin-bottom: 16px;
+  }
+  .glossary-list { display: flex; flex-wrap: wrap; gap: 8px; }
+  .glos-tag {
+    background: none;
+    font: inherit;
+    border: 0.5px solid #333;
+    padding: 8px 12px; font-size: 12px;
+    cursor: pointer; transition: all .2s;
+    color: var(--muted);
+    min-height: 36px;
+  }
+  .glos-tag:hover { border-color: var(--neon-blue); color: var(--neon-blue); }
+  .glos-modal {
+    display: none; position: fixed;
+    inset: 0; z-index: 200;
+    align-items: center; justify-content: center;
+    background:
+      radial-gradient(circle at 50% 20%, rgba(26,140,255,.08), transparent 34vw),
+      rgba(0,0,0,.78);
+    backdrop-filter: blur(8px);
+    padding: 20px;
+  }
+  .glos-modal.open { display: flex; }
+  .glos-box {
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.035), transparent 48%),
+      var(--surface2);
+    border: 1px solid rgba(255,255,255,.12);
+    border-top-color: rgba(26,140,255,.36);
+    padding: clamp(28px, 5vw, 42px); max-width: 560px; width: min(100%, 560px);
+    max-height: min(82vh, 620px);
+    overflow: auto;
+    position: relative;
+    box-shadow: 0 28px 90px rgba(0,0,0,.62), 0 0 0 1px rgba(26,140,255,.05);
+  }
+  .glos-box::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--neon-blue), rgba(26,140,255,.05));
+  }
+  .glos-term {
+    font-family: var(--font-title);
+    font-size: clamp(30px, 5vw, 40px);
+    line-height: .95;
+    letter-spacing: 1.5px;
+    color: var(--neon-blue);
+    margin-bottom: 10px;
+    padding-right: 42px;
+    text-shadow: 0 0 24px rgba(26,140,255,.2);
+  }
+  .glos-origin {
+    font-size: 10px;
+    letter-spacing: 2.4px;
+    line-height: 1.5;
+    color: #858585;
+    margin-bottom: 22px;
+    text-transform: uppercase;
+    max-width: 88%;
+  }
+  .glos-def {
+    font-family: var(--font-serif);
+    font-size: clamp(16px, 2.1vw, 18px);
+    line-height: 1.85;
+    color: var(--broken-white);
+    max-width: 62ch;
+  }
+  .glos-close {
+    position: absolute; top: 16px; right: 16px;
+    width: 36px; height: 36px;
+    display: grid; place-items: center;
+    background: rgba(255,255,255,.035);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 50%;
+    color: #888;
+    font-size: 18px; cursor: pointer;
+    transition: color .2s, border-color .2s, background .2s, transform .2s;
+  }
+  .glos-close:hover {
+    color: #fff;
+    border-color: rgba(255,255,255,.18);
+    background: rgba(255,255,255,.07);
+    transform: rotate(90deg);
+  }
+
+  /* ── HORIZONTE ── */
+  .dim-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+    gap: 1px; background: #1a1a1a;
+    margin-top: 32px;
+  }
+  .section-inner {
+    padding: 0 var(--page-pad);
+  }
+  .dim-card {
+    background: var(--bg); padding: clamp(22px, 3vw, 30px) 20px;
+    transition: background .2s;
+  }
+  .dim-card:hover { background: var(--surface); }
+  .dim-icon {
+    width: 32px; height: 32px; margin-bottom: 14px;
+    display: flex; align-items: center; justify-content: center;
+    border: 0.5px solid #333; font-size: 14px;
+    color: var(--neon-blue);
+  }
+  .dim-name {
+    font-family: var(--font-title); font-size: 17px;
+    letter-spacing: 1px; color: var(--broken-white);
+    margin-bottom: 6px;
+  }
+  .dim-desc { font-size: clamp(12px, 1.5vw, 13px); line-height: 1.7; color: #666; }
+  .dim-card:hover .dim-desc { color: #888; }
+  .horizonte-quote {
+    margin: 32px auto;
+    border-left: 2px solid var(--red);
+    padding: clamp(18px, 3vw, 26px) clamp(20px, 4vw, 32px);
+    background: rgba(214,58,42,.04);
+    width: calc(100% - (var(--page-pad) * 2));
+  }
+  .horizonte-q-text {
+    font-family: var(--font-serif);
+    font-size: clamp(17px, 2.2vw, 22px); font-style: italic;
+    line-height: 1.7; color: var(--broken-white);
+    margin-bottom: 8px;
+  }
+  .horizonte-q-attr { font-size: 10px; letter-spacing: 1px; color: var(--muted); }
+  .btn-survey {
+    display: block; margin: 24px 32px;
+    background: none; border: 0.5px solid var(--neon-blue);
+    color: var(--neon-blue);
+    font-family: var(--font-body); font-size: 11px;
+    letter-spacing: 2px; text-transform: uppercase;
+    padding: 14px 28px; cursor: pointer;
+    transition: all .25s; width: fit-content;
+  }
+  .btn-survey:hover { background: rgba(26,140,255,.1); }
+
+  /* ── MÉTODO ── */
+  .chat-demo {
+    margin: 24px auto;
+    width: calc(100% - (var(--page-pad) * 2));
+    border: 0.5px solid #1e1e1e;
+    overflow: hidden;
+  }
+  .chat-bar {
+    background: var(--surface2); padding: 10px 16px;
+    display: flex; align-items: center; gap: 8px;
+    border-bottom: 0.5px solid #1e1e1e;
+  }
+  .chat-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .dot-red { background: #d63a2a; }
+  .dot-muted { background: #333; }
+  .chat-title { font-size: 10px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; }
+  .chat-body { padding: 20px; display: flex; flex-direction: column; gap: 16px; }
+  .msg { max-width: min(85%, 760px); }
+  .msg-human { align-self: flex-end; }
+  .msg-ai { align-self: flex-start; }
+  .msg-label { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+  .msg-human .msg-label { color: var(--ocre); text-align: right; }
+  .msg-ai .msg-label { color: var(--neon-blue); }
+  .msg-bubble { padding: 12px 16px; font-size: clamp(13px, 1.6vw, 14px); line-height: 1.75; }
+  .msg-human .msg-bubble {
+    background: rgba(196,163,90,.08);
+    border: 0.5px solid rgba(196,163,90,.2);
+    font-family: var(--font-serif); font-style: italic; color: var(--broken-white);
+  }
+  .msg-ai .msg-bubble {
+    background: rgba(26,140,255,.06);
+    border: 0.5px solid rgba(26,140,255,.15);
+    font-family: var(--font-body); color: #999; font-size: 12px;
+  }
+  .metodo-note {
+    margin: 0 auto 32px;
+    width: calc(100% - (var(--page-pad) * 2));
+    padding: clamp(16px, 3vw, 22px) clamp(18px, 4vw, 26px);
+    border: 0.5px solid #222;
+    background: var(--surface);
+    font-size: 12px; line-height: 1.8; color: #666;
+  }
+  .metodo-note strong { color: var(--broken-white); font-weight: 500; }
+  .btn-modal {
+    display: block; margin: 0 32px 32px;
+    background: none; border: 0.5px solid #333;
+    color: var(--muted);
+    font-family: var(--font-body); font-size: 11px;
+    letter-spacing: 2px; text-transform: uppercase;
+    padding: 12px 24px; cursor: pointer;
+    transition: all .25s; width: fit-content;
+  }
+  .btn-modal:hover { border-color: var(--ocre); color: var(--ocre); }
+
+  /* ── CONVOCATORIA ── */
+  .conv-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+    gap: 1px; background: #1a1a1a;
+  }
+  .profile-card {
+    background: var(--bg); padding: clamp(22px, 3vw, 28px);
+    transition: background .2s;
+  }
+  .profile-card:hover { background: var(--surface); }
+  .profile-disc {
+    width: 40px; height: 40px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; margin-bottom: 14px;
+    border: 0.5px solid #333;
+  }
+  .disc-red { color: #d63a2a; }
+  .disc-blue { color: #1a8cff; }
+  .disc-green { color: #00e5a0; }
+  .disc-amber { color: #c4821a; }
+  .disc-ocre { color: #c4a35a; }
+  .disc-muted { color: #888; }
+  .profile-role {
+    font-family: var(--font-title); font-size: 16px;
+    letter-spacing: 1px; color: var(--broken-white);
+    margin-bottom: 6px;
+  }
+  .profile-areas { font-size: clamp(11px, 1.4vw, 12px); color: var(--muted); line-height: 1.7; }
+  .conv-form {
+    margin: 32px auto;
+    width: calc(100% - (var(--page-pad) * 2));
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .conv-form input, .conv-form select, .conv-form textarea {
+    background: var(--surface);
+    border: 0.5px solid #2a2a2a;
+    color: var(--text);
+    padding: 12px 14px; font-size: 14px;
+    font-family: var(--font-body);
+    transition: border-color .2s;
+    outline: none;
+  }
+  .conv-form input:focus, .conv-form select:focus, .conv-form textarea:focus {
+    border-color: var(--red);
+  }
+  .conv-form textarea { grid-column: 1/-1; resize: vertical; min-height: 110px; }
+  .form-status {
+    grid-column: 1/-1;
+    min-height: 18px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--neon-green);
+  }
+  .conv-form .btn-send {
+    grid-column: 1/-1;
+    background: none; border: 0.5px solid var(--red);
+    color: var(--red); font-family: var(--font-body);
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    padding: 15px; cursor: pointer; transition: all .25s;
+    min-height: 48px;
+  }
+  .conv-form .btn-send:hover { background: var(--red); color: #fff; }
+  .conv-labs {
+    margin: 0 auto 32px;
+    width: calc(100% - (var(--page-pad) * 2));
+    display: flex; gap: 16px; flex-wrap: wrap;
+  }
+  .lab-tag {
+    border: 0.5px solid #333; padding: 8px 16px;
+    font-size: 11px; letter-spacing: 1px;
+    color: var(--muted);
+    transition: all .2s; text-transform: uppercase;
+  }
+  .lab-tag:hover { border-color: var(--neon-green); color: var(--neon-green); }
+
+  /* ── ARCHIVO ── */
+  .archivo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+    gap: 1px; background: #1a1a1a;
+  }
+  .file-card {
+    background: var(--bg); padding: clamp(22px, 3vw, 28px);
+    transition: background .2s;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .file-card:hover { background: var(--surface); }
+  .file-type {
+    font-size: 9px; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--muted);
+    border: 0.5px solid #2a2a2a;
+    padding: 3px 8px; width: fit-content;
+  }
+  .file-name {
+    font-family: var(--font-title); font-size: 18px;
+    letter-spacing: 1px; color: var(--broken-white);
+    line-height: 1.1;
+  }
+  .file-desc { font-size: clamp(12px, 1.5vw, 13px); color: #666; line-height: 1.7; }
+  .file-card:hover .file-desc { color: #888; }
+  .file-dl {
+    font-size: 10px; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--neon-blue);
+    margin-top: auto;
+  }
+  .file-dl[aria-disabled="true"] { color: #444; }
+
+  /* FOOTER */
+  footer {
+    border-top: 0.5px solid #1a1a1a;
+    padding: 24px var(--page-pad);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 12px;
+    margin-top: 40px;
+  }
+  .footer-credits { font-size: 11px; color: #444; line-height: 1.8; }
+  .footer-credits em { color: var(--muted); font-style: normal; }
+  .footer-license { font-size: 10px; letter-spacing: 1px; color: #333; text-align: right; }
+
+  /* TICKER */
+  .ticker {
+    background: #0d0d0d;
+    border-top: 0.5px solid #1a1a1a;
+    border-bottom: 0.5px solid #1a1a1a;
+    overflow: hidden; height: 28px;
+    display: flex; align-items: center;
+  }
+  .ticker-inner {
+    display: flex;
+    animation: tickerMove 25s linear infinite;
+    white-space: nowrap;
+  }
+  @keyframes tickerMove { to { transform: translateX(-50%); } }
+  .ticker-item { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #333; padding: 0 32px; }
+  .ticker-item .sep { color: var(--red); margin: 0 8px; }
+
+  /* KINETIC */
+  .kinetic {
+    text-align: center; padding: clamp(34px, 6vw, 56px) var(--page-pad);
+    border-bottom: 0.5px solid #111;
+  }
+  .kinetic-text {
+    font-family: var(--font-title);
+    font-size: clamp(26px, 6vw, 56px);
+    letter-spacing: 3px; color: #222;
+    transition: color .5s, letter-spacing .5s;
+    cursor: default; user-select: none; display: inline-block;
+  }
+  .kinetic:hover .kinetic-text { color: var(--red); letter-spacing: 6px; }
+
+  select option { background: #111; }
+
+  @media (max-width: 960px) {
+    nav {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .nav-links {
+      justify-content: flex-start;
+      width: 100%;
+      border-radius: 18px;
+    }
+    .hero-anchors {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 720px) {
+    nav {
+      gap: 10px;
+      padding: 14px 18px 12px;
+    }
+    .nav-logo {
+      font-size: 23px;
+    }
+    .nav-logo::after {
+      font-size: 10px;
+      max-width: 180px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .nav-links {
+      gap: 8px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding: 6px;
+      scrollbar-width: thin;
+      border-radius: 999px;
+      scroll-snap-type: x proximity;
+      -webkit-overflow-scrolling: touch;
+    }
+    .nav-links::-webkit-scrollbar { height: 4px; }
+    .nav-links::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,.18);
+      border-radius: 999px;
+    }
+    .nav-links button {
+      flex: 0 0 auto;
+      min-height: 38px;
+      padding: 0 14px;
+      scroll-snap-align: center;
+    }
+    .nav-links button.active {
+      border-color: rgba(214,58,42,.45);
+    }
+    .hero {
+      min-height: auto;
+      padding-top: 56px;
+      padding-bottom: 48px;
+    }
+    .hero-title {
+      letter-spacing: 1px;
+    }
+    .hero-anchors {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 34px;
+    }
+    .anchor-card {
+      padding: 13px 10px;
+    }
+    .section-header {
+      padding-top: 40px;
+      padding-bottom: 26px;
+    }
+    .msg {
+      max-width: 94%;
+    }
+    .chat-body {
+      padding: 16px;
+    }
+    .conv-form {
+      grid-template-columns: 1fr;
+    }
+    footer { align-items: flex-start; padding: 24px 20px; flex-direction: column; }
+    .footer-license { text-align: left; }
+  }
+
+  @media (max-width: 460px) {
+    :root {
+      --page-pad: 16px;
+    }
+    nav {
+      padding-left: 14px;
+      padding-right: 14px;
+    }
+    .nav-logo::after {
+      content: 'Territorio en Disputa';
+      max-width: 160px;
+    }
+    .nav-links {
+      width: calc(100% + 2px);
+      margin-left: -1px;
+    }
+    .nav-links button {
+      font-size: 10px;
+      letter-spacing: 1.2px;
+      padding: 0 12px;
+    }
+    .hero-tag {
+      letter-spacing: 2px;
+      line-height: 1.5;
+    }
+    .hero-title {
+      font-size: clamp(42px, 15vw, 64px);
+    }
+    .hero-sub {
+      margin-bottom: 28px;
+    }
+    .btn-primary {
+      width: 100%;
+    }
+    .hero-anchors {
+      grid-template-columns: 1fr;
+      width: 100%;
+    }
+    .section-title {
+      font-size: clamp(34px, 12vw, 48px);
+    }
+    .glossary-list {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+    .glos-tag {
+      width: 100%;
+      text-align: left;
+    }
+    .glos-box {
+      width: 100%;
+      max-height: 86vh;
+      padding: 26px 22px;
+    }
+    .glos-term {
+      padding-right: 38px;
+    }
+    .glos-origin {
+      max-width: 100%;
+      letter-spacing: 1.8px;
+    }
+    .glos-def {
+      line-height: 1.75;
+    }
+    .msg {
+      max-width: 100%;
+    }
+    .msg-human,
+    .msg-ai {
+      align-self: stretch;
+    }
+    .msg-human .msg-label {
+      text-align: left;
+    }
+    .ticker-item {
+      padding: 0 18px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div id="app">
+  <nav>
+    <button type="button" class="nav-logo" onclick="showSection('home')" aria-label="Ir al inicio">SC</button>
+    <div class="nav-links" aria-label="Secciones principales">
+      <button type="button" onclick="showSection('home')" class="active" id="nav-home" aria-current="page">Inicio</button>
+      <button type="button" onclick="showSection('diag')" id="nav-diag">Diagnóstico</button>
+      <button type="button" onclick="showSection('horizonte')" id="nav-horizonte">Horizonte</button>
+      <button type="button" onclick="showSection('metodo')" id="nav-metodo">Método</button>
+      <button type="button" onclick="showSection('conv')" id="nav-conv">Convocatoria</button>
+      <button type="button" onclick="showSection('archivo')" id="nav-archivo">Archivo</button>
+    </div>
+  </nav>
+
+  <div class="ticker">
+    <div class="ticker-inner">
+      <span class="ticker-item">Soberanía Cognitiva<span class="sep">×</span></span>
+      <span class="ticker-item">Tu atención es el producto<span class="sep">×</span></span>
+      <span class="ticker-item">Territorio en disputa<span class="sep">×</span></span>
+      <span class="ticker-item">El yo resquebrajado<span class="sep">×</span></span>
+      <span class="ticker-item">Falso self colectivo<span class="sep">×</span></span>
+      <span class="ticker-item">Rapto cognitivo<span class="sep">×</span></span>
+      <span class="ticker-item">Epistemia<span class="sep">×</span></span>
+      <span class="ticker-item">Soberanía Cognitiva<span class="sep">×</span></span>
+      <span class="ticker-item">Tu atención es el producto<span class="sep">×</span></span>
+      <span class="ticker-item">Territorio en disputa<span class="sep">×</span></span>
+      <span class="ticker-item">El yo resquebrajado<span class="sep">×</span></span>
+      <span class="ticker-item">Falso self colectivo<span class="sep">×</span></span>
+      <span class="ticker-item">Rapto cognitivo<span class="sep">×</span></span>
+      <span class="ticker-item">Epistemia<span class="sep">×</span></span>
+    </div>
+  </div>
+
+  <!-- HOME -->
+  <div id="home" class="section visible">
+    <div class="hero">
+      <div class="hero-grid"></div>
+      <div class="hero-noise"></div>
+      <div class="hero-scan"></div>
+      <div class="hero-tag">Investigación · CIAI · LIAS</div>
+      <h1 class="hero-title">
+        <span class="line-red">SOBERANÍA</span><br>
+        <span>COGNITIVA</span><br>
+        <span class="line-dim">/ TERRITORIO</span><br>
+        <span class="line-dim">EN DISPUTA</span>
+      </h1>
+      <p class="hero-sub">Un diagnóstico crítico sobre la captura algorítmica de la subjetividad contemporánea</p>
+      <p class="hero-phrase"><em>"Antes de los algoritmos, ya había un territorio fragilizado."</em><br>El problema no empezó con las pantallas. Pero ellas lo perfeccionaron.</p>
+      <button type="button" class="btn-primary" onclick="showSection('diag')">Leer el diagnóstico →</button>
+      <div class="hero-anchors">
+        <button type="button" class="anchor-card" onclick="showSection('diag')">
+          <span class="anchor-num">01</span>
+          <span class="anchor-label">Diagnóstico</span>
+        </button>
+        <button type="button" class="anchor-card" onclick="showSection('horizonte')">
+          <span class="anchor-num">02</span>
+          <span class="anchor-label">Horizonte</span>
+        </button>
+        <button type="button" class="anchor-card" onclick="showSection('metodo')">
+          <span class="anchor-num">03</span>
+          <span class="anchor-label">Método</span>
+        </button>
+        <button type="button" class="anchor-card" onclick="showSection('conv')">
+          <span class="anchor-num">04</span>
+          <span class="anchor-label">Convocatoria</span>
+        </button>
+        <button type="button" class="anchor-card" onclick="showSection('archivo')">
+          <span class="anchor-num">05</span>
+          <span class="anchor-label">Archivo</span>
+        </button>
+      </div>
+    </div>
+    <div class="kinetic">
+      <span class="kinetic-text">TU ATENCIÓN ES EL PRODUCTO</span>
+    </div>
+  </div>
+
+  <!-- DIAGNÓSTICO -->
+  <div id="diag" class="section">
+    <div class="section-header">
+      <div class="section-eyebrow">01 / Diagnóstico</div>
+      <h2 class="section-title">EL PROBLEMA</h2>
+      <p class="section-desc">Cinco capas de un mismo territorio fragilizado. Pasá el cursor para explorar cada dimensión.</p>
+    </div>
+    <div class="diag-grid">
+      <button type="button" class="diag-card accent-red" onclick="openGlos('yo_resquebrajado')">
+        <span class="diag-num">01.1</span>
+        <span class="diag-name">LA PREHISTORIA DEL YO RESQUEBRAJADO</span>
+        <span class="diag-author">Gentili / Alario</span>
+        <span class="diag-text">La fragilidad subjetiva no nació con las redes sociales. El terreno ya estaba preparado: sujetos con escasa tolerancia a la frustración, identidades provisorias, yo empobrecido. Los algoritmos no inventaron la vulnerabilidad, la aprovecharon.</span>
+        <span class="diag-expand">Explorar concepto →</span>
+      </button>
+      <button type="button" class="diag-card accent-orange" onclick="openGlos('rapto_cognitivo')">
+        <span class="diag-num">01.2</span>
+        <span class="diag-name">EL ECOSISTEMA DE LA CAPTURA</span>
+        <span class="diag-author">Éric Sadin</span>
+        <span class="diag-text">Las plataformas no son neutrales. Diseñadas para capturar la atención, explotan los mecanismos cognitivos más primitivos. El "rapto cognitivo" no es metáfora: es la sustracción activa de la capacidad de pensar con autonomía.</span>
+        <span class="diag-expand">Explorar concepto →</span>
+      </button>
+      <button type="button" class="diag-card accent-amber" onclick="openGlos('falso_self')">
+        <span class="diag-num">01.3</span>
+        <span class="diag-name">EL MECANISMO DE IMPLANTACIÓN</span>
+        <span class="diag-author">Miguel Benasayag</span>
+        <span class="diag-text">El formateo digital construye un "falso self colectivo": identidades delegadas a las plataformas, subjetividades que se crean para ser vistas, no para existir. La delegación cognitiva no es comodidad, es erosión.</span>
+        <span class="diag-expand">Explorar concepto →</span>
+      </button>
+      <button type="button" class="diag-card accent-blue" onclick="openGlos('epistemia')">
+        <span class="diag-num">01.4</span>
+        <span class="diag-name">LA TEXTURA DEL DISCURSO</span>
+        <span class="diag-author">Walter Quattrociocchi</span>
+        <span class="diag-text">El concepto de "epistemia" nombra la estructura del conocimiento compartido que los algoritmos moldean. Las cámaras de eco no solo filtran contenido: reconfiguran los marcos desde los cuales evaluamos qué es verdad.</span>
+        <span class="diag-expand">Explorar concepto →</span>
+      </button>
+      <button type="button" class="diag-card accent-green" onclick="openGlos('potencia')">
+        <span class="diag-num">01.5</span>
+        <span class="diag-name">LO QUE SE PIERDE</span>
+        <span class="diag-author">Síntesis</span>
+        <span class="diag-text">El cuerpo que no se toca, el tiempo que no se habita, la potencia de actuar que se transfiere a una interfaz. Lo que está en juego no es la pantalla, sino la capacidad de seguir siendo el sujeto de la propia experiencia.</span>
+        <span class="diag-expand">Explorar concepto →</span>
+      </button>
+    </div>
+    <div class="glossary-wrap">
+      <div class="glossary-title">Glosario crítico — clic para definir</div>
+      <div class="glossary-list">
+        <button type="button" class="glos-tag" onclick="openGlos('rapto_cognitivo')">Rapto cognitivo</button>
+        <button type="button" class="glos-tag" onclick="openGlos('epistemia')">Epistemia</button>
+        <button type="button" class="glos-tag" onclick="openGlos('falso_self')">Falso self colectivo</button>
+        <button type="button" class="glos-tag" onclick="openGlos('captura_atencional')">Captura atencional</button>
+        <button type="button" class="glos-tag" onclick="openGlos('delegacion')">Delegación cognitiva</button>
+        <button type="button" class="glos-tag" onclick="openGlos('camara_eco')">Cámara de eco</button>
+        <button type="button" class="glos-tag" onclick="openGlos('yo_resquebrajado')">Yo resquebrajado</button>
+        <button type="button" class="glos-tag" onclick="openGlos('potencia')">Potencia de actuar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- HORIZONTE -->
+  <div id="horizonte" class="section">
+    <div class="section-header">
+      <div class="section-eyebrow">02 / Horizonte</div>
+      <h2 class="section-title">LA PROPUESTA</h2>
+      <p class="section-desc">Soberanía Cognitiva como horizonte político. Cinco dimensiones de un proyecto en construcción.</p>
+    </div>
+    <div class="section-inner">
+      <div class="dim-grid">
+        <div class="dim-card">
+          <div class="dim-icon">◈</div>
+          <div class="dim-name">INDIVIDUAL</div>
+          <div class="dim-desc">Capacidad de cada sujeto de reconocer y resistir los mecanismos de captura. Autonomía del pensamiento, tolerancia a la incertidumbre, potencia de actuar recuperada.</div>
+        </div>
+        <div class="dim-card">
+          <div class="dim-icon">◎</div>
+          <div class="dim-name">COLECTIVA</div>
+          <div class="dim-desc">Construcción de comunidades epistémicas diversas. Disputar los marcos de sentido. El conocimiento como bien común, no como producto algorítmico.</div>
+        </div>
+        <div class="dim-card">
+          <div class="dim-icon">⬡</div>
+          <div class="dim-name">INSTITUCIONAL</div>
+          <div class="dim-desc">Políticas públicas, educación crítica, ecosistemas informativos robustos. El Estado como garante de condiciones para el pensamiento libre.</div>
+        </div>
+        <div class="dim-card">
+          <div class="dim-icon">◻</div>
+          <div class="dim-name">EPISTÉMICA</div>
+          <div class="dim-desc">Diversidad de fuentes de conocimiento. Resistencia a la monocultura informativa. Crítica a la "ciudadanía digital" como adaptación acrítica.</div>
+        </div>
+        <div class="dim-card">
+          <div class="dim-icon">⊞</div>
+          <div class="dim-name">TÉCNICA</div>
+          <div class="dim-desc">Regulación, transparencia algorítmica, derecho a no ser perfilado. La arquitectura tecnológica como decisión política, no como inevitabilidad.</div>
+        </div>
+      </div>
+    </div>
+    <div class="horizonte-quote">
+      <div class="horizonte-q-text">"La ciudadanía digital light nos pide adaptarnos a las plataformas. La soberanía cognitiva nos pide preguntarle a las plataformas a qué nos estamos adaptando."</div>
+      <div class="horizonte-q-attr">— Del diagnóstico</div>
+    </div>
+  </div>
+
+  <!-- MÉTODO -->
+  <div id="metodo" class="section">
+    <div class="section-header">
+      <div class="section-eyebrow">03 / Método</div>
+      <h2 class="section-title">EL TERCER ESPACIO</h2>
+      <p class="section-desc">Cómo se construyó este diagnóstico. Un diálogo entre pensamiento humano e inteligencia sintética.</p>
+    </div>
+    <div class="chat-demo">
+      <div class="chat-bar">
+        <div class="chat-dot dot-red"></div>
+        <div class="chat-dot dot-muted"></div>
+        <div class="chat-dot dot-muted"></div>
+        <span class="chat-title">Muestra del diálogo coemergente</span>
+      </div>
+      <div class="chat-body">
+        <div class="msg msg-human">
+          <div class="msg-label">Investigadora</div>
+          <div class="msg-bubble">Tengo la sensación de que el problema no empieza con los algoritmos sino antes. Algo en la estructura psíquica contemporánea hace posible la captura. ¿Podés ayudarme a nombrar eso?</div>
+        </div>
+        <div class="msg msg-ai">
+          <div class="msg-label">IA — organización</div>
+          <div class="msg-bubble">Lo que describís puede articularse con la noción de "yo empobrecido" en la literatura psicoanalítica contemporánea (Gentili, Alario). La idea es que ciertas configuraciones subjetivas — baja tolerancia a la frustración, identidad provisoria, necesidad de validación externa — preceden y facilitan los mecanismos de captura algorítmica. El terreno estaba preparado. ¿Querés que desarrolle la genealogía de ese sujeto frágil o que me enfoque en el mecanismo de captura?</div>
+        </div>
+        <div class="msg msg-human">
+          <div class="msg-label">Investigadora</div>
+          <div class="msg-bubble">Las dos cosas, pero sin perder el hilo político. Esto no puede quedar solo en psicología individual.</div>
+        </div>
+        <div class="msg msg-ai">
+          <div class="msg-label">IA — organización</div>
+          <div class="msg-bubble">Entendido. El giro político puede entrar por Benasayag: el "falso self colectivo" no es un fenómeno privado sino una operación de escala. Las plataformas no solo formatean individuos, construyen un sujeto social funcional a la economía de la atención. Eso es lo que hace necesaria una respuesta que también sea colectiva, institucional, política.</div>
+        </div>
+      </div>
+    </div>
+    <div class="metodo-note">
+      <strong>Nota metodológica:</strong> Este diagnóstico fue construido en un diálogo coemergente con inteligencia artificial. La IA no piensa: organiza, propone conexiones, sugiere vocabulario. <strong>El sentido, las preguntas, la dirección política, la interpretación: son humanos.</strong> El Tercer Espacio es ese territorio donde ninguno de los dos puede llegar solo.
+    </div>
+  </div>
+
+  <!-- CONVOCATORIA -->
+  <div id="conv" class="section">
+    <div class="section-header">
+      <div class="section-eyebrow">04 / Convocatoria</div>
+      <h2 class="section-title">LA COMUNIDAD</h2>
+      <p class="section-desc">Este territorio necesita más cartógrafos. Buscamos voces desde distintas disciplinas.</p>
+    </div>
+    <div class="conv-grid">
+      <div class="profile-card">
+        <div class="profile-disc disc-red">⚕</div>
+        <div class="profile-role">PSICOLOGÍA CLÍNICA</div>
+        <div class="profile-areas">Subjetividad contemporánea · Clínica de las tecnologías · Psicoanálisis y cultura digital</div>
+      </div>
+      <div class="profile-card">
+        <div class="profile-disc disc-blue">⊛</div>
+        <div class="profile-role">CIENCIAS DE LA COMPUTACIÓN</div>
+        <div class="profile-areas">Diseño de algoritmos · Ética de la IA · Arquitecturas de recomendación · Sistemas de captura</div>
+      </div>
+      <div class="profile-card">
+        <div class="profile-disc disc-green">◈</div>
+        <div class="profile-role">FILOSOFÍA POLÍTICA</div>
+        <div class="profile-areas">Teoría del sujeto · Biopolítica digital · Crítica de la razón técnica · Epistemología</div>
+      </div>
+      <div class="profile-card">
+        <div class="profile-disc disc-amber">⬡</div>
+        <div class="profile-role">COMUNICACIÓN Y MEDIOS</div>
+        <div class="profile-areas">Ecosistemas informativos · Desinformación · Estudios de plataformas · Cultura digital</div>
+      </div>
+      <div class="profile-card">
+        <div class="profile-disc disc-ocre">◻</div>
+        <div class="profile-role">EDUCACIÓN</div>
+        <div class="profile-areas">Pedagogía crítica · Alfabetización mediática · Formación docente · Nuevas infancias</div>
+      </div>
+      <div class="profile-card">
+        <div class="profile-disc disc-muted">⊞</div>
+        <div class="profile-role">DERECHO Y POLÍTICAS PÚBLICAS</div>
+        <div class="profile-areas">Regulación tecnológica · Derechos digitales · Gobernanza de datos · Legislación IA</div>
+      </div>
+    </div>
+    <form class="conv-form" id="convForm">
+      <label class="sr-only" for="convName">Nombre y apellido</label>
+      <input id="convName" name="nombre" type="text" placeholder="Nombre y apellido" autocomplete="name" required>
+      <label class="sr-only" for="convEmail">Correo electrónico</label>
+      <input id="convEmail" name="email" type="email" placeholder="Correo electrónico" autocomplete="email" required>
+      <label class="sr-only" for="convDiscipline">Disciplina / institución</label>
+      <input id="convDiscipline" name="disciplina" type="text" placeholder="Disciplina / institución" required>
+      <label class="sr-only" for="convParticipation">Cómo querés participar</label>
+      <select id="convParticipation" name="participacion" required>
+        <option value="">¿Cómo querés participar?</option>
+        <option value="investigacion">Sumar al equipo de investigación</option>
+        <option value="debate">Debatir el diagnóstico</option>
+        <option value="difusion">Difundir el proyecto</option>
+        <option value="laboratorios">Contactar los laboratorios</option>
+      </select>
+      <label class="sr-only" for="convMessage">Mensaje opcional</label>
+      <textarea id="convMessage" name="mensaje" placeholder="Mensaje (opcional): ¿Qué traés al territorio?"></textarea>
+      <button type="submit" class="btn-send">Sumarme al territorio →</button>
+      <div class="form-status" id="convFormStatus" role="status" aria-live="polite"></div>
+    </form>
+    <div class="conv-labs">
+      <div class="lab-tag">CIAI — Contacto</div>
+      <div class="lab-tag">LIAS — Contacto</div>
+    </div>
+  </div>
+
+  <!-- ARCHIVO -->
+  <div id="archivo" class="section">
+    <div class="section-header">
+      <div class="section-eyebrow">05 / Archivo</div>
+      <h2 class="section-title">RECURSOS</h2>
+      <p class="section-desc">Biblioteca descargable. Documentos, bibliografía comentada y guías críticas.</p>
+    </div>
+    <div class="archivo-grid">
+      <div class="file-card">
+        <div class="file-type">PDF · Documento completo</div>
+        <div class="file-name">DIAGNÓSTICO CRÍTICO SOBRE CAPTURA ALGORÍTMICA</div>
+        <div class="file-desc">El documento integral. Cinco dimensiones del problema, horizonte de soberanía cognitiva y método de investigación.</div>
+        <div class="file-dl" aria-disabled="true">PDF próximamente</div>
+      </div>
+      <div class="file-card">
+        <div class="file-type">PDF · Versión breve</div>
+        <div class="file-name">SÍNTESIS EJECUTIVA</div>
+        <div class="file-desc">Versión condensada para difusión. Las ideas clave en formato accesible para distintos públicos.</div>
+        <div class="file-dl" aria-disabled="true">PDF próximamente</div>
+      </div>
+      <div class="file-card">
+        <div class="file-type">PDF · Bibliografía</div>
+        <div class="file-name">AUTORES CLAVE Y BIBLIOGRAFÍA COMENTADA</div>
+        <div class="file-desc">Sadin, Benasayag, Quattrociocchi, Gentili, Alario y otros. Cada entrada con nota crítica sobre su contribución al diagnóstico.</div>
+        <div class="file-dl" aria-disabled="true">PDF próximamente</div>
+      </div>
+      <div class="file-card">
+        <div class="file-type">PDF · Guía crítica</div>
+        <div class="file-name">CRÍTICA AL MANUAL FARO DIGITAL</div>
+        <div class="file-desc">Análisis crítico de los límites del enfoque de "ciudadanía digital" light. Por qué la adaptación no es suficiente.</div>
+        <div class="file-dl" aria-disabled="true">PDF próximamente</div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-credits">
+      Investigación y dirección: <em>[Tu nombre]</em><br>
+      Construido en diálogo con inteligencia sintética<br>
+      Método: coemergencia · CIAI · LIAS
+    </div>
+    <div class="footer-license">
+      Creative Commons<br>
+      No comercial · Compartir igual<br>
+      CC BY-NC-SA 4.0
+    </div>
+  </footer>
+</div>
+
+<!-- GLOSSARY MODAL -->
+<div class="glos-modal" id="glosModal" role="dialog" aria-modal="true" aria-labelledby="glosTerm" aria-describedby="glosDef">
+  <div class="glos-box" tabindex="-1">
+    <button type="button" class="glos-close" onclick="closeGlos()" aria-label="Cerrar glosario">✕</button>
+    <div class="glos-term" id="glosTerm"></div>
+    <div class="glos-origin" id="glosOrigin"></div>
+    <div class="glos-def" id="glosDef"></div>
+  </div>
+</div>
+
+<script>
+const glosData = {
+  rapto_cognitivo: {
+    term: 'Rapto cognitivo',
+    origin: 'Éric Sadin — La inteligencia artificial o el desafío del siglo',
+    def: 'La sustracción activa y sistemática de la capacidad de atención y deliberación cognitiva por parte de las plataformas digitales. No es metáfora: es el diseño intencional de sistemas que interrumpen, fragmentan y redirigen el pensamiento hacia fines comerciales.'
+  },
+  epistemia: {
+    term: 'Epistemia',
+    origin: 'Walter Quattrociocchi — investigación sobre desinformación digital',
+    def: 'La estructura profunda del conocimiento compartido que organiza cómo una comunidad define qué cuenta como evidencia, qué fuentes son legítimas y qué marcos interpretativos son válidos. Los algoritmos no solo filtran contenidos: remodelan epistemias enteras.'
+  },
+  falso_self: {
+    term: 'Falso self colectivo',
+    origin: 'Miguel Benasayag — adaptación del concepto winnicottiano al contexto digital',
+    def: 'Una identidad social construida para ser performada en plataformas. No es la identidad del sujeto sino la que el ecosistema digital hace viable y refuerza. A escala colectiva, produce una subjetividad delegada, funcional a la economía de la atención.'
+  },
+  captura_atencional: {
+    term: 'Captura atencional',
+    origin: 'Síntesis crítica — Sadin, Benasayag, economía de la atención',
+    def: 'El proceso por el cual las arquitecturas de plataformas diseñan flujos para monopolizar la atención del usuario, explotando sesgos cognitivos evolutivos. La atención, como recurso escaso, es el producto que se comercializa.'
+  },
+  delegacion: {
+    term: 'Delegación cognitiva',
+    origin: 'Miguel Benasayag — Pensar con las manos',
+    def: 'La transferencia progresiva de funciones cognitivas —memoria, orientación, juicio, decisión— a sistemas técnicos. Cuando se vuelve habitual, erosiona las capacidades cognitivas propias y genera dependencia estructural.'
+  },
+  camara_eco: {
+    term: 'Cámara de eco',
+    origin: 'Investigación sobre desinformación digital — Quattrociocchi y otros',
+    def: 'Entorno informacional en el cual las creencias de un usuario son amplificadas y reforzadas por la repetición algorítmica de contenidos afines, reduciendo la exposición a perspectivas divergentes y reforzando sesgos preexistentes.'
+  },
+  yo_resquebrajado: {
+    term: 'Yo resquebrajado',
+    origin: 'Gentili / Alario — psicoanálisis y subjetividad contemporánea',
+    def: 'Configuración subjetiva caracterizada por baja tolerancia a la frustración, necesidad intensa de validación externa, dificultad para sostener narrativas identitarias estables. Precede a las plataformas pero articula perfectamente con ellas.'
+  },
+  potencia: {
+    term: 'Potencia de actuar',
+    origin: 'Baruch Spinoza — reelaborado por Deleuze, Benasayag',
+    def: 'La capacidad de un cuerpo o sujeto de producir efectos en el mundo desde su propio deseo y reflexión. La captura algorítmica opera precisamente reduciendo esta potencia: actúo, pero siguiendo los flujos que el sistema diseñó para mí.'
+  }
+};
+
+let lastFocusedElement = null;
+
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
+  document.getElementById(id).classList.add('visible');
+  document.querySelectorAll('.nav-links button').forEach(b => {
+    b.classList.remove('active');
+    b.removeAttribute('aria-current');
+  });
+  const activeNav = document.getElementById('nav-' + id);
+  if (activeNav) {
+    activeNav.classList.add('active');
+    activeNav.setAttribute('aria-current', 'page');
+    activeNav.scrollIntoView({ block: 'nearest', inline: 'center' });
+  }
+  window.scrollTo(0, 0);
+}
+
+function openGlos(key) {
+  const d = glosData[key];
+  if (!d) return;
+  lastFocusedElement = document.activeElement;
+  document.getElementById('glosTerm').textContent = d.term;
+  document.getElementById('glosOrigin').textContent = d.origin;
+  document.getElementById('glosDef').textContent = d.def;
+  const modal = document.getElementById('glosModal');
+  modal.classList.add('open');
+  const closeButton = modal.querySelector('.glos-close');
+  if (closeButton) closeButton.focus();
+}
+
+function closeGlos() {
+  document.getElementById('glosModal').classList.remove('open');
+  if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+    lastFocusedElement.focus();
+  }
+}
+
+document.getElementById('glosModal').addEventListener('click', function(e) {
+  if (e.target === this) closeGlos();
+});
+
+document.addEventListener('keydown', function(e) {
+  const modal = document.getElementById('glosModal');
+  if (e.key === 'Escape' && modal.classList.contains('open')) {
+    closeGlos();
+  }
+});
+
+document.getElementById('convForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const status = document.getElementById('convFormStatus');
+  status.textContent = 'Gracias. Tu interés quedó registrado en esta demo estática; falta conectar un canal de envío real.';
+  this.reset();
+});
+</script>
+</body>
+</html>
