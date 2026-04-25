@@ -63,6 +63,39 @@
       padding: 5px 12px;
       margin-bottom: 24px;
     }
+    .toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .lang-switch label {
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .lang-switch select {
+      border: 0;
+      background: transparent;
+      color: var(--broken-white);
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
 
     h1 {
       font-family: var(--font-title);
@@ -112,17 +145,102 @@
 </head>
 <body>
   <main class="frame" role="main" aria-labelledby="maintenanceTitle">
-    <div class="badge">Soberanía Cognitiva</div>
+    <div class="toolbar">
+      <div class="badge" id="badgeText">Soberanía Cognitiva</div>
+      <div class="lang-switch">
+        <label for="langSelect">Lang</label>
+        <select id="langSelect" aria-label="Cambiar idioma de mantenimiento">
+          <option value="es">ES</option>
+          <option value="eu">EU</option>
+          <option value="zh">ZH</option>
+          <option value="pt">PT</option>
+          <option value="de">DE</option>
+          <option value="ru">RU</option>
+        </select>
+      </div>
+    </div>
     <h1 id="maintenanceTitle">
-      <span>Sitio en</span>
-      mantenimiento
+      <span id="titleLine1">Sitio en</span>
+      <span id="titleLine2" style="color: var(--broken-white);">mantenimiento</span>
     </h1>
-    <p class="subtitle">Estamos ajustando este territorio para volver con mejoras.</p>
-    <p class="copy">
-      El sitio está temporalmente fuera de servicio para tareas de actualización.
-      Intentá nuevamente en unos minutos. <strong>Gracias por la espera.</strong>
+    <p class="subtitle" id="subtitleText">Estamos ajustando este territorio para volver con mejoras.</p>
+    <p class="copy" id="copyText">
+      El sitio está temporalmente fuera de servicio para tareas de actualización. Intentá nuevamente en unos minutos. <strong>Gracias por la espera.</strong>
     </p>
-    <div class="footer">Estado del servicio: mantenimiento activo</div>
+    <div class="footer" id="footerText">Estado del servicio: mantenimiento activo</div>
   </main>
+  <script>
+    const MAINTENANCE_I18N = {
+      es: {
+        badge: 'Soberanía Cognitiva',
+        titleLine1: 'Sitio en',
+        titleLine2: 'mantenimiento',
+        subtitle: 'Estamos ajustando este territorio para volver con mejoras.',
+        copy: 'El sitio está temporalmente fuera de servicio para tareas de actualización. Intentá nuevamente en unos minutos. <strong>Gracias por la espera.</strong>',
+        footer: 'Estado del servicio: mantenimiento activo'
+      },
+      eu: {
+        badge: 'Cognitive Sovereignty',
+        titleLine1: 'Site under',
+        titleLine2: 'maintenance',
+        subtitle: 'We are tuning this territory to come back better.',
+        copy: 'The site is temporarily offline for updates. Please try again in a few minutes. <strong>Thank you for your patience.</strong>',
+        footer: 'Service status: maintenance mode active'
+      },
+      zh: {
+        badge: '认知主权',
+        titleLine1: '站点正在',
+        titleLine2: '维护中',
+        subtitle: '我们正在调整这个空间，稍后将以更好的状态返回。',
+        copy: '网站因更新任务暂时不可用。请稍后再试。<strong>感谢你的耐心等待。</strong>',
+        footer: '服务状态：维护模式已启用'
+      },
+      pt: {
+        badge: 'Soberania Cognitiva',
+        titleLine1: 'Site em',
+        titleLine2: 'manutenção',
+        subtitle: 'Estamos ajustando este território para voltar com melhorias.',
+        copy: 'O site está temporariamente fora do ar para atualizações. Tente novamente em alguns minutos. <strong>Obrigado pela sua paciência.</strong>',
+        footer: 'Status do serviço: manutenção ativa'
+      },
+      de: {
+        badge: 'Kognitive Souveränität',
+        titleLine1: 'Website in',
+        titleLine2: 'Wartung',
+        subtitle: 'Wir passen dieses Gebiet an, um verbessert zurückzukehren.',
+        copy: 'Die Website ist wegen Aktualisierungen vorübergehend nicht verfügbar. Bitte versuche es in ein paar Minuten erneut. <strong>Danke für deine Geduld.</strong>',
+        footer: 'Dienststatus: Wartungsmodus aktiv'
+      },
+      ru: {
+        badge: 'Когнитивный суверенитет',
+        titleLine1: 'Сайт на',
+        titleLine2: 'обслуживании',
+        subtitle: 'Мы дорабатываем этот ресурс, чтобы вернуться в улучшенном виде.',
+        copy: 'Сайт временно недоступен из-за обновлений. Пожалуйста, попробуйте снова через несколько минут. <strong>Спасибо за ожидание.</strong>',
+        footer: 'Статус сервиса: режим обслуживания активен'
+      }
+    };
+
+    function applyMaintenanceLanguage(lang) {
+      const selected = MAINTENANCE_I18N[lang] ? lang : 'es';
+      const t = MAINTENANCE_I18N[selected];
+
+      document.getElementById('badgeText').textContent = t.badge;
+      document.getElementById('titleLine1').textContent = t.titleLine1;
+      document.getElementById('titleLine2').textContent = t.titleLine2;
+      document.getElementById('subtitleText').textContent = t.subtitle;
+      document.getElementById('copyText').innerHTML = t.copy;
+      document.getElementById('footerText').textContent = t.footer;
+
+      document.documentElement.lang = selected === 'eu' ? 'en' : selected;
+      localStorage.setItem('site_lang', selected);
+    }
+
+    const langSelect = document.getElementById('langSelect');
+    const savedLang = localStorage.getItem('site_lang') || 'es';
+    langSelect.value = MAINTENANCE_I18N[savedLang] ? savedLang : 'es';
+    applyMaintenanceLanguage(langSelect.value);
+    langSelect.addEventListener('change', (e) => applyMaintenanceLanguage(e.target.value));
+  </script>
 </body>
 </html>
