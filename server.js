@@ -5,6 +5,10 @@ const path = require('path');
 const PORT = process.env.PORT || 3000;
 const PUBLIC_DIR = __dirname;
 const HOME_FILE = 'soberania_cognitiva_web_design.html';
+const MAINTENANCE_FILE = 'maintenance.html';
+const MAINTENANCE_MODE = ['1', 'true', 'yes', 'on'].includes(
+  String(process.env.MAINTENANCE_MODE || '').toLowerCase()
+);
 
 const MIME_TYPES = {
   '.html': 'text/html; charset=utf-8',
@@ -33,7 +37,9 @@ function resolveRequestPath(urlPath) {
 }
 
 const server = http.createServer((req, res) => {
-  const filePath = resolveRequestPath(req.url || '/');
+  const filePath = MAINTENANCE_MODE
+    ? path.join(PUBLIC_DIR, MAINTENANCE_FILE)
+    : resolveRequestPath(req.url || '/');
 
   if (!filePath) {
     res.writeHead(403, { 'Content-Type': 'text/plain; charset=utf-8' });
@@ -49,14 +55,19 @@ const server = http.createServer((req, res) => {
     }
 
     const extension = path.extname(filePath).toLowerCase();
-    res.writeHead(200, {
+    const statusCode = MAINTENANCE_MODE ? 503 : 200;
+    const cacheControl = MAINTENANCE_MODE ? 'no-store' : 'public, max-age=300';
+
+    res.writeHead(statusCode, {
       'Content-Type': MIME_TYPES[extension] || 'application/octet-stream',
-      'Cache-Control': 'public, max-age=300'
+      'Cache-Control': cacheControl
     });
     res.end(data);
   });
 });
 
 server.listen(PORT, () => {
-  console.log(`Soberania site running on port ${PORT}`);
+  console.log(
+    `Soberania site running on port ${PORT}${MAINTENANCE_MODE ? ' (maintenance mode ON)' : ''}`
+  );
 });
