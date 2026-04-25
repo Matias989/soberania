@@ -148,10 +148,34 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
+    position: relative;
     border: 1px solid rgba(255,255,255,.08);
     border-radius: 999px;
-    padding: 4px 8px;
-    background: rgba(255,255,255,.03);
+    padding: 4px 10px 4px 9px;
+    background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+    transition: border-color .2s, box-shadow .2s, transform .2s;
+  }
+  .lang-switch:hover {
+    border-color: rgba(26,140,255,.35);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 0 0 1px rgba(26,140,255,.12);
+    transform: translateY(-1px);
+  }
+  .lang-switch:focus-within {
+    border-color: rgba(26,140,255,.55);
+    box-shadow: 0 0 0 2px rgba(26,140,255,.2), 0 10px 26px rgba(26,140,255,.12);
+  }
+  .lang-switch::after {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-right: 2px solid #b9cde9;
+    border-bottom: 2px solid #b9cde9;
+    transform: rotate(45deg);
+    margin-left: -2px;
+    margin-right: 3px;
+    opacity: .9;
+    pointer-events: none;
   }
   .lang-switch label {
     font-size: 10px;
@@ -160,15 +184,25 @@
     color: #8a8a8a;
   }
   .lang-switch select {
-    background: transparent;
+    background: rgba(0,0,0,0);
     border: 0;
-    color: var(--broken-white);
+    color: #f3eee2;
     font-size: 11px;
+    font-weight: 600;
     letter-spacing: 1.2px;
     text-transform: uppercase;
     min-height: 30px;
-    padding: 0 4px;
+    padding: 0 14px 0 4px;
     cursor: pointer;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-shadow: 0 0 12px rgba(26,140,255,.15);
+  }
+  .lang-switch select option {
+    background: #111318;
+    color: #ece6d8;
   }
   button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
     outline: 2px solid var(--neon-blue);

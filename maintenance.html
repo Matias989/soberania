@@ -75,10 +75,34 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      position: relative;
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 999px;
-      padding: 6px 10px;
-      background: rgba(255, 255, 255, 0.02);
+      padding: 6px 11px 6px 10px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+      transition: border-color .2s, box-shadow .2s, transform .2s;
+    }
+    .lang-switch:hover {
+      border-color: rgba(26,140,255,0.4);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 0 0 1px rgba(26,140,255,.12);
+      transform: translateY(-1px);
+    }
+    .lang-switch:focus-within {
+      border-color: rgba(26,140,255,.6);
+      box-shadow: 0 0 0 2px rgba(26,140,255,.2), 0 10px 24px rgba(26,140,255,.14);
+    }
+    .lang-switch::after {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-right: 2px solid #b9cde9;
+      border-bottom: 2px solid #b9cde9;
+      transform: rotate(45deg);
+      margin-left: -2px;
+      margin-right: 2px;
+      opacity: .9;
+      pointer-events: none;
     }
     .lang-switch label {
       font-size: 10px;
@@ -89,12 +113,23 @@
     .lang-switch select {
       border: 0;
       background: transparent;
-      color: var(--broken-white);
+      color: #f3eee2;
       font-family: var(--font-body);
       font-size: 11px;
+      font-weight: 600;
       letter-spacing: 1.2px;
       text-transform: uppercase;
+      padding: 0 14px 0 4px;
       cursor: pointer;
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      text-shadow: 0 0 12px rgba(26,140,255,.15);
+    }
+    .lang-switch select option {
+      background: #111318;
+      color: #ece6d8;
     }
 
     h1 {
