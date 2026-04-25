@@ -1,0 +1,12 @@
+{
+  "name": "soberania",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sitio estatico de Soberania Cognitiva",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
