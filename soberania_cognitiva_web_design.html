@@ -7,7 +7,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
   :root {
     --bg: #0a0a0a;
@@ -30,7 +34,9 @@
     --content-max: 1180px;
   }
 
-  html { scroll-behavior: smooth; }
+  html {
+    scroll-behavior: smooth;
+  }
 
   body {
     background:
@@ -51,8 +57,12 @@
 
   /* NAV */
   nav {
-    position: sticky; top: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     gap: clamp(16px, 3vw, 32px);
     padding: 14px var(--page-pad);
     background:
@@ -62,14 +72,18 @@
     border-bottom: 1px solid rgba(255,255,255,.08);
     box-shadow: 0 14px 40px rgba(0,0,0,.28);
   }
+
   nav::before {
     content: '';
     position: absolute;
-    left: 0; right: 0; top: 0;
+    left: 0;
+    right: 0;
+    top: 0;
     height: 1.5px;
     background: linear-gradient(90deg, var(--red), transparent 35%, rgba(26,140,255,.45), transparent 78%);
     opacity: .85;
   }
+
   .nav-logo {
     background: transparent;
     border: 0;
@@ -88,10 +102,12 @@
     text-shadow: 0 0 22px rgba(214,58,42,.32);
     transition: transform .2s, filter .2s;
   }
+
   .nav-logo:hover {
     filter: brightness(1.12);
     transform: translateY(-1px);
   }
+
   .nav-logo::before {
     content: '';
     width: 9px;
@@ -100,6 +116,7 @@
     background: var(--red);
     box-shadow: 0 0 16px rgba(214,58,42,.8);
   }
+
   .nav-logo::after {
     content: attr(data-subtitle);
     font-family: var(--font-body);
@@ -110,8 +127,11 @@
     color: #777;
     padding-left: 2px;
   }
+
   .nav-links {
-    display: flex; gap: 6px; flex-wrap: wrap;
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
     justify-content: flex-end;
     padding: 5px;
     border: 1px solid rgba(255,255,255,.07);
@@ -119,23 +139,29 @@
     background: rgba(255,255,255,.035);
     box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
   }
+
   .nav-links button {
     background: transparent;
     border: 1px solid transparent;
     border-radius: 999px;
-    font-family: var(--font-body); font-size: 11px;
+    font-family: var(--font-body);
+    font-size: 11px;
     font-weight: 500;
-    letter-spacing: 1.4px; text-transform: uppercase;
-    color: #8a8a8a; cursor: pointer;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: #8a8a8a;
+    cursor: pointer;
     min-height: 38px;
     padding: 0 16px;
     transition: color .2s, transform .2s, border-color .2s, background .2s, box-shadow .2s;
   }
+
   .nav-links button:hover {
     color: var(--broken-white);
     border-color: rgba(255,255,255,.1);
     background: rgba(255,255,255,.045);
   }
+
   .nav-links button.active {
     color: #fff;
     border-color: rgba(214,58,42,.55);
@@ -143,6 +169,7 @@
     box-shadow: 0 0 0 1px rgba(214,58,42,.08), 0 8px 24px rgba(214,58,42,.12);
     transform: translateY(-1px);
   }
+
   .lang-switch {
     margin-left: 8px;
     display: inline-flex;
@@ -156,15 +183,18 @@
     box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
     transition: border-color .2s, box-shadow .2s, transform .2s;
   }
+
   .lang-switch:hover {
     border-color: rgba(26,140,255,.35);
     box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 0 0 1px rgba(26,140,255,.12);
     transform: translateY(-1px);
   }
+
   .lang-switch:focus-within {
     border-color: rgba(26,140,255,.55);
     box-shadow: 0 0 0 2px rgba(26,140,255,.2), 0 10px 26px rgba(26,140,255,.12);
   }
+
   .lang-switch::after {
     content: '';
     width: 7px;
@@ -177,12 +207,14 @@
     opacity: .9;
     pointer-events: none;
   }
+
   .lang-switch label {
     font-size: 10px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
     color: #8a8a8a;
   }
+
   .lang-switch select {
     background: rgba(0,0,0,0);
     border: 0;
@@ -200,14 +232,20 @@
     -moz-appearance: none;
     text-shadow: 0 0 12px rgba(26,140,255,.15);
   }
+
   .lang-switch select option {
     background: #111318;
     color: #ece6d8;
   }
-  button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
     outline: 2px solid var(--neon-blue);
     outline-offset: 3px;
   }
+
   .sr-only {
     position: absolute;
     width: 1px;
@@ -221,27 +259,51 @@
   }
 
   /* SECTIONS */
-  .section { display: none; animation: fadeIn .4s ease; }
-  .section.visible { display: block; }
+  .section {
+    display: none;
+    animation: fadeIn .4s ease;
+  }
+
+  .section.visible {
+    display: block;
+  }
+
   .section > * {
     max-width: var(--content-max);
     margin-left: auto;
     margin-right: auto;
   }
-  .section > .hero { max-width: none; }
-  @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
 
-  /* ── HERO ── */
+  .section > .hero {
+    max-width: none;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* HERO */
   .hero {
-    position: relative; min-height: min(90vh, 860px);
+    position: relative;
+    min-height: min(90vh, 860px);
     min-height: min(90dvh, 860px);
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     padding: clamp(56px, 9vw, 96px) var(--page-pad);
     overflow: hidden;
     isolation: isolate;
     background: #050505;
   }
+
   .hero::after {
     content: '';
     position: absolute;
@@ -252,10 +314,12 @@
       radial-gradient(circle at 50% 34%, rgba(0,0,0,.08), rgba(0,0,0,.48) 58%, rgba(0,0,0,.78) 100%),
       linear-gradient(180deg, rgba(0,0,0,.34), rgba(0,0,0,.62));
   }
+
   .hero > :not(.hero-video):not(.hero-scan) {
     position: relative;
     z-index: 2;
   }
+
   .hero-video {
     position: absolute;
     inset: 0;
@@ -267,8 +331,10 @@
     opacity: .46;
     filter: saturate(.82) contrast(1.08) brightness(.72);
   }
+
   .hero-grid {
-    position: absolute; inset: 0;
+    position: absolute;
+    inset: 0;
     z-index: 1;
     background-image:
       linear-gradient(rgba(26,140,255,0.055) 1px, transparent 1px),
@@ -276,22 +342,36 @@
     background-size: 48px 48px;
     animation: gridDrift 30s linear infinite;
   }
-  @keyframes gridDrift { to { background-position: 48px 48px; } }
+
+  @keyframes gridDrift {
+    to {
+      background-position: 48px 48px;
+    }
+  }
+
   .hero-noise {
-    position: absolute; inset: 0;
+    position: absolute;
+    inset: 0;
     z-index: 1;
     background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    opacity: .6; pointer-events: none;
+    opacity: .6;
+    pointer-events: none;
   }
+
   .hero-tag {
     font-family: var(--font-body);
-    font-size: 10px; letter-spacing: 3px;
-    text-transform: uppercase; color: var(--neon-blue);
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--neon-blue);
     border: 0.5px solid rgba(26,140,255,.3);
-    padding: 4px 12px; border-radius: 2px;
-    margin-bottom: clamp(22px, 4vw, 32px); position: relative;
+    padding: 4px 12px;
+    border-radius: 2px;
+    margin-bottom: clamp(22px, 4vw, 32px);
+    position: relative;
     text-align: center;
   }
+
   .hero-title {
     font-family: var(--font-title);
     font-size: clamp(48px, 12vw, 116px);
@@ -301,8 +381,15 @@
     position: relative;
     margin-bottom: 8px;
   }
-  .hero-title .line-red { color: var(--red); }
-  .hero-title .line-dim { color: #444; }
+
+  .hero-title .line-red {
+    color: var(--red);
+  }
+
+  .hero-title .line-dim {
+    color: #444;
+  }
+
   .hero-sub {
     font-family: var(--font-serif);
     font-size: clamp(16px, 2.2vw, 22px);
@@ -314,52 +401,86 @@
     margin: 16px 0 40px;
     position: relative;
   }
+
   .hero-phrase {
     font-family: var(--font-serif);
-    font-size: clamp(13px, 1.8vw, 15px); font-style: italic;
-    color: #777; text-align: center;
-    max-width: 520px; line-height: 1.7;
-    position: relative; margin-bottom: 40px;
+    font-size: clamp(13px, 1.8vw, 15px);
+    font-style: italic;
+    color: #777;
+    text-align: center;
+    max-width: 520px;
+    line-height: 1.7;
+    position: relative;
+    margin-bottom: 40px;
   }
-  .hero-phrase em { color: var(--broken-white); font-style: normal; }
+
+  .hero-phrase em {
+    color: var(--broken-white);
+    font-style: normal;
+  }
+
   .btn-primary {
     position: relative;
     background: none;
     border: 0.5px solid var(--red);
     color: var(--red);
     font-family: var(--font-body);
-    font-size: 11px; letter-spacing: 2px;
+    font-size: 11px;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    padding: 14px clamp(24px, 5vw, 40px); cursor: pointer;
+    padding: 14px clamp(24px, 5vw, 40px);
+    cursor: pointer;
     min-height: 46px;
     transition: all .25s;
   }
+
   .btn-primary:hover {
-    background: var(--red); color: #fff;
+    background: var(--red);
+    color: #fff;
     box-shadow: 0 0 24px rgba(214,58,42,.3);
   }
+
   .hero-anchors {
     position: relative;
     display: grid;
-    grid-template-columns: repeat(5, minmax(120px, 1fr));
+    grid-template-columns: repeat(6, minmax(100px, 1fr));
     gap: clamp(10px, 2vw, 20px);
-    width: min(100%, 820px);
+    width: min(100%, 1000px);
     margin-top: clamp(36px, 6vw, 56px);
     justify-content: center;
   }
+
   .anchor-card {
     font: inherit;
     color: inherit;
     border: 0.5px solid #222;
-    padding: 12px 20px; cursor: pointer;
+    padding: 12px 20px;
+    cursor: pointer;
     transition: border-color .2s, transform .2s;
-    min-width: 0; text-align: center;
+    min-width: 0;
+    text-align: center;
     background: rgba(255,255,255,.02);
   }
-  .anchor-card:hover { border-color: #444; transform: translateY(-2px); }
-  .anchor-num { font-size: 10px; color: var(--red); letter-spacing: 1px; margin-bottom: 4px; }
-  .anchor-label { font-size: 11px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
-  .anchor-num, .anchor-label, .diag-num, .diag-name, .diag-author, .diag-text, .diag-expand { display: block; }
+
+  .anchor-card:hover {
+    border-color: #444;
+    transform: translateY(-2px);
+  }
+
+  .anchor-num {
+    font-size: 10px;
+    color: var(--red);
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+
+  .anchor-label {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
   .hero-scan {
     position: absolute;
     top: -10%;
@@ -376,6 +497,7 @@
     animation: scan 6s cubic-bezier(.45, 0, .25, 1) infinite;
     opacity: 1;
   }
+
   .hero-scan::before {
     content: '';
     position: absolute;
@@ -385,6 +507,7 @@
     height: 1px;
     background: linear-gradient(90deg, transparent 20%, rgba(26,140,255,.04) 38%, rgba(245,252,255,.16) 50%, rgba(26,140,255,.04) 62%, transparent 80%);
   }
+
   .hero-scan::after {
     content: '';
     position: absolute;
@@ -395,43 +518,67 @@
     background: linear-gradient(180deg, rgba(26,140,255,.025), transparent);
     opacity: .28;
   }
+
   @keyframes scan {
-    0% { transform: translateY(0); opacity: 0; }
-    8% { opacity: .48; }
-    52% { opacity: .42; }
-    88% { opacity: .46; }
-    100% { transform: translateY(112vh); opacity: 0; }
+    0% {
+      transform: translateY(0);
+      opacity: 0;
+    }
+    8% {
+      opacity: .48;
+    }
+    52% {
+      opacity: .42;
+    }
+    88% {
+      opacity: .46;
+    }
+    100% {
+      transform: translateY(112vh);
+      opacity: 0;
+    }
   }
 
-  /* ── SECCIÓN HEADERS ── */
+  /* SECTION HEADERS */
   .section-header {
     padding: var(--section-pad-y) var(--page-pad) 32px;
     border-bottom: 0.5px solid #1a1a1a;
   }
+
   .section-eyebrow {
-    font-size: 10px; letter-spacing: 3px;
-    text-transform: uppercase; color: var(--red);
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--red);
     margin-bottom: 12px;
   }
+
   .section-title {
     font-family: var(--font-title);
     font-size: clamp(36px, 7vw, 68px);
-    letter-spacing: 2px; line-height: 1;
+    letter-spacing: 2px;
+    line-height: 1;
     color: var(--broken-white);
   }
+
   .section-desc {
     font-family: var(--font-serif);
-    font-size: clamp(15px, 2vw, 18px); color: var(--muted);
-    margin-top: 12px; max-width: 520px;
-    line-height: 1.6; font-style: italic;
+    font-size: clamp(15px, 2vw, 18px);
+    color: var(--muted);
+    margin-top: 12px;
+    max-width: 520px;
+    line-height: 1.6;
+    font-style: italic;
   }
 
-  /* ── DIAGNÓSTICO ── */
+  /* DIAGNÓSTICO */
   .diag-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
-    gap: 1px; background: #1a1a1a;
+    gap: 1px;
+    background: #1a1a1a;
   }
+
   .diag-card {
     border: 0;
     color: inherit;
@@ -445,84 +592,173 @@
     position: relative;
     overflow: hidden;
   }
-  .diag-card:hover { background: var(--surface); }
-  .diag-card:focus-visible { z-index: 1; }
+
+  .diag-card:hover {
+    background: var(--surface);
+  }
+
+  .diag-card:focus-visible {
+    z-index: 1;
+  }
+
   .diag-card::before {
-    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
-    width: 2px; background: var(--accent, var(--red));
-    transform: scaleY(0); transition: transform .25s;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--accent, var(--red));
+    transform: scaleY(0);
+    transition: transform .25s;
     transform-origin: bottom;
   }
-  .diag-card:hover::before { transform: scaleY(1); }
-  .diag-num { font-size: 10px; letter-spacing: 2px; color: var(--accent, var(--red)); margin-bottom: 10px; }
+
+  .diag-card:hover::before {
+    transform: scaleY(1);
+  }
+
+  .diag-num {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--accent, var(--red));
+    margin-bottom: 10px;
+  }
+
   .diag-name {
     font-family: var(--font-title);
-    font-size: clamp(19px, 2.5vw, 24px); letter-spacing: 1px;
-    color: var(--broken-white); margin-bottom: 8px;
+    font-size: clamp(19px, 2.5vw, 24px);
+    letter-spacing: 1px;
+    color: var(--broken-white);
+    margin-bottom: 8px;
     line-height: 1.1;
   }
-  .diag-author { font-size: 10px; color: var(--muted); letter-spacing: 1px; margin-bottom: 12px; }
-  .diag-text { font-size: clamp(13px, 1.5vw, 14px); line-height: 1.75; color: #777; }
-  .diag-card:hover .diag-text { color: #888; }
-  .diag-expand {
-    margin-top: 12px; font-size: 10px;
-    letter-spacing: 1px; text-transform: uppercase;
-    color: var(--accent, var(--red)); opacity: .7;
-  }
-  .accent-red { --accent: #d63a2a; }
-  .accent-orange { --accent: #e05a1a; }
-  .accent-amber { --accent: #c4821a; }
-  .accent-blue { --accent: #1a8cff; }
-  .accent-green { --accent: #00e5a0; }
 
-  /* Glossary */
-  .glossary-wrap { padding: 32px var(--page-pad); }
+  .diag-author {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+
+  .diag-text {
+    font-size: clamp(13px, 1.5vw, 14px);
+    line-height: 1.75;
+    color: #777;
+  }
+
+  .diag-card:hover .diag-text {
+    color: #888;
+  }
+
+  .diag-expand {
+    margin-top: 12px;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--accent, var(--red));
+    opacity: .7;
+  }
+
+  .accent-red {
+    --accent: #d63a2a;
+  }
+
+  .accent-orange {
+    --accent: #e05a1a;
+  }
+
+  .accent-amber {
+    --accent: #c4821a;
+  }
+
+  .accent-blue {
+    --accent: #1a8cff;
+  }
+
+  .accent-green {
+    --accent: #00e5a0;
+  }
+
+  /* GLOSSARY */
+  .glossary-wrap {
+    padding: 32px var(--page-pad);
+  }
+
   .glossary-title {
-    font-size: 10px; letter-spacing: 3px;
-    text-transform: uppercase; color: var(--muted);
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
     margin-bottom: 16px;
   }
-  .glossary-list { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .glossary-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
   .glos-tag {
     background: none;
     font: inherit;
     border: 0.5px solid #333;
-    padding: 8px 12px; font-size: 12px;
-    cursor: pointer; transition: all .2s;
+    padding: 8px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all .2s;
     color: var(--muted);
     min-height: 36px;
   }
-  .glos-tag:hover { border-color: var(--neon-blue); color: var(--neon-blue); }
+
+  .glos-tag:hover {
+    border-color: var(--neon-blue);
+    color: var(--neon-blue);
+  }
+
   .glos-modal {
-    display: none; position: fixed;
-    inset: 0; z-index: 200;
-    align-items: center; justify-content: center;
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
     background:
       radial-gradient(circle at 50% 20%, rgba(26,140,255,.08), transparent 34vw),
       rgba(0,0,0,.78);
     backdrop-filter: blur(8px);
     padding: 20px;
   }
-  .glos-modal.open { display: flex; }
+
+  .glos-modal.open {
+    display: flex;
+  }
+
   .glos-box {
     background:
       linear-gradient(180deg, rgba(255,255,255,.035), transparent 48%),
       var(--surface2);
     border: 1px solid rgba(255,255,255,.12);
     border-top-color: rgba(26,140,255,.36);
-    padding: clamp(28px, 5vw, 42px); max-width: 560px; width: min(100%, 560px);
+    padding: clamp(28px, 5vw, 42px);
+    max-width: 560px;
+    width: min(100%, 560px);
     max-height: min(82vh, 620px);
     overflow: auto;
     position: relative;
     box-shadow: 0 28px 90px rgba(0,0,0,.62), 0 0 0 1px rgba(26,140,255,.05);
   }
+
   .glos-box::before {
     content: '';
     position: absolute;
-    left: 0; top: 0; bottom: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
     width: 3px;
     background: linear-gradient(180deg, var(--neon-blue), rgba(26,140,255,.05));
   }
+
   .glos-term {
     font-family: var(--font-title);
     font-size: clamp(30px, 5vw, 40px);
@@ -533,6 +769,7 @@
     padding-right: 42px;
     text-shadow: 0 0 24px rgba(26,140,255,.2);
   }
+
   .glos-origin {
     font-size: 10px;
     letter-spacing: 2.4px;
@@ -542,6 +779,7 @@
     text-transform: uppercase;
     max-width: 88%;
   }
+
   .glos-def {
     font-family: var(--font-serif);
     font-size: clamp(16px, 2.1vw, 18px);
@@ -549,17 +787,24 @@
     color: var(--broken-white);
     max-width: 62ch;
   }
+
   .glos-close {
-    position: absolute; top: 16px; right: 16px;
-    width: 36px; height: 36px;
-    display: grid; place-items: center;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
     background: rgba(255,255,255,.035);
     border: 1px solid rgba(255,255,255,.08);
     border-radius: 50%;
     color: #888;
-    font-size: 18px; cursor: pointer;
+    font-size: 18px;
+    cursor: pointer;
     transition: color .2s, border-color .2s, background .2s, transform .2s;
   }
+
   .glos-close:hover {
     color: #fff;
     border-color: rgba(255,255,255,.18);
@@ -567,34 +812,59 @@
     transform: rotate(90deg);
   }
 
-  /* ── HORIZONTE ── */
+  /* HORIZONTE */
   .dim-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
-    gap: 1px; background: #1a1a1a;
+    gap: 1px;
+    background: #1a1a1a;
     margin-top: 32px;
   }
+
   .section-inner {
     padding: 0 var(--page-pad);
   }
+
   .dim-card {
-    background: var(--bg); padding: clamp(22px, 3vw, 30px) 20px;
+    background: var(--bg);
+    padding: clamp(22px, 3vw, 30px) 20px;
     transition: background .2s;
   }
-  .dim-card:hover { background: var(--surface); }
+
+  .dim-card:hover {
+    background: var(--surface);
+  }
+
   .dim-icon {
-    width: 32px; height: 32px; margin-bottom: 14px;
-    display: flex; align-items: center; justify-content: center;
-    border: 0.5px solid #333; font-size: 14px;
+    width: 32px;
+    height: 32px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0.5px solid #333;
+    font-size: 14px;
     color: var(--neon-blue);
   }
+
   .dim-name {
-    font-family: var(--font-title); font-size: 17px;
-    letter-spacing: 1px; color: var(--broken-white);
+    font-family: var(--font-title);
+    font-size: 17px;
+    letter-spacing: 1px;
+    color: var(--broken-white);
     margin-bottom: 6px;
   }
-  .dim-desc { font-size: clamp(12px, 1.5vw, 13px); line-height: 1.7; color: #666; }
-  .dim-card:hover .dim-desc { color: #888; }
+
+  .dim-desc {
+    font-size: clamp(12px, 1.5vw, 13px);
+    line-height: 1.7;
+    color: #666;
+  }
+
+  .dim-card:hover .dim-desc {
+    color: #888;
+  }
+
   .horizonte-quote {
     margin: 32px auto;
     border-left: 2px solid var(--red);
@@ -602,107 +872,201 @@
     background: rgba(214,58,42,.04);
     width: calc(100% - (var(--page-pad) * 2));
   }
+
   .horizonte-q-text {
     font-family: var(--font-serif);
-    font-size: clamp(17px, 2.2vw, 22px); font-style: italic;
-    line-height: 1.7; color: var(--broken-white);
+    font-size: clamp(17px, 2.2vw, 22px);
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--broken-white);
     margin-bottom: 8px;
   }
-  .horizonte-q-attr { font-size: 10px; letter-spacing: 1px; color: var(--muted); }
-  .btn-survey {
-    display: block; margin: 24px 32px;
-    background: none; border: 0.5px solid var(--neon-blue);
-    color: var(--neon-blue);
-    font-family: var(--font-body); font-size: 11px;
-    letter-spacing: 2px; text-transform: uppercase;
-    padding: 14px 28px; cursor: pointer;
-    transition: all .25s; width: fit-content;
-  }
-  .btn-survey:hover { background: rgba(26,140,255,.1); }
 
-  /* ── MÉTODO ── */
+  .horizonte-q-attr {
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--muted);
+  }
+
+  /* MÉTODO */
   .chat-demo {
     margin: 24px auto;
     width: calc(100% - (var(--page-pad) * 2));
     border: 0.5px solid #1e1e1e;
     overflow: hidden;
   }
+
   .chat-bar {
-    background: var(--surface2); padding: 10px 16px;
-    display: flex; align-items: center; gap: 8px;
+    background: var(--surface2);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
     border-bottom: 0.5px solid #1e1e1e;
   }
-  .chat-dot { width: 8px; height: 8px; border-radius: 50%; }
-  .dot-red { background: #d63a2a; }
-  .dot-muted { background: #333; }
-  .chat-title { font-size: 10px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; }
-  .chat-body { padding: 20px; display: flex; flex-direction: column; gap: 16px; }
-  .msg { max-width: min(85%, 760px); }
-  .msg-human { align-self: flex-end; }
-  .msg-ai { align-self: flex-start; }
-  .msg-label { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
-  .msg-human .msg-label { color: var(--ocre); text-align: right; }
-  .msg-ai .msg-label { color: var(--neon-blue); }
-  .msg-bubble { padding: 12px 16px; font-size: clamp(13px, 1.6vw, 14px); line-height: 1.75; }
+
+  .chat-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+
+  .dot-red {
+    background: #d63a2a;
+  }
+
+  .dot-muted {
+    background: #333;
+  }
+
+  .chat-title {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .chat-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .msg {
+    max-width: min(85%, 760px);
+  }
+
+  .msg-human {
+    align-self: flex-end;
+  }
+
+  .msg-ai {
+    align-self: flex-start;
+  }
+
+  .msg-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .msg-human .msg-label {
+    color: var(--ocre);
+    text-align: right;
+  }
+
+  .msg-ai .msg-label {
+    color: var(--neon-blue);
+  }
+
+  .msg-bubble {
+    padding: 12px 16px;
+    font-size: clamp(13px, 1.6vw, 14px);
+    line-height: 1.75;
+  }
+
   .msg-human .msg-bubble {
     background: rgba(196,163,90,.08);
     border: 0.5px solid rgba(196,163,90,.2);
-    font-family: var(--font-serif); font-style: italic; color: var(--broken-white);
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--broken-white);
   }
+
   .msg-ai .msg-bubble {
     background: rgba(26,140,255,.06);
     border: 0.5px solid rgba(26,140,255,.15);
-    font-family: var(--font-body); color: #999; font-size: 12px;
+    font-family: var(--font-body);
+    color: #999;
+    font-size: 12px;
   }
+
   .metodo-note {
     margin: 0 auto 32px;
     width: calc(100% - (var(--page-pad) * 2));
     padding: clamp(16px, 3vw, 22px) clamp(18px, 4vw, 26px);
     border: 0.5px solid #222;
     background: var(--surface);
-    font-size: 12px; line-height: 1.8; color: #666;
+    font-size: 12px;
+    line-height: 1.8;
+    color: #666;
   }
-  .metodo-note strong { color: var(--broken-white); font-weight: 500; }
-  .btn-modal {
-    display: block; margin: 0 32px 32px;
-    background: none; border: 0.5px solid #333;
-    color: var(--muted);
-    font-family: var(--font-body); font-size: 11px;
-    letter-spacing: 2px; text-transform: uppercase;
-    padding: 12px 24px; cursor: pointer;
-    transition: all .25s; width: fit-content;
-  }
-  .btn-modal:hover { border-color: var(--ocre); color: var(--ocre); }
 
-  /* ── CONVOCATORIA ── */
+  .metodo-note strong {
+    color: var(--broken-white);
+    font-weight: 500;
+  }
+
+  /* CONVOCATORIA */
   .conv-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
-    gap: 1px; background: #1a1a1a;
+    gap: 1px;
+    background: #1a1a1a;
   }
+
   .profile-card {
-    background: var(--bg); padding: clamp(22px, 3vw, 28px);
+    background: var(--bg);
+    padding: clamp(22px, 3vw, 28px);
     transition: background .2s;
   }
-  .profile-card:hover { background: var(--surface); }
+
+  .profile-card:hover {
+    background: var(--surface);
+  }
+
   .profile-disc {
-    width: 40px; height: 40px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px; margin-bottom: 14px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    margin-bottom: 14px;
     border: 0.5px solid #333;
   }
-  .disc-red { color: #d63a2a; }
-  .disc-blue { color: #1a8cff; }
-  .disc-green { color: #00e5a0; }
-  .disc-amber { color: #c4821a; }
-  .disc-ocre { color: #c4a35a; }
-  .disc-muted { color: #888; }
+
+  .disc-red {
+    color: #d63a2a;
+  }
+
+  .disc-blue {
+    color: #1a8cff;
+  }
+
+  .disc-green {
+    color: #00e5a0;
+  }
+
+  .disc-amber {
+    color: #c4821a;
+  }
+
+  .disc-ocre {
+    color: #c4a35a;
+  }
+
+  .disc-muted {
+    color: #888;
+  }
+
   .profile-role {
-    font-family: var(--font-title); font-size: 16px;
-    letter-spacing: 1px; color: var(--broken-white);
+    font-family: var(--font-title);
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: var(--broken-white);
     margin-bottom: 6px;
   }
-  .profile-areas { font-size: clamp(11px, 1.4vw, 12px); color: var(--muted); line-height: 1.7; }
+
+  .profile-areas {
+    font-size: clamp(11px, 1.4vw, 12px);
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
   .conv-form {
     margin: 32px auto;
     width: calc(100% - (var(--page-pad) * 2));
@@ -710,124 +1074,239 @@
     grid-template-columns: 1fr 1fr;
     gap: 12px;
   }
-  .conv-form input, .conv-form select, .conv-form textarea {
+
+  .conv-form input,
+  .conv-form select,
+  .conv-form textarea {
     background: var(--surface);
     border: 0.5px solid #2a2a2a;
     color: var(--text);
-    padding: 12px 14px; font-size: 14px;
+    padding: 12px 14px;
+    font-size: 14px;
     font-family: var(--font-body);
     transition: border-color .2s;
     outline: none;
   }
-  .conv-form input:focus, .conv-form select:focus, .conv-form textarea:focus {
+
+  .conv-form input:focus,
+  .conv-form select:focus,
+  .conv-form textarea:focus {
     border-color: var(--red);
   }
-  .conv-form textarea { grid-column: 1/-1; resize: vertical; min-height: 110px; }
-  .form-status {
+
+  .conv-form textarea {
     grid-column: 1/-1;
-    min-height: 18px;
-    font-size: 12px;
-    line-height: 1.5;
-    color: var(--neon-green);
+    resize: vertical;
+    min-height: 110px;
   }
+
   .conv-form .btn-send {
     grid-column: 1/-1;
-    background: none; border: 0.5px solid var(--red);
-    color: var(--red); font-family: var(--font-body);
-    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
-    padding: 15px; cursor: pointer; transition: all .25s;
+    background: none;
+    border: 0.5px solid var(--red);
+    color: var(--red);
+    font-family: var(--font-body);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 15px;
+    cursor: pointer;
+    transition: all .25s;
     min-height: 48px;
   }
-  .conv-form .btn-send:hover { background: var(--red); color: #fff; }
+
+  .conv-form .btn-send:hover {
+    background: var(--red);
+    color: #fff;
+  }
+
   .conv-labs {
     margin: 0 auto 32px;
     width: calc(100% - (var(--page-pad) * 2));
-    display: flex; gap: 16px; flex-wrap: wrap;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
   }
-  .lab-tag {
-    border: 0.5px solid #333; padding: 8px 16px;
-    font-size: 11px; letter-spacing: 1px;
-    color: var(--muted);
-    transition: all .2s; text-transform: uppercase;
-  }
-  .lab-tag:hover { border-color: var(--neon-green); color: var(--neon-green); }
 
-  /* ── ARCHIVO ── */
+  .lab-tag {
+    border: 0.5px solid #333;
+    padding: 8px 16px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--muted);
+    transition: all .2s;
+    text-transform: uppercase;
+  }
+
+  .lab-tag:hover {
+    border-color: var(--neon-green);
+    color: var(--neon-green);
+  }
+
+  /* ARCHIVO */
   .archivo-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
-    gap: 1px; background: #1a1a1a;
+    gap: 1px;
+    background: #1a1a1a;
   }
+
   .file-card {
-    background: var(--bg); padding: clamp(22px, 3vw, 28px);
+    background: var(--bg);
+    padding: clamp(22px, 3vw, 28px);
     transition: background .2s;
-    display: flex; flex-direction: column; gap: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
-  .file-card:hover { background: var(--surface); }
+
+  .file-card:hover {
+    background: var(--surface);
+  }
+
   .file-type {
-    font-size: 9px; letter-spacing: 3px;
-    text-transform: uppercase; color: var(--muted);
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
     border: 0.5px solid #2a2a2a;
-    padding: 3px 8px; width: fit-content;
+    padding: 3px 8px;
+    width: fit-content;
   }
+
   .file-name {
-    font-family: var(--font-title); font-size: 18px;
-    letter-spacing: 1px; color: var(--broken-white);
+    font-family: var(--font-title);
+    font-size: 18px;
+    letter-spacing: 1px;
+    color: var(--broken-white);
     line-height: 1.1;
   }
-  .file-desc { font-size: clamp(12px, 1.5vw, 13px); color: #666; line-height: 1.7; }
-  .file-card:hover .file-desc { color: #888; }
+
+  .file-desc {
+    font-size: clamp(12px, 1.5vw, 13px);
+    color: #666;
+    line-height: 1.7;
+  }
+
+  .file-card:hover .file-desc {
+    color: #888;
+  }
+
   .file-dl {
-    font-size: 10px; letter-spacing: 2px;
-    text-transform: uppercase; color: var(--neon-blue);
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--neon-blue);
     margin-top: auto;
   }
-  .file-dl[aria-disabled="true"] { color: #444; }
+
+  .file-dl[aria-disabled="true"] {
+    color: #444;
+  }
 
   /* FOOTER */
   footer {
     border-top: 0.5px solid #1a1a1a;
     padding: 24px var(--page-pad);
-    display: flex; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; gap: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
     margin-top: 40px;
   }
-  .footer-credits { font-size: 11px; color: #444; line-height: 1.8; }
-  .footer-credits em { color: var(--muted); font-style: normal; }
-  .footer-license { font-size: 10px; letter-spacing: 1px; color: #333; text-align: right; }
+
+  .footer-credits {
+    font-size: 11px;
+    color: #444;
+    line-height: 1.8;
+  }
+
+  .footer-credits em {
+    color: var(--muted);
+    font-style: normal;
+  }
+
+  .footer-credits a {
+    color: var(--neon-blue);
+    text-decoration: none;
+    transition: color .2s;
+  }
+
+  .footer-credits a:hover {
+    color: var(--broken-white);
+    text-decoration: underline;
+  }
+
+  .footer-license {
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: #333;
+    text-align: right;
+  }
 
   /* TICKER */
   .ticker {
     background: #0d0d0d;
     border-top: 0.5px solid #1a1a1a;
     border-bottom: 0.5px solid #1a1a1a;
-    overflow: hidden; height: 28px;
-    display: flex; align-items: center;
+    overflow: hidden;
+    height: 28px;
+    display: flex;
+    align-items: center;
   }
+
   .ticker-inner {
     display: flex;
     animation: tickerMove 25s linear infinite;
     white-space: nowrap;
   }
-  @keyframes tickerMove { to { transform: translateX(-50%); } }
-  .ticker-item { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #333; padding: 0 32px; }
-  .ticker-item .sep { color: var(--red); margin: 0 8px; }
+
+  @keyframes tickerMove {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .ticker-item {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #333;
+    padding: 0 32px;
+  }
+
+  .ticker-item .sep {
+    color: var(--red);
+    margin: 0 8px;
+  }
 
   /* KINETIC */
   .kinetic {
-    text-align: center; padding: clamp(34px, 6vw, 56px) var(--page-pad);
+    text-align: center;
+    padding: clamp(34px, 6vw, 56px) var(--page-pad);
     border-bottom: 0.5px solid #111;
   }
+
   .kinetic-text {
     font-family: var(--font-title);
     font-size: clamp(26px, 6vw, 56px);
-    letter-spacing: 3px; color: #222;
+    letter-spacing: 3px;
+    color: #222;
     transition: color .5s, letter-spacing .5s;
-    cursor: default; user-select: none; display: inline-block;
+    cursor: default;
+    user-select: none;
+    display: inline-block;
   }
-  .kinetic:hover .kinetic-text { color: var(--red); letter-spacing: 6px; }
 
-  select option { background: #111; }
+  .kinetic:hover .kinetic-text {
+    color: var(--red);
+    letter-spacing: 6px;
+  }
+
+  select option {
+    background: #111;
+  }
 
   @media (max-width: 960px) {
     nav {
@@ -870,7 +1349,9 @@
       scroll-snap-type: x proximity;
       -webkit-overflow-scrolling: touch;
     }
-    .nav-links::-webkit-scrollbar { height: 4px; }
+    .nav-links::-webkit-scrollbar {
+      height: 4px;
+    }
     .nav-links::-webkit-scrollbar-thumb {
       background: rgba(255,255,255,.18);
       border-radius: 999px;
@@ -881,9 +1362,6 @@
       padding: 0 14px;
       scroll-snap-align: center;
     }
-    .nav-links button.active {
-      border-color: rgba(214,58,42,.45);
-    }
     .hero {
       min-height: auto;
       padding-top: 56px;
@@ -893,9 +1371,6 @@
       opacity: .36;
       object-position: center top;
     }
-    .hero-title {
-      letter-spacing: 1px;
-    }
     .hero-anchors {
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 10px;
@@ -904,63 +1379,28 @@
     .anchor-card {
       padding: 13px 10px;
     }
-    .section-header {
-      padding-top: 40px;
-      padding-bottom: 26px;
-    }
     .msg {
       max-width: 94%;
-    }
-    .chat-body {
-      padding: 16px;
     }
     .conv-form {
       grid-template-columns: 1fr;
     }
-    footer { align-items: flex-start; padding: 24px 20px; flex-direction: column; }
-    .footer-license { text-align: left; }
+    footer {
+      align-items: flex-start;
+      padding: 24px 20px;
+      flex-direction: column;
+    }
+    .footer-license {
+      text-align: left;
+    }
   }
 
   @media (max-width: 460px) {
     :root {
       --page-pad: 16px;
     }
-    nav {
-      padding-left: 14px;
-      padding-right: 14px;
-    }
-    .nav-logo::after {
-      content: 'Territorio en Disputa';
-      max-width: 160px;
-    }
-    .nav-links {
-      width: calc(100% + 2px);
-      margin-left: -1px;
-    }
-    .nav-links button {
-      font-size: 10px;
-      letter-spacing: 1.2px;
-      padding: 0 12px;
-    }
-    .hero-tag {
-      letter-spacing: 2px;
-      line-height: 1.5;
-    }
-    .hero-title {
-      font-size: clamp(42px, 15vw, 64px);
-    }
-    .hero-sub {
-      margin-bottom: 28px;
-    }
-    .btn-primary {
-      width: 100%;
-    }
     .hero-anchors {
       grid-template-columns: 1fr;
-      width: 100%;
-    }
-    .section-title {
-      font-size: clamp(34px, 12vw, 48px);
     }
     .glossary-list {
       display: grid;
@@ -970,24 +1410,6 @@
       width: 100%;
       text-align: left;
     }
-    .glos-box {
-      width: 100%;
-      max-height: 86vh;
-      padding: 26px 22px;
-    }
-    .glos-term {
-      padding-right: 38px;
-    }
-    .glos-origin {
-      max-width: 100%;
-      letter-spacing: 1.8px;
-    }
-    .glos-def {
-      line-height: 1.75;
-    }
-    .msg {
-      max-width: 100%;
-    }
     .msg-human,
     .msg-ai {
       align-self: stretch;
@@ -995,13 +1417,12 @@
     .msg-human .msg-label {
       text-align: left;
     }
-    .ticker-item {
-      padding: 0 18px;
-    }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
+    *,
+    *::before,
+    *::after {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       scroll-behavior: auto !important;
@@ -1014,7 +1435,6 @@
 </style>
 </head>
 <body>
-
 <div id="app">
   <nav>
     <button type="button" class="nav-logo" data-subtitle="Soberanía Cognitiva" onclick="showSection('home')" aria-label="Ir al inicio">SC</button>
@@ -1025,11 +1445,12 @@
       <button type="button" onclick="showSection('metodo')" id="nav-metodo">Método</button>
       <button type="button" onclick="showSection('conv')" id="nav-conv">Convocatoria</button>
       <button type="button" onclick="showSection('archivo')" id="nav-archivo">Archivo</button>
+      <button type="button" onclick="showSection('medios')" id="nav-medios">Medios</button>
       <div class="lang-switch">
         <label for="langSelect">Lang</label>
         <select id="langSelect" aria-label="Cambiar idioma del sitio">
           <option value="es">ES</option>
-          <option value="eu">EU</option>
+          <option value="en">EN</option>
           <option value="zh">ZH</option>
           <option value="pt">PT</option>
           <option value="de">DE</option>
@@ -1078,26 +1499,12 @@
       <p class="hero-phrase"><em>"Antes de los algoritmos, ya había un territorio fragilizado."</em><br> y como todo territorio, merece una soberanía que lo proteja</p>
       <button type="button" class="btn-primary" onclick="showSection('diag')">Leer el diagnóstico →</button>
       <div class="hero-anchors">
-        <button type="button" class="anchor-card" onclick="showSection('diag')">
-          <span class="anchor-num">01</span>
-          <span class="anchor-label">Diagnóstico</span>
-        </button>
-        <button type="button" class="anchor-card" onclick="showSection('horizonte')">
-          <span class="anchor-num">02</span>
-          <span class="anchor-label">Horizonte</span>
-        </button>
-        <button type="button" class="anchor-card" onclick="showSection('metodo')">
-          <span class="anchor-num">03</span>
-          <span class="anchor-label">Método</span>
-        </button>
-        <button type="button" class="anchor-card" onclick="showSection('conv')">
-          <span class="anchor-num">04</span>
-          <span class="anchor-label">Convocatoria</span>
-        </button>
-        <button type="button" class="anchor-card" onclick="showSection('archivo')">
-          <span class="anchor-num">05</span>
-          <span class="anchor-label">Archivo</span>
-        </button>
+        <button type="button" class="anchor-card" onclick="showSection('diag')"><span class="anchor-num">01</span><span class="anchor-label">Diagnóstico</span></button>
+        <button type="button" class="anchor-card" onclick="showSection('horizonte')"><span class="anchor-num">02</span><span class="anchor-label">Horizonte</span></button>
+        <button type="button" class="anchor-card" onclick="showSection('metodo')"><span class="anchor-num">03</span><span class="anchor-label">Método</span></button>
+        <button type="button" class="anchor-card" onclick="showSection('conv')"><span class="anchor-num">04</span><span class="anchor-label">Convocatoria</span></button>
+        <button type="button" class="anchor-card" onclick="showSection('archivo')"><span class="anchor-num">05</span><span class="anchor-label">Archivo</span></button>
+        <button type="button" class="anchor-card" onclick="showSection('medios')"><span class="anchor-num">06</span><span class="anchor-label">Medios</span></button>
       </div>
     </div>
     <div class="kinetic">
@@ -1173,31 +1580,11 @@
     </div>
     <div class="section-inner">
       <div class="dim-grid">
-        <div class="dim-card">
-          <div class="dim-icon">◈</div>
-          <div class="dim-name">INDIVIDUAL</div>
-          <div class="dim-desc">Capacidad de cada sujeto de reconocer y resistir los mecanismos de captura. Autonomía del pensamiento, tolerancia a la incertidumbre, potencia de actuar recuperada.</div>
-        </div>
-        <div class="dim-card">
-          <div class="dim-icon">◎</div>
-          <div class="dim-name">COLECTIVA</div>
-          <div class="dim-desc">Construcción de comunidades epistémicas diversas. Disputar los marcos de sentido. El conocimiento como bien común, no como producto algorítmico.</div>
-        </div>
-        <div class="dim-card">
-          <div class="dim-icon">⬡</div>
-          <div class="dim-name">INSTITUCIONAL</div>
-          <div class="dim-desc">Políticas públicas, educación crítica, ecosistemas informativos robustos. El Estado como garante de condiciones para el pensamiento libre.</div>
-        </div>
-        <div class="dim-card">
-          <div class="dim-icon">◻</div>
-          <div class="dim-name">EPISTÉMICA</div>
-          <div class="dim-desc">Diversidad de fuentes de conocimiento. Resistencia a la monocultura informativa. Crítica a la "ciudadanía digital" como adaptación acrítica.</div>
-        </div>
-        <div class="dim-card">
-          <div class="dim-icon">⊞</div>
-          <div class="dim-name">TÉCNICA</div>
-          <div class="dim-desc">Regulación, transparencia algorítmica, derecho a no ser perfilado. La arquitectura tecnológica como decisión política, no como inevitabilidad.</div>
-        </div>
+        <div class="dim-card"><div class="dim-icon">◈</div><div class="dim-name">INDIVIDUAL</div><div class="dim-desc">Capacidad de cada sujeto de reconocer y resistir los mecanismos de captura. Autonomía del pensamiento, tolerancia a la incertidumbre, potencia de actuar recuperada.</div></div>
+        <div class="dim-card"><div class="dim-icon">◎</div><div class="dim-name">COLECTIVA</div><div class="dim-desc">Construcción de comunidades epistémicas diversas. Disputar los marcos de sentido. El conocimiento como bien común, no como producto algorítmico.</div></div>
+        <div class="dim-card"><div class="dim-icon">⬡</div><div class="dim-name">INSTITUCIONAL</div><div class="dim-desc">Políticas públicas, educación crítica, ecosistemas informativos robustos. El Estado como garante de condiciones para el pensamiento libre.</div></div>
+        <div class="dim-card"><div class="dim-icon">◻</div><div class="dim-name">EPISTÉMICA</div><div class="dim-desc">Diversidad de fuentes de conocimiento. Resistencia a la monocultura informativa. Crítica a la "ciudadanía digital" como adaptación acrítica.</div></div>
+        <div class="dim-card"><div class="dim-icon">⊞</div><div class="dim-name">TÉCNICA</div><div class="dim-desc">Regulación, transparencia algorítmica, derecho a no ser perfilado. La arquitectura tecnológica como decisión política, no como inevitabilidad.</div></div>
       </div>
     </div>
     <div class="horizonte-quote">
@@ -1252,38 +1639,18 @@
       <p class="section-desc">Este territorio necesita más cartógrafos. Buscamos voces desde distintas disciplinas.</p>
     </div>
     <div class="conv-grid">
-      <div class="profile-card">
-        <div class="profile-disc disc-red">⚕</div>
-        <div class="profile-role">PSICOLOGÍA CLÍNICA</div>
-        <div class="profile-areas">Subjetividad contemporánea · Clínica de las tecnologías · Psicoanálisis y cultura digital</div>
-      </div>
-      <div class="profile-card">
-        <div class="profile-disc disc-blue">⊛</div>
-        <div class="profile-role">CIENCIAS DE LA COMPUTACIÓN</div>
-        <div class="profile-areas">Diseño de algoritmos · Ética de la IA · Arquitecturas de recomendación · Sistemas de captura</div>
-      </div>
-      <div class="profile-card">
-        <div class="profile-disc disc-green">◈</div>
-        <div class="profile-role">FILOSOFÍA POLÍTICA</div>
-        <div class="profile-areas">Teoría del sujeto · Biopolítica digital · Crítica de la razón técnica · Epistemología</div>
-      </div>
-      <div class="profile-card">
-        <div class="profile-disc disc-amber">⬡</div>
-        <div class="profile-role">COMUNICACIÓN Y MEDIOS</div>
-        <div class="profile-areas">Ecosistemas informativos · Desinformación · Estudios de plataformas · Cultura digital</div>
-      </div>
-      <div class="profile-card">
-        <div class="profile-disc disc-ocre">◻</div>
-        <div class="profile-role">EDUCACIÓN</div>
-        <div class="profile-areas">Pedagogía crítica · Alfabetización mediática · Formación docente · Nuevas infancias</div>
-      </div>
-      <div class="profile-card">
-        <div class="profile-disc disc-muted">⊞</div>
-        <div class="profile-role">DERECHO Y POLÍTICAS PÚBLICAS</div>
-        <div class="profile-areas">Regulación tecnológica · Derechos digitales · Gobernanza de datos · Legislación IA</div>
-      </div>
+      <div class="profile-card"><div class="profile-disc disc-red">⚕</div><div class="profile-role">PSICOLOGÍA CLÍNICA</div><div class="profile-areas">Subjetividad contemporánea · Clínica de las tecnologías · Psicoanálisis y cultura digital</div></div>
+      <div class="profile-card"><div class="profile-disc disc-blue">⊛</div><div class="profile-role">CIENCIAS DE LA COMPUTACIÓN</div><div class="profile-areas">Diseño de algoritmos · Ética de la IA · Arquitecturas de recomendación · Sistemas de captura</div></div>
+      <div class="profile-card"><div class="profile-disc disc-green">◈</div><div class="profile-role">FILOSOFÍA POLÍTICA</div><div class="profile-areas">Teoría del sujeto · Biopolítica digital · Crítica de la razón técnica · Epistemología</div></div>
+      <div class="profile-card"><div class="profile-disc disc-amber">⬡</div><div class="profile-role">COMUNICACIÓN Y MEDIOS</div><div class="profile-areas">Ecosistemas informativos · Desinformación · Estudios de plataformas · Cultura digital</div></div>
+      <div class="profile-card"><div class="profile-disc disc-ocre">◻</div><div class="profile-role">EDUCACIÓN</div><div class="profile-areas">Pedagogía crítica · Alfabetización mediática · Formación docente · Nuevas infancias</div></div>
+      <div class="profile-card"><div class="profile-disc disc-muted">⊞</div><div class="profile-role">DERECHO Y POLÍTICAS PÚBLICAS</div><div class="profile-areas">Regulación tecnológica · Derechos digitales · Gobernanza de datos · Legislación IA</div></div>
     </div>
-    <form class="conv-form" id="convForm">
+
+    <form class="conv-form" action="https://formsubmit.co/tu-email-aqui@ejemplo.com" method="POST">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_subject" value="Nuevo participante - Soberanía Cognitiva">
+      <!-- <input type="hidden" name="_next" value="https://tusitio.com/#conv"> -->
       <label class="sr-only" for="convName">Nombre y apellido</label>
       <input id="convName" name="nombre" type="text" placeholder="Nombre y apellido" autocomplete="name" required>
       <label class="sr-only" for="convEmail">Correo electrónico</label>
@@ -1301,10 +1668,11 @@
       <label class="sr-only" for="convMessage">Mensaje opcional</label>
       <textarea id="convMessage" name="mensaje" placeholder="Mensaje (opcional): ¿Qué traés al territorio?"></textarea>
       <button type="submit" class="btn-send">Sumarme al territorio →</button>
-      <div class="form-status" id="convFormStatus" role="status" aria-live="polite"></div>
     </form>
+
     <div class="conv-labs">
-      
+      <div class="lab-tag">📧 contacto@soberaniacognitiva.org</div>
+      <div class="lab-tag">🌐 Encuentros abiertos cada dos meses</div>
     </div>
   </div>
 
@@ -1342,12 +1710,37 @@
       </div>
     </div>
   </div>
+
+  <!-- MEDIOS -->
+  <div id="medios" class="section">
+    <div class="section-header">
+      <div class="section-eyebrow">06 / Medios y difusión</div>
+      <h2 class="section-title">PRENSA Y DIFUSIÓN</h2>
+      <p class="section-desc">Recursos para periodistas, gestores culturales y comunicadores interesados en la Soberanía Cognitiva.</p>
+    </div>
+    <div class="section-inner">
+      <div class="dim-grid">
+        <div class="dim-card"><div class="dim-icon">📰</div><div class="dim-name">DOSIER DE PRENSA</div><div class="dim-desc">Resumen ejecutivo, citas clave y datos de contacto para cobertura mediática. Disponible para descarga en PDF.</div></div>
+        <div class="dim-card"><div class="dim-icon">🎙️</div><div class="dim-name">ENTREVISTAS</div><div class="dim-desc">Los autores del diagnóstico están disponibles para entrevistas, mesas redondas y colaboraciones con medios.</div></div>
+        <div class="dim-card"><div class="dim-icon">📺</div><div class="dim-name">MATERIAL AUDIOVISUAL</div><div class="dim-desc">Piezas gráficas, animaciones y fragmentos del video principal para usar en redes o programas.</div></div>
+        <div class="dim-card"><div class="dim-icon">📢</div><div class="dim-name">CAMPAÑAS DE SENSIBILIZACIÓN</div><div class="dim-desc">Propuestas para activar el debate en comunidades educativas y espacios públicos.</div></div>
+      </div>
+    </div>
+    <div class="horizonte-quote">
+      <div class="horizonte-q-text">"El debate sobre la soberanía cognitiva no puede quedar encerrado en las aulas. Necesitamos que los medios sean aliados para interpelar a la ciudadanía."</div>
+      <div class="horizonte-q-attr">— Equipo de investigación</div>
+    </div>
+    <div class="conv-labs" style="margin-top: 24px;">
+      <div class="lab-tag">📧 prensa@soberaniacognitiva.org</div>
+      <div class="lab-tag">📞 +54 11 1234-5678 (prensa)</div>
+    </div>
+  </div>
+
   <footer>
     <div class="footer-credits">
       Equipo de diagnóstico: <em>[Prof. Emmanuel Retamal - Prof. Anahí González Sendra - Prof. Ana Luisa Gauchat - Priscila Arandia]</em><br>
       Construido en diálogo con inteligencia sintética<br>
-     Método: coemergencia · <a href="https://arxiv.org/abs/2601.12837" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2601.12837</a> ·
-</div>
+      Método: coemergencia · <a href="https://arxiv.org/abs/2601.12837" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2601.12837</a>
     </div>
     <div class="footer-license">
       Creative Commons<br>
@@ -1357,7 +1750,7 @@
   </footer>
 </div>
 
-<!-- GLOSSARY MODAL -->
+<!-- GLOSARIO MODAL -->
 <div class="glos-modal" id="glosModal" role="dialog" aria-modal="true" aria-labelledby="glosTerm" aria-describedby="glosDef">
   <div class="glos-box" tabindex="-1">
     <button type="button" class="glos-close" onclick="closeGlos()" aria-label="Cerrar glosario">✕</button>
@@ -1368,625 +1761,503 @@
 </div>
 
 <script>
-const I18N = {
-  es: {
-    nav: ['Inicio', 'Diagnóstico', 'Horizonte', 'Método', 'Convocatoria', 'Archivo'],
-    heroTag: 'Diagnóstico Cultural Situado',
-    heroTitle: ['SOBERANÍA', 'COGNITIVA', '/ TERRITORIO', 'EN DISPUTA'],
-    heroSub: 'Un diagnóstico crítico sobre la captura algorítmica de la subjetividad contemporánea',
-    heroPhrase: '<em>"Antes de los algoritmos, ya había un territorio fragilizado."</em><br> y como todo territorio, merece una soberanía que lo proteja',
-    heroBtn: 'Leer el diagnóstico →',
-    anchors: ['Diagnóstico', 'Horizonte', 'Método', 'Convocatoria', 'Archivo'],
-    kinetic: 'TU ATENCIÓN ES EL PRODUCTO',
-    ticker: ['Soberanía Cognitiva', 'Tu atención es el producto', 'Territorio en disputa', 'Falso Self Patológico', 'Plataformas de eco', 'Rapto cognitivo', 'Epistemia'],
-    sectionEyebrows: ['01 / Diagnóstico', '02 / Horizonte', '03 / Método', '04 / Convocatoria', '05 / Archivo'],
-    sectionTitles: ['EL PROBLEMA', 'LA PROPUESTA', 'EL TERCER ESPACIO COEMERGENTE', 'LA COMUNIDAD', 'RECURSOS']
-  },
-  eu: {
-    nav: ['Home', 'Diagnosis', 'Horizon', 'Method', 'Call', 'Archive'],
-    heroTag: 'Situated cultural diagnosis',
-    heroTitle: ['COGNITIVE', 'SOVEREIGNTY', '/ TERRITORY', 'IN DISPUTE'],
-    heroSub: 'A critical diagnosis of the algorithmic capture of contemporary subjectivity',
-    heroPhrase: '<em>"Before algorithms, there was already a fragile territory."</em><br>And like any territory, it deserves sovereignty to protect it.',
-    heroBtn: 'Read the diagnosis →',
-    anchors: ['Diagnosis', 'Horizon', 'Method', 'Call', 'Archive'],
-    kinetic: 'YOUR ATTENTION IS THE PRODUCT',
-    ticker: ['Cognitive Sovereignty', 'Your attention is the product', 'Territory in dispute', 'Pathological false self', 'Echo platforms', 'Cognitive hijack', 'Epistemia'],
-    sectionEyebrows: ['01 / Diagnosis', '02 / Horizon', '03 / Method', '04 / Call', '05 / Archive'],
-    sectionTitles: ['THE PROBLEM', 'THE PROPOSAL', 'THE CO-EMERGENT THIRD SPACE', 'THE COMMUNITY', 'RESOURCES']
-  },
-  zh: {
-    nav: ['首页', '诊断', '愿景', '方法', '征集', '档案'],
-    heroTag: '情境化文化诊断',
-    heroTitle: ['认知', '主权', '/ 被争夺的', '领土'],
-    heroSub: '关于当代主体性被算法捕获的批判性诊断',
-    heroPhrase: '<em>“在算法出现之前，这片领土已然脆弱。”</em><br>像任何一片领土一样，它也需要主权来守护。',
-    heroBtn: '阅读诊断 →',
-    anchors: ['诊断', '愿景', '方法', '征集', '档案'],
-    kinetic: '你的注意力就是产品',
-    ticker: ['认知主权', '你的注意力就是产品', '被争夺的领土', '病理性假自我', '回声平台', '认知劫持', '知识结构'],
-    sectionEyebrows: ['01 / 诊断', '02 / 愿景', '03 / 方法', '04 / 征集', '05 / 档案'],
-    sectionTitles: ['问题', '提案', '共生涌现的第三空间', '社群', '资源']
-  },
-  pt: {
-    nav: ['Início', 'Diagnóstico', 'Horizonte', 'Método', 'Convocação', 'Arquivo'],
-    heroTag: 'Diagnóstico cultural situado',
-    heroTitle: ['SOBERANIA', 'COGNITIVA', '/ TERRITÓRIO', 'EM DISPUTA'],
-    heroSub: 'Um diagnóstico crítico sobre a captura algorítmica da subjetividade contemporânea',
-    heroPhrase: '<em>"Antes dos algoritmos, já havia um território fragilizado."</em><br> e como todo território, merece uma soberania que o proteja',
-    heroBtn: 'Ler o diagnóstico →',
-    anchors: ['Diagnóstico', 'Horizonte', 'Método', 'Convocação', 'Arquivo'],
-    kinetic: 'SUA ATENÇÃO É O PRODUTO',
-    ticker: ['Soberania Cognitiva', 'Sua atenção é o produto', 'Território em disputa', 'Falso Self patológico', 'Plataformas de eco', 'Rapto cognitivo', 'Epistemia'],
-    sectionEyebrows: ['01 / Diagnóstico', '02 / Horizonte', '03 / Método', '04 / Convocação', '05 / Arquivo'],
-    sectionTitles: ['O PROBLEMA', 'A PROPOSTA', 'O TERCEIRO ESPAÇO COEMERGENTE', 'A COMUNIDADE', 'RECURSOS']
-  },
-  de: {
-    nav: ['Start', 'Diagnose', 'Horizont', 'Methode', 'Aufruf', 'Archiv'],
-    heroTag: 'Situierte Kulturdiagnose',
-    heroTitle: ['KOGNITIVE', 'SOUVERÄNITÄT', '/ GEBIET', 'IM STREIT'],
-    heroSub: 'Eine kritische Diagnose der algorithmischen Vereinnahmung zeitgenössischer Subjektivität',
-    heroPhrase: '<em>"Schon vor Algorithmen war dieses Gebiet fragil."</em><br>Und wie jedes Gebiet verdient es Souveränität, die es schützt.',
-    heroBtn: 'Diagnose lesen →',
-    anchors: ['Diagnose', 'Horizont', 'Methode', 'Aufruf', 'Archiv'],
-    kinetic: 'DEINE AUFMERKSAMKEIT IST DAS PRODUKT',
-    ticker: ['Kognitive Souveränität', 'Deine Aufmerksamkeit ist das Produkt', 'Umkämpftes Gebiet', 'Pathologisches falsches Selbst', 'Echo-Plattformen', 'Kognitive Entführung', 'Epistemia'],
-    sectionEyebrows: ['01 / Diagnose', '02 / Horizont', '03 / Methode', '04 / Aufruf', '05 / Archiv'],
-    sectionTitles: ['DAS PROBLEM', 'DER VORSCHLAG', 'DER KO-EMERGENTE DRITTE RAUM', 'DIE GEMEINSCHAFT', 'RESSOURCEN']
-  },
-  ru: {
-    nav: ['Главная', 'Диагностика', 'Горизонт', 'Метод', 'Призыв', 'Архив'],
-    heroTag: 'Ситуированный культурный диагноз',
-    heroTitle: ['КОГНИТИВНЫЙ', 'СУВЕРЕНИТЕТ', '/ ТЕРРИТОРИЯ', 'СПОРА'],
-    heroSub: 'Критическая диагностика алгоритмического захвата современной субъективности',
-    heroPhrase: '<em>"Ещё до алгоритмов эта территория уже была уязвимой."</em><br>И как любая территория, она заслуживает суверенитета, который её защищает.',
-    heroBtn: 'Читать диагностику →',
-    anchors: ['Диагностика', 'Горизонт', 'Метод', 'Призыв', 'Архив'],
-    kinetic: 'ВАШЕ ВНИМАНИЕ — ЭТО ПРОДУКТ',
-    ticker: ['Когнитивный суверенитет', 'Ваше внимание — это продукт', 'Территория спора', 'Патологическое ложное Я', 'Эхо-платформы', 'Когнитивный захват', 'Эпистемия'],
-    sectionEyebrows: ['01 / Диагностика', '02 / Горизонт', '03 / Метод', '04 / Призыв', '05 / Архив'],
-    sectionTitles: ['ПРОБЛЕМА', 'ПРЕДЛОЖЕНИЕ', 'КОЭМЕРГЕНТНОЕ ТРЕТЬЕ ПРОСТРАНСТВО', 'СООБЩЕСТВО', 'РЕСУРСЫ']
-  }
-};
-
-const CONTENT_I18N = {
-  es: {
-    sectionDescs: [
-      'Cinco capas de un mismo territorio fragilizado. Pasá el cursor para explorar cada dimensión.',
-      'Por una ley de Soberanía Cognitiva, 5 dimensiones para preservar la seguridad cognitiva frente al rapto cognitivo de los sistemas de espejo estadístico.',
-      'Cómo se construyó este diagnóstico. La inteligencia amplificada, un diálogo entre subjetividad encarnada y un sistema de espejo estadístico.',
-      'Este territorio necesita más cartógrafos. Buscamos voces desde distintas disciplinas.',
-      'Biblioteca descargable. Documentos, bibliografía comentada y guías críticas.'
-    ],
-    diagExpand: 'Explorar concepto →',
-    glossaryTitle: 'Glosario crítico — clic para definir',
-    chatTitle: 'Muestra del diálogo coemergente',
-    metodoNote: '<strong>Nota metodológica:</strong> Este diagnóstico fue construido en un diálogo coemergente con inteligencia artificial. La IA no piensa: organiza, propone conexiones, sugiere lecturas. <strong>El sentido, las preguntas, la dirección política, la interpretación y la urgencia: son humanos.</strong> El Tercer Espacio es ese territorio donde ninguna de las dos inteligencias puede llegar por sí sola.',
-    formPlaceholders: ['Nombre y apellido', 'Correo electrónico', 'Disciplina / institución', '¿Cómo querés participar?', 'Mensaje (opcional): ¿Qué traés al territorio?'],
-    formOptions: ['Sumar al equipo de investigación', 'Debatir el diagnóstico', 'Difundir el proyecto', 'Contactar a lxs autorxs'],
-    sendBtn: 'Sumarme al territorio →',
-    labs: [],
-    fileSoon: 'PDF próximamente',
-    footerCredits: ' Equipo de diagnóstico: <em>[Prof. Emmanuel Retamal - Prof. Anahí González Sendra - Prof. Ana Luisa Gauchat - Priscila Arandia]</em><br>
-      Construido en diálogo con inteligencia sintética<br>
-      Método: coemergencia · https: arxiv.org/abs/2601.12837  ·',
-    footerLicense: 'Creative Commons<br>No comercial · Compartir igual<br>CC BY-NC-SA 4.0',
-    closeGlossaryLabel: 'Cerrar glosario',
-    formStatus: 'Gracias. Tu interés quedó registrado en esta demo estática; falta conectar un canal de envío real.'
-  },
-  eu: {
-    sectionDescs: [
-      'Five layers of one fragile territory. Hover to explore each dimension.',
-      'Toward a Cognitive Sovereignty law: five dimensions to protect cognitive security against the cognitive hijack of statistical mirror systems.',
-      'How this diagnosis was built. Amplified intelligence: a dialogue between embodied subjectivity and a statistical mirror system.',
-      'This territory needs more cartographers. We seek voices from different disciplines.',
-      'Downloadable library. Documents, annotated bibliography, and critical guides.'
-    ],
-    diagExpand: 'Explore concept →',
-    glossaryTitle: 'Critical glossary — click to define',
-    chatTitle: 'Sample of the co-emergent dialogue',
-    metodoNote: '<strong>Method note:</strong> This diagnosis was built through a co-emergent dialogue with artificial intelligence. AI does not think: it organizes, proposes connections, and suggests readings. <strong>Meaning, questions, political direction, interpretation, and urgency are human.</strong> The Third Space is the territory where neither intelligence can arrive alone.',
-    formPlaceholders: ['Full name', 'Email', 'Discipline / institution', 'How would you like to participate?', 'Optional message: what do you bring to this territory?'],
-    formOptions: ['Join the research team', 'Debate the diagnosis', 'Help spread the project', 'Contact the authors'],
-    sendBtn: 'Join this territory →',
-    labs: [],
-    fileSoon: 'PDF coming soon',
-    footerCredits: ' Authors: <em>[Prof. Emmanuel Retamal - Prof. Anahí González Sendra - Prof. Ana Luisa Gauchat - Priscila Arandia]</em><br>
-      Construido en diálogo con inteligencia sintética<br>
-      Método: coemergencia · https: arxiv.org/abs/2601.12837  ·',
-    footerLicense: 'Creative Commons<br>Non-commercial · Share alike<br>CC BY-NC-SA 4.0',
-    closeGlossaryLabel: 'Close glossary',
-    formStatus: 'Thanks. Your interest was recorded in this static demo; a real submission channel is still pending.'
-  },
-  zh: {
-    sectionDescs: [
-      '同一脆弱领土的五个层面。将鼠标悬停以探索每个维度。',
-      '推动《认知主权》立法：五个维度，在统计镜像系统的认知劫持面前维护认知安全。',
-      '本诊断如何形成：增强智能——具身主体性与统计镜像系统之间的对话。',
-      '这片领土需要更多制图者。我们寻找来自不同学科的声音。',
-      '可下载资料库：文档、注释书目与批判指南。'
-    ],
-    diagExpand: '查看概念 →',
-    glossaryTitle: '批判术语表 — 点击查看定义',
-    chatTitle: '共生对话示例',
-    metodoNote: '<strong>方法说明：</strong>本诊断由人与人工智能的共生对话构建。人工智能不会思考：它组织信息、提出连接、推荐阅读。<strong>意义、问题、政治方向、解释与紧迫感都属于人类。</strong>“第三空间”是两种智能都无法独自抵达的地带。',
-    formPlaceholders: ['姓名', '电子邮箱', '学科 / 机构', '你希望如何参与？', '可选留言：你能为这片领土带来什么？'],
-    formOptions: ['加入研究团队', '讨论本诊断', '传播项目', '联系作者'],
-    sendBtn: '加入这片领土 →',
-    labs: [],
-    fileSoon: 'PDF 即将发布',
-    footerCredits: ' Equipo de diagnóstico: <em>[Prof. Emmanuel Retamal - Prof. Anahí González Sendra - Prof. Ana Luisa Gauchat - Priscila Arandia]</em><br>
-      Construido en diálogo con inteligencia sintética<br>
-      Método: coemergencia · https: arxiv.org/abs/2601.12837  ·',
-    footerLicense: 'Creative Commons<br>非商业 · 相同方式共享<br>CC BY-NC-SA 4.0',
-    closeGlossaryLabel: '关闭术语表',
-    formStatus: '感谢。你的意向已在此静态演示中记录；真实提交通道尚未接入。'
-  },
-  pt: {
-    sectionDescs: [
-      'Cinco camadas de um mesmo território fragilizado. Passe o cursor para explorar cada dimensão.',
-      'Por uma lei de Soberania Cognitiva: cinco dimensões para preservar a segurança cognitiva frente ao rapto cognitivo dos sistemas de espelho estatístico.',
-      'Como este diagnóstico foi construído. Inteligência amplificada: um diálogo entre subjetividade encarnada e um sistema de espelho estatístico.',
-      'Este território precisa de mais cartógrafos. Buscamos vozes de diferentes disciplinas.',
-      'Biblioteca para download. Documentos, bibliografia comentada e guias críticos.'
-    ],
-    diagExpand: 'Explorar conceito →',
-    glossaryTitle: 'Glossário crítico — clique para definir',
-    chatTitle: 'Exemplo de diálogo coemergente',
-    metodoNote: '<strong>Nota metodológica:</strong> Este diagnóstico foi construído em diálogo coemergente com inteligência artificial. A IA não pensa: organiza, propõe conexões e sugere leituras. <strong>Sentido, perguntas, direção política, interpretação e urgência são humanos.</strong> O Terceiro Espaço é o território onde nenhuma das duas inteligências chega sozinha.',
-    formPlaceholders: ['Nome completo', 'E-mail', 'Disciplina / instituição', 'Como você quer participar?', 'Mensagem (opcional): o que você traz para este território?'],
-    formOptions: ['Somar à equipe de pesquisa', 'Debater o diagnóstico', 'Divulgar o projeto', 'Contactar autoras/es'],
-    sendBtn: 'Quero participar do território →',
-    labs: [],
-    fileSoon: 'PDF em breve',
-    footerCredits: ' Equipo de diagnóstico: <em>[Prof. Emmanuel Retamal - Prof. Anahí González Sendra - Prof. Ana Luisa Gauchat - Priscila Arandia]</em><br>
-      Construido en diálogo con inteligencia sintética<br>
-      Método: coemergencia · https: arxiv.org/abs/2601.12837  ·',
-    footerLicense: 'Creative Commons<br>Não comercial · Compartilhar igual<br>CC BY-NC-SA 4.0',
-    closeGlossaryLabel: 'Fechar glossário',
-    formStatus: 'Obrigado. Seu interesse foi registrado nesta demonstração estática; falta conectar um canal real de envio.'
-  },
-  de: {
-    sectionDescs: [
-      'Fünf Ebenen eines fragilen Territoriums. Bewege den Cursor, um jede Dimension zu erkunden.',
-      'Für ein Gesetz zur kognitiven Souveränität: fünf Dimensionen, um kognitive Sicherheit vor der kognitiven Entführung durch statistische Spiegelsysteme zu wahren.',
-      'Wie diese Diagnose entstanden ist. Amplifizierte Intelligenz: ein Dialog zwischen verkörperter Subjektivität und einem statistischen Spiegelsystem.',
-      'Dieses Territorium braucht mehr Kartografen. Wir suchen Stimmen aus verschiedenen Disziplinen.',
-      'Download-Bibliothek. Dokumente, kommentierte Bibliografie und kritische Leitfäden.'
-    ],
-    diagExpand: 'Konzept erkunden →',
-    glossaryTitle: 'Kritisches Glossar — klicken zum Definieren',
-    chatTitle: 'Beispiel des ko-emergenten Dialogs',
-    metodoNote: '<strong>Methodischer Hinweis:</strong> Diese Diagnose entstand in einem ko-emergenten Dialog mit künstlicher Intelligenz. KI denkt nicht: Sie organisiert, schlägt Verbindungen vor und empfiehlt Lesarten. <strong>Sinn, Fragen, politische Richtung, Interpretation und Dringlichkeit sind menschlich.</strong> Der Dritte Raum ist ein Gebiet, das keine der beiden Intelligenzen allein erreicht.',
-    formPlaceholders: ['Vollständiger Name', 'E-Mail', 'Disziplin / Institution', 'Wie möchten Sie teilnehmen?', 'Optionale Nachricht: Was bringen Sie in dieses Territorium ein?'],
-    formOptions: ['Dem Forschungsteam beitreten', 'Die Diagnose diskutieren', 'Das Projekt verbreiten', 'Autor:innen kontaktieren'],
-    sendBtn: 'Dem Territorium beitreten →',
-    labs: [],
-    fileSoon: 'PDF demnächst',
-    footerCredits: 'Diagnoseteam: <em>[Prof. Emmanuel Retamal – Prof. Anahí González Sendra – Prof. Ana Luisa Gauchat – Priscila Arandia]</em><br>
-Entwickelt im Dialog mit synthetischer Intelligenz<br>
-Methode: Koemergenz · https: arxiv.org/abs/2601.12837 ·',
-    footerLicense: 'Creative Commons<br>Nicht kommerziell · Weitergabe unter gleichen Bedingungen<br>CC BY-NC-SA 4.0',
-    closeGlossaryLabel: 'Glossar schließen',
-    formStatus: 'Danke. Ihr Interesse wurde in dieser statischen Demo registriert; ein echter Übermittlungskanal fehlt noch.'
-  },
-  ru: {
-    sectionDescs: [
-      'Пять слоев одной уязвимой территории. Наведите курсор, чтобы изучить каждое измерение.',
-      'Закон о когнитивном суверенитете: пять измерений для защиты когнитивной безопасности от когнитивного захвата систем статистического зеркала.',
-      'Как был создан этот диагноз: усиленный интеллект — диалог между воплощённой субъективностью и системой статистического зеркала.',
-      'Этой территории нужны новые картографы. Мы ищем голоса из разных дисциплин.',
-      'Библиотека для скачивания: документы, аннотированная библиография и критические руководства.'
-    ],
-    diagExpand: 'Изучить понятие →',
-    glossaryTitle: 'Критический глоссарий — нажмите для определения',
-    chatTitle: 'Пример коэмергентного диалога',
-    metodoNote: '<strong>Методологическая заметка:</strong> Этот диагноз создан в коэмергентном диалоге с искусственным интеллектом. ИИ не мыслит: он организует, предлагает связи и подсказывает прочтения. <strong>Смысл, вопросы, политическое направление, интерпретация и срочность принадлежат человеку.</strong> Третье пространство — территория, куда ни одна из двух интеллектуальных сил не приходит в одиночку.',
-    formPlaceholders: ['Имя и фамилия', 'Электронная почта', 'Дисциплина / организация', 'Как вы хотите участвовать?', 'Сообщение (необязательно): что вы приносите в эту территорию?'],
-    formOptions: ['Присоединиться к исследовательской команде', 'Обсудить диагноз', 'Помочь с распространением проекта', 'Связаться с авторами'],
-    sendBtn: 'Присоединиться к территории →',
-    labs: [],
-    fileSoon: 'PDF скоро',
-    footerCredits: 'Диагностическая группа: <em>[Проф. Эммануэль Ретамаль - Проф. Анаи Гонсалес Сендра - Проф. Ана Луиза Гаушат - Присцила Арандия]</em><br>
-Разработано в диалоге с искусственным интеллектом<br>
-Метод: совозникновение · https: arxiv.org/abs/2601.12837 ·',
-    footerLicense: 'Creative Commons<br>Некоммерческое использование · На тех же условиях<br>CC BY-NC-SA 4.0',
-    closeGlossaryLabel: 'Закрыть глоссарий',
-    formStatus: 'Спасибо. Ваш интерес зафиксирован в этой статической демо-версии; реальный канал отправки еще не подключен.'
-  }
-};
-
-const FULL_COPY = {
-  es: {
-    logoSubtitle: 'Soberanía Cognitiva',
-    navAria: 'Secciones principales',
-    homeAria: 'Ir al inicio',
-    dimNames: ['INDIVIDUAL', 'COLECTIVA', 'INSTITUCIONAL', 'EPISTÉMICA', 'TÉCNICA'],
-    dimDescs: [
-      'Capacidad de cada sujeto de reconocer y resistir los mecanismos de captura. Autonomía del pensamiento, tolerancia a la incertidumbre, potencia de actuar recuperada.',
-      'Construcción de comunidades epistémicas diversas. Disputar los marcos de sentido. El conocimiento como bien común, no como producto algorítmico.',
-      'Políticas públicas, educación crítica, ecosistemas informativos robustos. El Estado como garante de condiciones para el pensamiento libre.',
-      'Diversidad de fuentes de conocimiento. Resistencia a la monocultura informativa. Crítica a la "ciudadanía digital" como adaptación acrítica.',
-      'Regulación, transparencia algorítmica, derecho a no ser perfilado. La arquitectura tecnológica como decisión política, no como inevitabilidad.'
-    ],
-    horizonteQuote: '"La ciudadanía digital nos enseña a adaptarnos a las plataformas. La soberanía cognitiva nos pide cuestionarlas para transformarlas."',
-    horizonteAttr: '— Del diagnóstico',
-    chatLabels: ['Investigadora', 'IA — organización y conexión bibliográfica', 'Investigadora', 'IA — organización'],
-    chatBubbles: [
-      'Creo que la "Satelización" de Ausubel no logra la profundidad conceptual para explicar el sistema de la captura, o de delegación cognitiva según Benasayag, cuáles otros autores hablan de un ambiente facilitador, de un sostén subjetivo?',
-      'Mientras Ausubel busca cómo un concepto se "subsume" en una jerarquía cognitiva existente, autores como Jacobson o Winnicott exploran cómo el acto de conocer modifica la representación que el Yo tiene de sí mismo y del objeto, ¿querés una lista de autores con herramientas para pensar la captura psíquica de manera profunda?',
-      'Sí, es necesario redirigir la mirada hacia lo social, no puede ser visto solamente desde la psicología educativa, aunque su raíz sea individual, la puerta de entrada es colectiva.',
-      'Entendido. Tu consulta toca un punto central y muy debatido en la psicología del desarrollo y la educación: ¿cómo se articulan la influencia del entorno y la autonomía del sujeto? Muchos autores han coincidido en que, para un desarrollo saludable, no basta con un entorno que simplemente "eduque" o "modele", sino que se necesita un ambiente facilitador que nutra el potencial innato del individuo. Figuras como Donald Winnicott, John Bowlby, Heinz Kohut, Margaret Mahler y Carl Rogers ofrecen perspectivas clave al respecto'
-    ],
-    profileRoles: ['PSICOLOGÍA CLÍNICA', 'CIENCIAS DE LA COMPUTACIÓN', 'FILOSOFÍA POLÍTICA', 'COMUNICACIÓN Y MEDIOS', 'EDUCACIÓN', 'DERECHO Y POLÍTICAS PÚBLICAS'],
-    profileAreas: [
-      'Subjetividad contemporánea · Clínica de las tecnologías · Psicoanálisis y cultura digital',
-      'Diseño de algoritmos · Ética de la IA · Arquitecturas de recomendación · Sistemas de captura',
-      'Teoría del sujeto · Biopolítica digital · Crítica de la razón técnica · Epistemología',
-      'Ecosistemas informativos · Desinformación · Estudios de plataformas · Cultura digital',
-      'Pedagogía crítica · Alfabetización mediática · Formación docente · Nuevas infancias',
-      'Regulación tecnológica · Derechos digitales · Gobernanza de datos · Legislación IA'
-    ],
-    fileTypes: ['PDF · Documento completo', 'PDF · Versión breve', 'PDF · Bibliografía', 'PDF · Guía crítica'],
-    fileNames: ['DIAGNÓSTICO CRÍTICO SOBRE CAPTURA ALGORÍTMICA', 'SÍNTESIS EJECUTIVA', 'AUTORES CLAVE Y BIBLIOGRAFÍA COMENTADA', 'CRÍTICA AL MANUAL FARO DIGITAL'],
-    fileDescs: [
-      'El documento integral. Cinco dimensiones del problema, horizonte de soberanía cognitiva y método de investigación.',
-      'Versión condensada para difusión. Las ideas clave en formato accesible para distintos públicos.',
-      'Sadin, Benasayag, Quattrociocchi, Gentili y otros. Cada entrada con nota crítica sobre su contribución al diagnóstico.',
-      'Análisis crítico de los límites del enfoque de "ciudadanía digital" light. Por qué la adaptación no es suficiente.'
-    ],
-    glossaryTags: ['Rapto cognitivo', 'Epistemia', 'Falso self colectivo', 'Captura atencional', 'Delegación cognitiva', 'Plataformas de eco', 'Yo resquebrajado', 'Potencia de actuar'],
-    diagNames: ['LA PREHISTORIA DEL YO RESQUEBRAJADO', 'EL ECOSISTEMA DE LA CAPTURA', 'EL MECANISMO DE IMPLANTACIÓN', 'LA TEXTURA DEL DISCURSO', 'LO QUE SE PIERDE'],
-    diagAuthors: ['Gentili / Masa crítica Latinoamericana', 'Éric Sadin', 'Miguel Benasayag', 'Walter Quattrociocchi', 'Síntesis'],
-    diagTexts: [
-      'La fragilidad subjetiva no nació con las redes sociales. El terreno ya estaba preparado: sujetos con escasa tolerancia a la frustración, identidades provisorias, yo empobrecido. Los algoritmos no inventaron la vulnerabilidad, la explotaron.',
-      'Las plataformas no son neutrales. Diseñadas para capturar la atención, explotan los mecanismos cognitivos más primitivos. El "rapto cognitivo" no es metáfora: es la sustracción activa de la capacidad de pensar con autonomía.',
-      'El formateo digital construye un "falso self colectivo": identidades delegadas a las plataformas, subjetividades que se crean para ser vistas, no para existir. La delegación cognitiva no es comodidad, es erosión.',
-      'El concepto de "epistemia" nombra la estructura del conocimiento compartido que los algoritmos moldean. Las cámaras de eco no solo filtran contenido: reconfiguran los marcos desde los cuales evaluamos qué es verdad.',
-      'El cuerpo que no se toca, el tiempo que no se habita, la potencia de actuar que se transfiere a una interfaz. Lo que está en juego no es la pantalla, sino la capacidad de seguir siendo el sujeto de la propia experiencia.'
-    ]
-  },
-  eu: {
-    logoSubtitle: 'Cognitive Sovereignty',
-    navAria: 'Main sections',
-    homeAria: 'Go to home',
-    dimNames: ['INDIVIDUAL', 'COLLECTIVE', 'INSTITUTIONAL', 'EPISTEMIC', 'TECHNICAL'],
-    dimDescs: [
-      'Each subject\'s capacity to recognize and resist capture mechanisms. Autonomy of thought, tolerance for uncertainty, and recovered power to act.',
-      'Building diverse epistemic communities. Disputing frames of meaning. Knowledge as a common good, not an algorithmic product.',
-      'Public policies, critical education, robust information ecosystems. The State as guarantor of conditions for free thought.',
-      'Diversity of knowledge sources. Resistance to informational monoculture. A critique of "light digital citizenship" as uncritical adaptation.',
-      'Regulation, algorithmic transparency, and the right not to be profiled. Technological architecture as a political decision, not an inevitability.'
-    ],
-    horizonteQuote: '"Digital citizenship teaches us to adapt to platforms. Cognitive sovereignty asks us to question them in order to transform them."',
-    horizonteAttr: '— From the diagnosis',
-    chatLabels: ['Researcher', 'AI — organization & bibliographic linking', 'Researcher', 'AI — structuring'],
-    chatBubbles: [
-      'I don\'t think Ausubel\'s "satellite learning" reaches the conceptual depth needed to explain the system of capture — or cognitive delegation in Benasayag\'s sense. Which other authors speak of a facilitating environment, a subjective holding?',
-      'Whereas Ausubel focuses on how a concept is subsumed into an existing cognitive hierarchy, authors such as Edith Jacobson or D. W. Winnicott explore how the act of knowing reshapes the ego\'s representation of itself and of the object. Would you like a list of authors with tools to think psychic capture in depth?',
-      'Yes — we need to turn toward the social dimension. It cannot be seen only from educational psychology: even if the roots are individual, the entryway is collective.',
-      'Understood. Your question touches a central, debated issue in developmental psychology and education: how environmental influence and the subject\'s autonomy connect. Many authors agree healthy development needs more than an environment that merely teaches or models — it needs a facilitating environment that nurtures innate potential. Figures such as Donald Winnicott, John Bowlby, Heinz Kohut, Margaret Mahler, and Carl Rogers offer key perspectives.'
-    ],
-    profileRoles: ['CLINICAL PSYCHOLOGY', 'COMPUTER SCIENCE', 'POLITICAL PHILOSOPHY', 'COMMUNICATION AND MEDIA', 'EDUCATION', 'LAW AND PUBLIC POLICY'],
-    profileAreas: [
-      'Contemporary subjectivity · Technology clinic · Psychoanalysis and digital culture',
-      'Algorithm design · AI ethics · Recommendation architectures · Capture systems',
-      'Theory of the subject · Digital biopolitics · Critique of technical reason · Epistemology',
-      'Information ecosystems · Disinformation · Platform studies · Digital culture',
-      'Critical pedagogy · Media literacy · Teacher training · New childhoods',
-      'Technology regulation · Digital rights · Data governance · AI legislation'
-    ],
-    fileTypes: ['PDF · Full document', 'PDF · Short version', 'PDF · Bibliography', 'PDF · Critical guide'],
-    fileNames: ['CRITICAL DIAGNOSIS OF ALGORITHMIC CAPTURE', 'EXECUTIVE SUMMARY', 'KEY AUTHORS AND ANNOTATED BIBLIOGRAPHY', 'CRITIQUE OF THE FARO DIGITAL MANUAL'],
-    fileDescs: [
-      'The full document. Five dimensions of the problem, cognitive sovereignty horizon, and research method.',
-      'Condensed version for dissemination. Core ideas in an accessible format for different audiences.',
-      'Sadin, Benasayag, Quattrociocchi, Gentili, and others. Each entry includes a critical note on its contribution to the diagnosis.',
-      'Critical analysis of the limits of "light digital citizenship." Why adaptation is not enough.'
-    ],
-    glossaryTags: ['Cognitive hijack', 'Epistemia', 'Collective false self', 'Attentional capture', 'Cognitive delegation', 'Echo platforms', 'Fractured self', 'Power to act'],
-    diagNames: ['THE PREHISTORY OF THE FRACTURED SELF', 'THE CAPTURE ECOSYSTEM', 'THE IMPLANTATION MECHANISM', 'THE TEXTURE OF DISCOURSE', 'WHAT IS LOST'],
-    diagAuthors: ['Gentili / Latin American critical mass', 'Éric Sadin', 'Miguel Benasayag', 'Walter Quattrociocchi', 'Synthesis'],
-    diagTexts: [
-      'Subjective fragility did not begin with social media. The ground was already prepared: subjects with low frustration tolerance, provisional identities, an impoverished self. Algorithms did not invent vulnerability; they exploited it.',
-      'Platforms are not neutral. Designed to capture attention, they exploit our most primitive cognitive mechanisms. "Cognitive hijack" is not a metaphor: it is the active subtraction of the ability to think autonomously.',
-      'Digital formatting builds a "collective false self": identities delegated to platforms, subjectivities created to be seen rather than to exist. Cognitive delegation is not convenience, it is erosion.',
-      '"Epistemia" names the structure of shared knowledge shaped by algorithms. Echo chambers do not only filter content; they reconfigure the frames through which we assess what is true.',
-      'The body that is not touched, the time that is not inhabited, the power to act transferred to an interface. What is at stake is not the screen, but the capacity to remain the subject of one\'s own experience.'
-    ]
-  },
-  pt: {
-    logoSubtitle: 'Soberania Cognitiva',
-    navAria: 'Seções principais',
-    homeAria: 'Ir para início',
-    dimNames: ['INDIVIDUAL', 'COLETIVA', 'INSTITUCIONAL', 'EPISTÊMICA', 'TÉCNICA'],
-    dimDescs: [
-      'Capacidade de cada sujeito de reconhecer e resistir aos mecanismos de captura. Autonomia de pensamento, tolerância à incerteza e potência de agir recuperada.',
-      'Construção de comunidades epistêmicas diversas. Disputar os marcos de sentido. Conhecimento como bem comum, não como produto algorítmico.',
-      'Políticas públicas, educação crítica e ecossistemas informativos robustos. O Estado como garantidor de condições para o pensamento livre.',
-      'Diversidade de fontes de conhecimento. Resistência à monocultura informativa. Crítica à "cidadania digital" como adaptação acrítica.',
-      'Regulação, transparência algorítmica e direito de não ser perfilado. A arquitetura tecnológica como decisão política, não como inevitabilidade.'
-    ],
-    horizonteQuote: '"A cidadania digital nos ensina a adaptar-nos às plataformas. A soberania cognitiva pede que as questionemos para transformá-las."',
-    horizonteAttr: '— Do diagnóstico',
-    chatLabels: ['Pesquisadora', 'IA — organização e conexão bibliográfica', 'Pesquisadora', 'IA — organização'],
-    chatBubbles: [
-      'Acho que a "satellização" de Ausubel não alcança a profundidade conceitual para explicar o sistema de captura, ou a delegação cognitiva segundo Benasayag. Quais outros autores falam de um ambiente facilitador, de um sustento subjetivo?',
-      'Enquanto Ausubel se concentra em como um conceito se incorpora a uma hierarquia cognitiva existente, autores como Edith Jacobson ou D. W. Winnicott exploram como o ato de conhecer altera a representação que o ego tem de si e do objeto. Você quer uma lista de autores com ferramentas para pensar a captura psíquica em profundidade?',
-      'Sim — é preciso redirecionar o olhar para o social; não pode ser visto apenas pela psicologia educacional. Embora a raiz possa ser individual, a porta de entrada é coletiva.',
-      'Entendido. A sua consulta toca um ponto central debatido na psicologia do desenvolvimento e na educação: como se articulam influência do ambiente e autonomia do sujeito. Muitos autores convergem ao dizer que, para um desenvolvimento saudável, não basta um ambiente que apenas "eduque" ou "modele"; é preciso um ambiente facilitador que nutra o potencial inato — figuras como Donald Winnicott, John Bowlby, Heinz Kohut, Margaret Mahler e Carl Rogers oferecem referências decisivas.'
-    ],
-    profileRoles: ['PSICOLOGIA CLÍNICA', 'CIÊNCIAS DA COMPUTAÇÃO', 'FILOSOFIA POLÍTICA', 'COMUNICAÇÃO E MÍDIA', 'EDUCAÇÃO', 'DIREITO E POLÍTICAS PÚBLICAS'],
-    profileAreas: [
-      'Subjetividade contemporânea · Clínica das tecnologias · Psicanálise e cultura digital',
-      'Design de algoritmos · Ética da IA · Arquiteturas de recomendação · Sistemas de captura',
-      'Teoria do sujeito · Biopolítica digital · Crítica da razão técnica · Epistemologia',
-      'Ecossistemas informativos · Desinformação · Estudos de plataformas · Cultura digital',
-      'Pedagogia crítica · Alfabetização midiática · Formação docente · Novas infâncias',
-      'Regulação tecnológica · Direitos digitais · Governança de dados · Legislação de IA'
-    ],
-    fileTypes: ['PDF · Documento completo', 'PDF · Versão curta', 'PDF · Bibliografia', 'PDF · Guia crítico'],
-    fileNames: ['DIAGNÓSTICO CRÍTICO SOBRE CAPTURA ALGORÍTMICA', 'SÍNTESE EXECUTIVA', 'AUTORES-CHAVE E BIBLIOGRAFIA COMENTADA', 'CRÍTICA AO MANUAL FARO DIGITAL'],
-    fileDescs: [
-      'Documento integral. Cinco dimensões do problema, horizonte de soberania cognitiva e método de pesquisa.',
-      'Versão condensada para difusão. Ideias-chave em formato acessível para diferentes públicos.',
-      'Sadin, Benasayag, Quattrociocchi, Gentili e outros. Cada entrada com nota crítica sobre sua contribuição ao diagnóstico.',
-      'Análise crítica dos limites da "cidadania digital" light. Por que a adaptação não é suficiente.'
-    ],
-    glossaryTags: ['Rapto cognitivo', 'Epistemia', 'Falso self coletivo', 'Captura atencional', 'Delegação cognitiva', 'Plataformas de eco', 'Eu fraturado', 'Potência de agir'],
-    diagNames: ['A PRÉ-HISTÓRIA DO EU FRATURADO', 'O ECOSSISTEMA DA CAPTURA', 'O MECANISMO DE IMPLANTAÇÃO', 'A TEXTURA DO DISCURSO', 'O QUE SE PERDE'],
-    diagAuthors: ['Gentili / massa crítica latino-americana', 'Éric Sadin', 'Miguel Benasayag', 'Walter Quattrociocchi', 'Síntese'],
-    diagTexts: [
-      'A fragilidade subjetiva não nasceu com as redes sociais. O terreno já estava preparado: sujeitos com baixa tolerância à frustração, identidades provisórias e eu empobrecido. Os algoritmos não inventaram a vulnerabilidade — exploraram.',
-      'As plataformas não são neutras. Projetadas para capturar atenção, exploram os mecanismos cognitivos mais primitivos.',
-      'A formatação digital constrói um "falso self coletivo": identidades delegadas às plataformas e subjetividades criadas para serem vistas.',
-      'O conceito de "epistemia" nomeia a estrutura do conhecimento compartilhado moldada pelos algoritmos.',
-      'O corpo que não se toca, o tempo que não se habita e a potência de agir transferida para uma interface.'
-    ]
-  },
-  de: {
-    logoSubtitle: 'Kognitive Souveränität',
-    navAria: 'Hauptbereiche',
-    homeAria: 'Zur Startseite',
-    dimNames: ['INDIVIDUELL', 'KOLLEKTIV', 'INSTITUTIONELL', 'EPISTEMISCH', 'TECHNISCH'],
-    dimDescs: [
-      'Fähigkeit jedes Subjekts, Erfassungsmechanismen zu erkennen und ihnen zu widerstehen. Autonomie des Denkens, Toleranz gegenüber Unsicherheit und wiedergewonnene Handlungsmacht.',
-      'Aufbau vielfältiger epistemischer Gemeinschaften. Streit um Deutungsrahmen. Wissen als Gemeingut, nicht als algorithmisches Produkt.',
-      'Öffentliche Politik, kritische Bildung und robuste Informationsökosysteme. Der Staat als Garant für Bedingungen freien Denkens.',
-      'Vielfalt von Wissensquellen. Widerstand gegen informationelle Monokultur. Kritik an "digitaler Bürgerschaft" als unkritischer Anpassung.',
-      'Regulierung, algorithmische Transparenz und das Recht, nicht profiliert zu werden. Technische Architektur als politische Entscheidung.'
-    ],
-    horizonteQuote: '"Digitale Bürgerschaft lehrt uns, uns an Plattformen anzupassen. Kognitive Souveränität verlangt, sie zu hinterfragen, um sie zu transformieren."',
-    horizonteAttr: '— Aus der Diagnose',
-    chatLabels: ['Forscherin', 'KI — Strukturierung und bibliografische Verknüpfung', 'Forscherin', 'KI — Strukturierung'],
-    chatBubbles: [
-      'Ich glaube, Ausubels "Satellitenlernen" reicht begrifflich nicht aus, um das System der Erfassung — oder nach Benasayag die kognitive Delegation — zu klären. Welche anderen Autoren sprechen vom förderlichen Umfeld, von subjektivem Halten?',
-      'Während Ausubel erklärt, wie sich ein Konzept in eine bestehende kognitive Hierarchie einfügt, untersuchen Edith Jacobson oder D. W. Winnicott, wie der Erkenntnisakt die Selbstrepräsentation von Ich und Objekt verschiebt. Möchten Sie eine Autorenliste mit Werkzeugen für ein tiefes Verständnis psychischer Erfassung?',
-      'Ja — wir müssen den sozialen Blick schärfen. Es lässt sich nicht nur aus pädagogischer Psychologie beschreiben: bleiben die Ursachen individuell, so ist der Eintritt oft kollektiv.',
-      'Verstanden. Ihre Frage trifft einen vieldiskutierten Knotenpunkt von Entwicklungspsychologie und Bildung: Wie hängen Umweltwirkungen und Subjektautonomie zusammen? Mehrere Autoren betonen: gesunde Entwicklung braucht mehr als Modellierung — sie verlangt fördernde Bedingungen. Donald Winnicott, John Bowlby, Heinz Kohut, Margaret Mahler und Carl Rogers liefern dazu tragfähige Perspektiven.'
-    ],
-    profileRoles: ['KLINISCHE PSYCHOLOGIE', 'INFORMATIK', 'POLITISCHE PHILOSOPHIE', 'KOMMUNIKATION UND MEDIEN', 'BILDUNG', 'RECHT UND ÖFFENTLICHE POLITIK'],
-    profileAreas: [
-      'Zeitgenössische Subjektivität · Klinik der Technologien · Psychoanalyse und Digitalkultur',
-      'Algorithmendesign · KI-Ethik · Empfehlungsarchitekturen · Erfassungssysteme',
-      'Subjekttheorie · Digitale Biopolitik · Kritik technischer Vernunft · Erkenntnistheorie',
-      'Informationsökosysteme · Desinformation · Plattformstudien · Digitalkultur',
-      'Kritische Pädagogik · Medienkompetenz · Lehrerbildung · Neue Kindheiten',
-      'Technologieregulierung · Digitale Rechte · Daten-Governance · KI-Gesetzgebung'
-    ],
-    fileTypes: ['PDF · Vollständiges Dokument', 'PDF · Kurzfassung', 'PDF · Bibliografie', 'PDF · Kritischer Leitfaden'],
-    fileNames: ['KRITISCHE DIAGNOSE ALGORITHMISCHER ERFASSUNG', 'MANAGEMENT-ZUSAMMENFASSUNG', 'SCHLÜSSELAUTOREN UND KOMMENTIERTE BIBLIOGRAFIE', 'KRITIK DES FARO-DIGITAL-HANDBUCHS'],
-    fileDescs: [
-      'Gesamtdokument. Fünf Dimensionen des Problems, Horizont kognitiver Souveränität und Forschungsmethode.',
-      'Verdichtete Version zur Verbreitung. Kernideen in zugänglichem Format.',
-      'Sadin, Benasayag, Quattrociocchi, Gentili und andere. Jeder Eintrag mit kritischer Einordnung.',
-      'Kritische Analyse der Grenzen "digitaler Light-Bürgerschaft". Warum Anpassung nicht genügt.'
-    ],
-    glossaryTags: ['Kognitive Entführung', 'Epistemia', 'Kollektives falsches Selbst', 'Aufmerksamkeits-Erfassung', 'Kognitive Delegation', 'Echo-Plattformen', 'Fragmentiertes Selbst', 'Handlungsmacht'],
-    diagNames: ['VORGESCHICHTE DES FRAGMENTIERTEN SELBST', 'DAS ERFASSUNGS-ÖKOSYSTEM', 'DER IMPLANTATIONSMECHANISMUS', 'DIE TEXTUR DES DISKURSES', 'WAS VERLOREN GEHT'],
-    diagAuthors: ['Gentili / lateinamerikanische kritische Masse', 'Éric Sadin', 'Miguel Benasayag', 'Walter Quattrociocchi', 'Synthese'],
-    diagTexts: [
-      'Subjektive Fragilität entstand nicht erst mit sozialen Netzwerken. Das Terrain war vorbereitet: geringe Frustrationstoleranz, vorläufige Identitäten, verarmtes Selbst. Algorithmen erfanden die Verletzlichkeit nicht — sie nutzen sie strukturell.',
-      'Plattformen sind nicht neutral. Sie sind darauf ausgelegt, Aufmerksamkeit zu erfassen.',
-      'Digitale Formatierung baut ein "kollektives falsches Selbst" auf.',
-      'Der Begriff "Epistemia" bezeichnet die Struktur geteilten Wissens, die Algorithmen formen.',
-      'Der unberührte Körper, die unbewohnte Zeit und die an Interfaces übertragene Handlungsmacht.'
-    ]
-  },
-  ru: {
-    logoSubtitle: 'Когнитивный суверенитет',
-    navAria: 'Основные разделы',
-    homeAria: 'Перейти на главную',
-    dimNames: ['ИНДИВИДУАЛЬНОЕ', 'КОЛЛЕКТИВНОЕ', 'ИНСТИТУЦИОНАЛЬНОЕ', 'ЭПИСТЕМИЧЕСКОЕ', 'ТЕХНИЧЕСКОЕ'],
-    dimDescs: [
-      'Способность субъекта распознавать и сопротивляться механизмам захвата. Автономия мышления, терпимость к неопределенности и возвращенная способность действовать.',
-      'Формирование разнообразных эпистемических сообществ. Борьба за рамки смысла. Знание как общее благо, а не алгоритмический продукт.',
-      'Госполитики, критическое образование и устойчивые информационные экосистемы. Государство как гарант условий свободного мышления.',
-      'Разнообразие источников знания. Сопротивление информационной монокультуре. Критика "цифрового гражданства" как некритичной адаптации.',
-      'Регуляция, алгоритмическая прозрачность и право не быть профилированным. Технологическая архитектура как политическое решение.'
-    ],
-    horizonteQuote: '"Цифровое гражданство учит нас приспосабливаться к платформам. Когнитивный суверенитет призывает подвергать их сомнению ради трансформации."',
-    horizonteAttr: '— Из диагноза',
-    chatLabels: ['Исследовательница', 'ИИ — структурирование и поиск литературы', 'Исследовательница', 'ИИ — структурирование'],
-    chatBubbles: [
-      'Кажется, субсумирующее обучение У. Осубела не даёт понятийной глубины, чтобы описать систему захвата или делегирование познания в логике Бенасайага. У каких авторов искать опору поддерживающей среды, субъективную опору?',
-      'Если Осубель исследует, как понятие встраивается в существующую когнитивную иерархию, то Эдит Джейкобсон или Д. В. Уинникотт смотрят, как акт познания меняет представление Я о себе и об объекте. Нужен ли список авторов для глубокого анализа психического захвата?',
-      'Да — нужен поворот к социальному. Нельзя оставаться только в школьной психологии; даже при индивидуальных истоках точка входа бывает коллективной.',
-      'Понял. Вы задеваете ядро дискуссии в психологии развития и педагогике — как связать влияние среды и автономию субъекта. Многие сходятся: недостаточно среды, которая лишь «учит»; нужна содержащая среда, поддерживающая потенциал. Ориентиры: Дональд Уинникотт, Джон Болби, Хайнц Кохут, Маргарет Малер и Карл Роджерс.'
-    ],
-    profileRoles: ['КЛИНИЧЕСКАЯ ПСИХОЛОГИЯ', 'КОМПЬЮТЕРНЫЕ НАУКИ', 'ПОЛИТИЧЕСКАЯ ФИЛОСОФИЯ', 'КОММУНИКАЦИЯ И МЕДИА', 'ОБРАЗОВАНИЕ', 'ПРАВО И ПУБЛИЧНАЯ ПОЛИТИКА'],
-    profileAreas: [
-      'Современная субъективность · Клиника технологий · Психоанализ и цифровая культура',
-      'Проектирование алгоритмов · Этика ИИ · Рекомендательные архитектуры · Системы захвата',
-      'Теория субъекта · Цифровая биополитика · Критика технического разума · Эпистемология',
-      'Информационные экосистемы · Дезинформация · Исследования платформ · Цифровая культура',
-      'Критическая педагогика · Медиаграмотность · Подготовка преподавателей · Новые детства',
-      'Технологическое регулирование · Цифровые права · Управление данными · Законодательство об ИИ'
-    ],
-    fileTypes: ['PDF · Полный документ', 'PDF · Краткая версия', 'PDF · Библиография', 'PDF · Критическое руководство'],
-    fileNames: ['КРИТИЧЕСКАЯ ДИАГНОСТИКА АЛГОРИТМИЧЕСКОГО ЗАХВАТА', 'ИСПОЛНИТЕЛЬНОЕ РЕЗЮМЕ', 'КЛЮЧЕВЫЕ АВТОРЫ И АННОТИРОВАННАЯ БИБЛИОГРАФИЯ', 'КРИТИКА РУКОВОДСТВА FARO DIGITAL'],
-    fileDescs: [
-      'Полный документ. Пять измерений проблемы, горизонт когнитивного суверенитета и метод исследования.',
-      'Сжатая версия для распространения. Ключевые идеи в доступном формате.',
-      'Sadin, Benasayag, Quattrociocchi, Gentili и другие. Каждая запись с критической заметкой о вкладе.',
-      'Критический анализ ограничений "легкого цифрового гражданства". Почему одной адаптации недостаточно.'
-    ],
-    glossaryTags: ['Когнитивный захват', 'Эпистемия', 'Коллективное ложное Я', 'Захват внимания', 'Когнитивная делегация', 'Эхо-платформы', 'Надломленное Я', 'Способность действовать'],
-    diagNames: ['ПРЕДЫСТОРИЯ НАДЛОМЛЕННОГО Я', 'ЭКОСИСТЕМА ЗАХВАТА', 'МЕХАНИЗМ ИМПЛАНТАЦИИ', 'ТЕКСТУРА ДИСКУРСА', 'ЧТО ТЕРЯЕТСЯ'],
-    diagAuthors: ['Gentili / латиноамериканская критическая масса', 'Éric Sadin', 'Miguel Benasayag', 'Walter Quattrociocchi', 'Синтез'],
-    diagTexts: [
-      'Субъективная хрупкость началась не с соцсетей: почва была готова — низкая толерантность к фрустрации, временные идентичности, «обеднённое Я». Алгоритмы не изобрели уязвимость, а эксплуатировали её.',
-      'Платформы не нейтральны. Они спроектированы, чтобы захватывать внимание.',
-      'Цифровое форматирование создает "коллективное ложное Я".',
-      'Понятие "эпистемия" описывает структуру общего знания, формируемую алгоритмами.',
-      'Тело, к которому не прикасаются, время, в котором не живут, и способность действовать, переданная интерфейсу.'
-    ]
-  },
-  zh: {
-    logoSubtitle: '认知主权',
-    navAria: '主要版块',
-    homeAria: '返回首页',
-    dimNames: ['个体层面', '集体层面', '制度层面', '认识层面', '技术层面'],
-    dimDescs: [
-      '个体识别并抵抗注意力捕获机制的能力。思考自主性、对不确定性的承受力与行动能力的恢复。',
-      '构建多元知识共同体。争夺意义框架。将知识视为公共品，而非算法产品。',
-      '公共政策、批判教育与稳健的信息生态。国家应保障自由思考的条件。',
-      '知识来源多样性。抵抗信息单一化。批判将“数字公民”简化为被动适应。',
-      '监管、算法透明与不被画像的权利。技术架构是政治选择，而非必然。'
-    ],
-    horizonteQuote: '「数字公民教育教我们适应平台；认知主权则要求我们质问并改造它们。」',
-    horizonteAttr: '— 来自诊断',
-    chatLabels: ['研究者', 'AI — 结构与文献连结', '研究者', 'AI — 结构整理'],
-    chatBubbles: [
-      '我觉得奥苏贝尔意义上的“先行组织者/附属学习”不足以在概念层面说清捕获系统——或按贝纳赛的“认知委托”。还有哪些作者谈过支持性环境或主观层面的抱持?',
-      '奥苏贝尔关注的是概念如何归入既有认知层级，而雅各布森或温尼科特则从另一角度讨论：求知行为如何改写自我与客体表征。是否需要一份书单，帮我们更深地谈论“心理的捕获”?',
-      '需要。我们应把视线转向社会层面：不能只从教育心理学看问题；即使根源在个体，入口往往是集体的。',
-      '明白。这正是发展与教育心理学中长期争论的焦点：环境与自主如何衔接。不少人指出，仅有“说教式”的环境不够，需要一个能涵容潜能的发展性环境——温尼科特、鲍尔比、科胡特、马勒与罗杰斯等，都是关键的参照。'
-    ],
-    profileRoles: ['临床心理学', '计算机科学', '政治哲学', '传播与媒体', '教育', '法律与公共政策'],
-    profileAreas: [
-      '当代主体性 · 技术临床 · 精神分析与数字文化',
-      '算法设计 · AI伦理 · 推荐系统架构 · 捕获系统',
-      '主体理论 · 数字生命政治 · 技术理性批判 · 认识论',
-      '信息生态 · 错误信息传播 · 平台研究 · 数字文化',
-      '批判教育学 · 媒体素养 · 教师培养 · 新童年研究',
-      '技术监管 · 数字权利 · 数据治理 · AI立法'
-    ],
-    fileTypes: ['PDF · 完整文档', 'PDF · 简版', 'PDF · 参考书目', 'PDF · 批判指南'],
-    fileNames: ['算法捕获的批判性诊断', '执行摘要', '关键作者与注释书目', '对 FARO DIGITAL 手册的批判'],
-    fileDescs: [
-      '完整文档。问题的五个维度、认知主权的政治地平线与研究方法。',
-      '用于传播的压缩版本。以更易读格式呈现核心观点。',
-      'Sadin、Benasayag、Quattrociocchi、Gentili 等作者的批判性注释。',
-      '对“轻量数字公民”框架局限性的批判分析：为何仅靠适应并不足够。'
-    ],
-    glossaryTags: ['认知劫持', 'Epistemia', '集体假自我', '注意力捕获', '认知委托', '回声平台', '破碎自我', '行动能力'],
-    diagNames: ['破碎自我的前史', '捕获生态系统', '植入机制', '话语的质地', '失去的东西'],
-    diagAuthors: ['Gentili / 拉美批判主体方阵', 'Éric Sadin', 'Miguel Benasayag', 'Walter Quattrociocchi', '综合'],
-    diagTexts: [
-      '主体脆弱性并非始于社交网络。土壤早已成形：挫败耐受低、身份临时、「贫化的自我」。算法并未发明脆弱，而是以结构化的方式利用它。',
-      '平台并不中立。它们被设计为捕获注意力。',
-      '数字塑形制造“集体假自我”。',
-      '“Epistemia”描述了由算法塑造的共享知识结构。',
-      '未被触碰的身体、未被栖居的时间，以及被转移到界面的行动能力。'
-    ]
-  }
-};
-
-const GLOS_DATA_BY_LANG = {
-  eu: {
-    rapto_cognitivo: {
-      term: 'Cognitive hijack',
-      origin: 'Éric Sadin — Artificial intelligence or the challenge of the century',
-      def: 'The active and systematic subtraction of attention and deliberative capacity by digital platforms. It is not a metaphor: it is the intentional design of systems that interrupt, fragment, and redirect thought toward commercial ends.'
+  // ========== TRADUCCIONES COMPLETAS (6 idiomas) ==========
+  const TRANSLATIONS = {
+    es: {
+      nav: ['Inicio', 'Diagnóstico', 'Horizonte', 'Método', 'Convocatoria', 'Archivo', 'Medios'],
+      heroTag: 'Diagnóstico Cultural Situado',
+      heroTitle: ['SOBERANÍA', 'COGNITIVA', '/ TERRITORIO', 'EN DISPUTA'],
+      heroSub: 'Un diagnóstico crítico sobre la captura algorítmica de la subjetividad contemporánea',
+      heroPhrase: '<em>"Antes de los algoritmos, ya había un territorio fragilizado."</em><br> y como todo territorio, merece una soberanía que lo proteja',
+      heroBtn: 'Leer el diagnóstico →',
+      anchors: ['Diagnóstico', 'Horizonte', 'Método', 'Convocatoria', 'Archivo', 'Medios'],
+      kinetic: 'TU ATENCIÓN ES EL PRODUCTO',
+      ticker: ['Soberanía Cognitiva', 'Tu atención es el producto', 'Territorio en disputa', 'Falso Self Patológico', 'Plataformas de eco', 'Rapto cognitivo', 'Epistemia'],
+      diagEyebrow: '01 / Diagnóstico',
+      diagTitle: 'EL PROBLEMA',
+      diagDesc: 'Cinco capas de un mismo territorio fragilizado. Pasá el cursor para explorar cada dimensión.',
+      diagCards: [
+        { num: '01.1', name: 'LA PREHISTORIA DEL YO RESQUEBRAJADO', author: 'Gentili / Masa crítica Latinoamericana', text: 'La fragilidad subjetiva no nació con las redes sociales. El terreno ya estaba preparado: sujetos con escasa tolerancia a la frustración, identidades provisorias, yo empobrecido. Los algoritmos no inventaron la vulnerabilidad, la explotaron.' },
+        { num: '01.2', name: 'EL ECOSISTEMA DE LA CAPTURA', author: 'Éric Sadin', text: 'Las plataformas no son neutrales. Diseñadas para capturar la atención, explotan los mecanismos cognitivos más primitivos. El "rapto cognitivo" no es metáfora: es la sustracción activa de la capacidad de pensar con autonomía.' },
+        { num: '01.3', name: 'EL MECANISMO DE IMPLANTACIÓN', author: 'Miguel Benasayag', text: 'El formateo digital construye un "falso self colectivo": identidades delegadas a las plataformas, subjetividades que se crean para ser vistas, no para existir. La delegación cognitiva no es comodidad, es erosión.' },
+        { num: '01.4', name: 'LA TEXTURA DEL DISCURSO', author: 'Walter Quattrociocchi', text: 'El concepto de "epistemia" nombra la estructura del conocimiento compartido que los algoritmos moldean. Las cámaras de eco no solo filtran contenido: reconfiguran los marcos desde los cuales evaluamos qué es verdad.' },
+        { num: '01.5', name: 'LO QUE SE PIERDE', author: 'Síntesis', text: 'El cuerpo que no se toca, el tiempo que no se habita, la potencia de actuar que se transfiere a una interfaz. Lo que está en juego no es la pantalla, sino la capacidad de seguir siendo el sujeto de la propia experiencia.' }
+      ],
+      glossaryTitle: 'Glosario crítico — clic para definir',
+      glossaryTags: ['Rapto cognitivo', 'Epistemia', 'Falso self colectivo', 'Captura atencional', 'Delegación cognitiva', 'Plataformas de eco', 'Yo resquebrajado', 'Potencia de actuar'],
+      horizonEyebrow: '02 / Horizonte',
+      horizonTitle: 'LA PROPUESTA',
+      horizonDesc: 'Por una ley de Soberanía Cognitiva, 5 dimensiones para preservar la seguridad cognitiva frente al rapto cognitivo de los sistemas de espejo estadístico.',
+      dimNames: ['INDIVIDUAL', 'COLECTIVA', 'INSTITUCIONAL', 'EPISTÉMICA', 'TÉCNICA'],
+      dimDescs: [
+        'Capacidad de cada sujeto de reconocer y resistir los mecanismos de captura. Autonomía del pensamiento, tolerancia a la incertidumbre, potencia de actuar recuperada.',
+        'Construcción de comunidades epistémicas diversas. Disputar los marcos de sentido. El conocimiento como bien común, no como producto algorítmico.',
+        'Políticas públicas, educación crítica, ecosistemas informativos robustos. El Estado como garante de condiciones para el pensamiento libre.',
+        'Diversidad de fuentes de conocimiento. Resistencia a la monocultura informativa. Crítica a la "ciudadanía digital" como adaptación acrítica.',
+        'Regulación, transparencia algorítmica, derecho a no ser perfilado. La arquitectura tecnológica como decisión política, no como inevitabilidad.'
+      ],
+      horizonQuote: '"La ciudadanía digital nos enseña a adaptarnos a las plataformas. La soberanía cognitiva nos pide cuestionarlas para transformarlas."',
+      horizonAttr: '— Del diagnóstico',
+      methodEyebrow: '03 / Método',
+      methodTitle: 'EL TERCER ESPACIO HÍBRIDO',
+      methodDesc: 'Cómo se construyó este diagnóstico. La inteligencia amplificada, un diálogo entre subjetividad encarnada y un sistema de espejo estadístico.',
+      chatTitle: 'Muestra del diálogo coemergente',
+      chatMsgs: [
+        { role: 'human', label: 'Investigadora', text: 'Creo que la "Satelización" de Ausubel no logra la profundidad conceptual para explicar el sistema de la captura, o de delegación cognitiva según Benasayag, cuáles otros autores hablan de un ambiente facilitador, de un sostén subjetivo?' },
+        { role: 'ai', label: 'IA — organización y conexión bibliográfica', text: 'Mientras Ausubel busca cómo un concepto se "subsume" en una jerarquía cognitiva existente, autores como Jacobson o Winnicott exploran cómo el acto de conocer modifica la representación que el Yo tiene de sí mismo y del objeto, ¿querés una lista de autores con herramientas para pensar la captura psíquica de manera profunda?' },
+        { role: 'human', label: 'Investigadora', text: 'Sí, es necesario redirigir la mirada hacia lo social, no puede ser visto solamente desde la psicología educativa, aunque su raíz sea individual, la puerta de entrada es colectiva.' },
+        { role: 'ai', label: 'IA — organización', text: 'Entendido. Tu consulta toca un punto central y muy debatido en la psicología del desarrollo y la educación: ¿cómo se articulan la influencia del entorno y la autonomía del sujeto? Muchos autores han coincidido en que, para un desarrollo saludable, no basta con un entorno que simplemente "eduque" o "modele", sino que se necesita un ambiente facilitador que nutra el potencial innato del individuo. Figuras como Donald Winnicott, John Bowlby, Heinz Kohut, Margaret Mahler y Carl Rogers ofrecen perspectivas clave al respecto' }
+      ],
+      methodNote: '<strong>Nota metodológica:</strong> Este diagnóstico fue construido en un diálogo coemergente con inteligencia artificial. La IA no piensa: organiza, propone conexiones, sugiere lecturas. <strong>El sentido, las preguntas, la dirección política, la interpretación y la urgencia: son humanos.</strong> El Tercer Espacio es ese territorio donde ninguna de las dos inteligencias puede llegar por sí sola.',
+      convEyebrow: '04 / Convocatoria',
+      convTitle: 'LA COMUNIDAD',
+      convDesc: 'Este territorio necesita más cartógrafos. Buscamos voces desde distintas disciplinas.',
+      profileRoles: ['PSICOLOGÍA CLÍNICA', 'CIENCIAS DE LA COMPUTACIÓN', 'FILOSOFÍA POLÍTICA', 'COMUNICACIÓN Y MEDIOS', 'EDUCACIÓN', 'DERECHO Y POLÍTICAS PÚBLICAS'],
+      profileAreas: [
+        'Subjetividad contemporánea · Clínica de las tecnologías · Psicoanálisis y cultura digital',
+        'Diseño de algoritmos · Ética de la IA · Arquitecturas de recomendación · Sistemas de captura',
+        'Teoría del sujeto · Biopolítica digital · Crítica de la razón técnica · Epistemología',
+        'Ecosistemas informativos · Desinformación · Estudios de plataformas · Cultura digital',
+        'Pedagogía crítica · Alfabetización mediática · Formación docente · Nuevas infancias',
+        'Regulación tecnológica · Derechos digitales · Gobernanza de datos · Legislación IA'
+      ],
+      formPlaceholders: ['Nombre y apellido', 'Correo electrónico', 'Disciplina / institución', '¿Cómo querés participar?', 'Mensaje (opcional): ¿Qué traés al territorio?'],
+      formOptions: ['Sumar al equipo de investigación', 'Debatir el diagnóstico', 'Difundir el proyecto', 'Contactar a lxs autorxs'],
+      sendBtn: 'Sumarme al territorio →',
+      convLabs: ['📧 contacto@soberaniacognitiva.org', '🌐 Encuentros abiertos cada dos meses'],
+      archEyebrow: '05 / Archivo',
+      archTitle: 'RECURSOS',
+      archDesc: 'Biblioteca descargable. Documentos, bibliografía comentada y guías críticas.',
+      files: [
+        { type: 'PDF · Documento completo', name: 'DIAGNÓSTICO CRÍTICO SOBRE CAPTURA ALGORÍTMICA', desc: 'El documento integral. Cinco dimensiones del problema, horizonte de soberanía cognitiva y método de investigación.', status: 'PDF próximamente' },
+        { type: 'PDF · Versión breve', name: 'SÍNTESIS EJECUTIVA', desc: 'Versión condensada para difusión. Las ideas clave en formato accesible para distintos públicos.', status: 'PDF próximamente' },
+        { type: 'PDF · Bibliografía', name: 'AUTORES CLAVE Y BIBLIOGRAFÍA COMENTADA', desc: 'Sadin, Benasayag, Quattrociocchi, Gentili y otros. Cada entrada con nota crítica sobre su contribución al diagnóstico.', status: 'PDF próximamente' },
+        { type: 'PDF · Guía crítica', name: 'CRÍTICA AL MANUAL FARO DIGITAL', desc: 'Análisis crítico de los límites del enfoque de "ciudadanía digital" light. Por qué la adaptación no es suficiente.', status: 'PDF próximamente' }
+      ],
+      mediosEyebrow: '06 / Medios y difusión',
+      mediosTitle: 'PRENSA Y DIFUSIÓN',
+      mediosDesc: 'Recursos para periodistas, gestores culturales y comunicadores interesados en la Soberanía Cognitiva.',
+      mediaCards: [
+        { icon: '📰', name: 'DOSIER DE PRENSA', desc: 'Resumen ejecutivo, citas clave y datos de contacto para cobertura mediática. Disponible para descarga en PDF.' },
+        { icon: '🎙️', name: 'ENTREVISTAS', desc: 'Los autores del diagnóstico están disponibles para entrevistas, mesas redondas y colaboraciones con medios.' },
+        { icon: '📺', name: 'MATERIAL AUDIOVISUAL', desc: 'Piezas gráficas, animaciones y fragmentos del video principal para usar en redes o programas.' },
+        { icon: '📢', name: 'CAMPAÑAS DE SENSIBILIZACIÓN', desc: 'Propuestas para activar el debate en comunidades educativas y espacios públicos.' }
+      ],
+      mediaQuote: '"El debate sobre la soberanía cognitiva no puede quedar encerrado en las aulas. Necesitamos que los medios sean aliados para interpelar a la ciudadanía."',
+      mediaAttr: '— Equipo de investigación',
+      mediaContacts: ['📧 prensa@soberaniacognitiva.org', '📞 +54 11 1234-5678 (prensa)'],
+      footerCredits: 'Equipo de diagnóstico: <em>[Prof. Emmanuel Retamal - Prof. Anahí González Sendra - Prof. Ana Luisa Gauchat - Priscila Arandia]</em><br>Construido en diálogo con inteligencia sintética<br>Método: coemergencia · <a href="https://arxiv.org/abs/2601.12837" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2601.12837</a>',
+      footerLicense: 'Creative Commons<br>No comercial · Compartir igual<br>CC BY-NC-SA 4.0'
     },
-    epistemia: {
-      term: 'Epistemia',
-      origin: 'Walter Quattrociocchi — research on digital disinformation',
-      def: 'The deep structure of shared knowledge that organizes how a community defines evidence, legitimate sources, and valid interpretive frames. Algorithms do not only filter content: they reshape entire epistemias.'
+    en: {
+      nav: ['Home', 'Diagnosis', 'Horizon', 'Method', 'Call', 'Archive', 'Media'],
+      heroTag: 'Situated Cultural Diagnosis',
+      heroTitle: ['COGNITIVE', 'SOVEREIGNTY', '/ TERRITORY', 'IN DISPUTE'],
+      heroSub: 'A critical diagnosis of the algorithmic capture of contemporary subjectivity',
+      heroPhrase: '<em>"Before algorithms, there was already a fragile territory."</em><br> and like any territory, it deserves a sovereignty that protects it',
+      heroBtn: 'Read the diagnosis →',
+      anchors: ['Diagnosis', 'Horizon', 'Method', 'Call', 'Archive', 'Media'],
+      kinetic: 'YOUR ATTENTION IS THE PRODUCT',
+      ticker: ['Cognitive Sovereignty', 'Your attention is the product', 'Territory in dispute', 'Pathological False Self', 'Echo platforms', 'Cognitive hijack', 'Epistemia'],
+      diagEyebrow: '01 / Diagnosis',
+      diagTitle: 'THE PROBLEM',
+      diagDesc: 'Five layers of a fragile territory. Hover to explore each dimension.',
+      diagCards: [
+        { num: '01.1', name: 'THE PREHISTORY OF THE FRACTURED SELF', author: 'Gentili / Latin American critical mass', text: 'Subjective fragility did not begin with social media. The ground was already prepared: subjects with low frustration tolerance, provisional identities, an impoverished self. Algorithms did not invent vulnerability, they exploited it.' },
+        { num: '01.2', name: 'THE CAPTURE ECOSYSTEM', author: 'Éric Sadin', text: 'Platforms are not neutral. Designed to capture attention, they exploit our most primitive cognitive mechanisms. "Cognitive hijack" is not a metaphor: it is the active subtraction of the ability to think autonomously.' },
+        { num: '01.3', name: 'THE IMPLANTATION MECHANISM', author: 'Miguel Benasayag', text: 'Digital formatting builds a "collective false self": identities delegated to platforms, subjectivities created to be seen rather than to exist. Cognitive delegation is not convenience, it is erosion.' },
+        { num: '01.4', name: 'THE TEXTURE OF DISCOURSE', author: 'Walter Quattrociocchi', text: '"Epistemia" names the structure of shared knowledge shaped by algorithms. Echo chambers do not only filter content; they reconfigure the frames through which we assess what is true.' },
+        { num: '01.5', name: 'WHAT IS LOST', author: 'Synthesis', text: 'The body that is not touched, the time that is not inhabited, the power to act transferred to an interface. What is at stake is not the screen, but the capacity to remain the subject of one\'s own experience.' }
+      ],
+      glossaryTitle: 'Critical glossary — click to define',
+      glossaryTags: ['Cognitive hijack', 'Epistemia', 'Collective false self', 'Attentional capture', 'Cognitive delegation', 'Echo platforms', 'Fractured self', 'Power to act'],
+      horizonEyebrow: '02 / Horizon',
+      horizonTitle: 'THE PROPOSAL',
+      horizonDesc: 'Toward a Cognitive Sovereignty law: five dimensions to protect cognitive security against the cognitive hijack of statistical mirror systems.',
+      dimNames: ['INDIVIDUAL', 'COLLECTIVE', 'INSTITUTIONAL', 'EPISTEMIC', 'TECHNICAL'],
+      dimDescs: [
+        'Each subject\'s capacity to recognize and resist capture mechanisms. Autonomy of thought, tolerance for uncertainty, and recovered power to act.',
+        'Building diverse epistemic communities. Disputing frames of meaning. Knowledge as a common good, not an algorithmic product.',
+        'Public policies, critical education, robust information ecosystems. The State as guarantor of conditions for free thought.',
+        'Diversity of knowledge sources. Resistance to informational monoculture. A critique of "light digital citizenship" as uncritical adaptation.',
+        'Regulation, algorithmic transparency, and the right not to be profiled. Technological architecture as a political decision, not an inevitability.'
+      ],
+      horizonQuote: '"Digital citizenship teaches us to adapt to platforms. Cognitive sovereignty asks us to question them in order to transform them."',
+      horizonAttr: '— From the diagnosis',
+      methodEyebrow: '03 / Method',
+      methodTitle: 'THE HYBRID THIRD SPACE',
+      methodDesc: 'How this diagnosis was built. Amplified intelligence: a dialogue between embodied subjectivity and a statistical mirror system.',
+      chatTitle: 'Sample of the co-emergent dialogue',
+      chatMsgs: [
+        { role: 'human', label: 'Researcher', text: 'I don\'t think Ausubel\'s "satellite learning" reaches the conceptual depth needed to explain the system of capture — or cognitive delegation in Benasayag\'s sense. Which other authors speak of a facilitating environment, a subjective holding?' },
+        { role: 'ai', label: 'AI — organization & bibliographic linking', text: 'Whereas Ausubel focuses on how a concept is subsumed into an existing cognitive hierarchy, authors such as Edith Jacobson or D. W. Winnicott explore how the act of knowing reshapes the ego\'s representation of itself and of the object. Would you like a list of authors with tools to think psychic capture in depth?' },
+        { role: 'human', label: 'Researcher', text: 'Yes — we need to turn toward the social dimension. It cannot be seen only from educational psychology: even if the roots are individual, the entryway is collective.' },
+        { role: 'ai', label: 'AI — structuring', text: 'Understood. Your question touches a central, debated issue in developmental psychology and education: how environmental influence and the subject\'s autonomy connect. Many authors agree healthy development needs more than an environment that merely teaches or models — it needs a facilitating environment that nurtures innate potential. Figures such as Donald Winnicott, John Bowlby, Heinz Kohut, Margaret Mahler, and Carl Rogers offer key perspectives.' }
+      ],
+      methodNote: '<strong>Method note:</strong> This diagnosis was built through a co-emergent dialogue with artificial intelligence. AI does not think: it organizes, proposes connections, and suggests readings. <strong>Meaning, questions, political direction, interpretation, and urgency are human.</strong> The Third Space is the territory where neither intelligence can arrive alone.',
+      convEyebrow: '04 / Call',
+      convTitle: 'THE COMMUNITY',
+      convDesc: 'This territory needs more cartographers. We seek voices from different disciplines.',
+      profileRoles: ['CLINICAL PSYCHOLOGY', 'COMPUTER SCIENCE', 'POLITICAL PHILOSOPHY', 'COMMUNICATION AND MEDIA', 'EDUCATION', 'LAW AND PUBLIC POLICY'],
+      profileAreas: [
+        'Contemporary subjectivity · Technology clinic · Psychoanalysis and digital culture',
+        'Algorithm design · AI ethics · Recommendation architectures · Capture systems',
+        'Theory of the subject · Digital biopolitics · Critique of technical reason · Epistemology',
+        'Information ecosystems · Disinformation · Platform studies · Digital culture',
+        'Critical pedagogy · Media literacy · Teacher training · New childhoods',
+        'Technology regulation · Digital rights · Data governance · AI legislation'
+      ],
+      formPlaceholders: ['Full name', 'Email', 'Discipline / institution', 'How would you like to participate?', 'Optional message: what do you bring to this territory?'],
+      formOptions: ['Join the research team', 'Debate the diagnosis', 'Spread the project', 'Contact the authors'],
+      sendBtn: 'Join this territory →',
+      convLabs: ['📧 contacto@soberaniacognitiva.org', '🌐 Open meetings every two months'],
+      archEyebrow: '05 / Archive',
+      archTitle: 'RESOURCES',
+      archDesc: 'Downloadable library. Documents, annotated bibliography, and critical guides.',
+      files: [
+        { type: 'PDF · Full document', name: 'CRITICAL DIAGNOSIS OF ALGORITHMIC CAPTURE', desc: 'The full document. Five dimensions of the problem, cognitive sovereignty horizon, and research method.', status: 'PDF coming soon' },
+        { type: 'PDF · Short version', name: 'EXECUTIVE SUMMARY', desc: 'Condensed version for dissemination. Core ideas in an accessible format.', status: 'PDF coming soon' },
+        { type: 'PDF · Bibliography', name: 'KEY AUTHORS AND ANNOTATED BIBLIOGRAPHY', desc: 'Sadin, Benasayag, Quattrociocchi, Gentili, and others. Each entry with a critical note on its contribution to the diagnosis.', status: 'PDF coming soon' },
+        { type: 'PDF · Critical guide', name: 'CRITIQUE OF THE FARO DIGITAL MANUAL', desc: 'Critical analysis of the limits of "light digital citizenship." Why adaptation is not enough.', status: 'PDF coming soon' }
+      ],
+      mediosEyebrow: '06 / Media & Dissemination',
+      mediosTitle: 'PRESS & OUTREACH',
+      mediosDesc: 'Resources for journalists, cultural managers, and communicators interested in Cognitive Sovereignty.',
+      mediaCards: [
+        { icon: '📰', name: 'PRESS KIT', desc: 'Executive summary, key quotes, and contact information for media coverage. Available for PDF download.' },
+        { icon: '🎙️', name: 'INTERVIEWS', desc: 'The authors of the diagnosis are available for interviews, panels, and collaborations.' },
+        { icon: '📺', name: 'AUDIOVISUAL MATERIAL', desc: 'Graphics, animations, and clips from the main video for use on social media or programs.' },
+        { icon: '📢', name: 'AWARENESS CAMPAIGNS', desc: 'Proposals to spark debate in educational communities and public spaces.' }
+      ],
+      mediaQuote: '"The debate on cognitive sovereignty cannot be confined to the classroom. We need the media as allies to engage citizens."',
+      mediaAttr: '— Research team',
+      mediaContacts: ['📧 prensa@soberaniacognitiva.org', '📞 +54 11 1234-5678 (press)'],
+      footerCredits: 'Diagnosis team: <em>[Prof. Emmanuel Retamal - Prof. Anahí González Sendra - Prof. Ana Luisa Gauchat - Priscila Arandia]</em><br>Built in dialogue with synthetic intelligence<br>Method: co-emergence · <a href="https://arxiv.org/abs/2601.12837" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2601.12837</a>',
+      footerLicense: 'Creative Commons<br>Non-commercial · Share alike<br>CC BY-NC-SA 4.0'
     },
-    falso_self: {
-      term: 'Collective false self',
-      origin: 'Miguel Benasayag — adaptation of Winnicott to digital context',
-      def: 'A social identity built to be performed on platforms. It is not the subject\'s identity but the one the digital ecosystem makes viable and reinforces. At collective scale, it produces delegated subjectivity functional to the attention economy.'
+    zh: {
+      nav: ['首页', '诊断', '愿景', '方法', '征集', '档案', '媒体'],
+      heroTag: '情境化文化诊断',
+      heroTitle: ['认知', '主权', '/ 被争夺的', '领土'],
+      heroSub: '关于当代主体性被算法捕获的批判性诊断',
+      heroPhrase: '<em>“在算法出现之前，这片领土已然脆弱。”</em><br>像任何一片领土一样，它也需要主权来守护。',
+      heroBtn: '阅读诊断 →',
+      anchors: ['诊断', '愿景', '方法', '征集', '档案', '媒体'],
+      kinetic: '你的注意力就是产品',
+      ticker: ['认知主权', '你的注意力就是产品', '被争夺的领土', '病理性假自我', '回声平台', '认知劫持', '知识结构'],
+      diagEyebrow: '01 / 诊断',
+      diagTitle: '问题',
+      diagDesc: '同一脆弱领土的五个层面。将鼠标悬停以探索每个维度。',
+      diagCards: [
+        { num: '01.1', name: '破碎自我的前史', author: 'Gentili / 拉美批判主体方阵', text: '主体脆弱性并非始于社交网络。土壤早已成形：挫败耐受低、身份临时、「贫化的自我」。算法并未发明脆弱，而是以结构化的方式利用它。' },
+        { num: '01.2', name: '捕获生态系统', author: 'Éric Sadin', text: '平台并不中立。它们被设计为捕获注意力，利用最原始的认知机制。「认知劫持」不是隐喻：它是对独立思考能力的主动剥夺。' },
+        { num: '01.3', name: '植入机制', author: 'Miguel Benasayag', text: '数字塑形制造“集体假自我”：委托给平台的身份、为被观看而非存在而创造的主体性。认知委托不是便利，而是侵蚀。' },
+        { num: '01.4', name: '话语的质地', author: 'Walter Quattrociocchi', text: '“Epistemia”描述了由算法塑造的共享知识结构。回声室不仅过滤内容，更重新配置我们评估真实的框架。' },
+        { num: '01.5', name: '失去的东西', author: '综合', text: '未被触碰的身体、未被栖居的时间，以及被转移到界面的行动能力。关键不在屏幕，而在于继续成为自身经验主体的能力。' }
+      ],
+      glossaryTitle: '批判术语表 — 点击查看定义',
+      glossaryTags: ['认知劫持', 'Epistemia', '集体假自我', '注意力捕获', '认知委托', '回声平台', '破碎自我', '行动能力'],
+      horizonEyebrow: '02 / 愿景',
+      horizonTitle: '提案',
+      horizonDesc: '推动《认知主权》立法：五个维度，在统计镜像系统的认知劫持面前维护认知安全。',
+      dimNames: ['个体层面', '集体层面', '制度层面', '认识层面', '技术层面'],
+      dimDescs: [
+        '个体识别并抵抗注意力捕获机制的能力。思考自主性、对不确定性的承受力与行动能力的恢复。',
+        '构建多元知识共同体。争夺意义框架。将知识视为公共品，而非算法产品。',
+        '公共政策、批判教育与稳健的信息生态。国家应保障自由思考的条件。',
+        '知识来源多样性。抵抗信息单一化。批判将“数字公民”简化为被动适应。',
+        '监管、算法透明与不被画像的权利。技术架构是政治选择，而非必然。'
+      ],
+      horizonQuote: '「数字公民教育教我们适应平台；认知主权则要求我们质问并改造它们。」',
+      horizonAttr: '— 来自诊断',
+      methodEyebrow: '03 / 方法',
+      methodTitle: '混合第三空间',
+      methodDesc: '本诊断如何形成：增强智能——具身主体性与统计镜像系统之间的对话。',
+      chatTitle: '共生对话示例',
+      chatMsgs: [
+        { role: 'human', label: '研究者', text: '我觉得奥苏贝尔意义上的“先行组织者/附属学习”不足以在概念层面说清捕获系统——或按贝纳赛的“认知委托”。还有哪些作者谈过支持性环境或主观层面的抱持?' },
+        { role: 'ai', label: 'AI — 结构与文献连结', text: '奥苏贝尔关注的是概念如何归入既有认知层级，而雅各布森或温尼科特则从另一角度讨论：求知行为如何改写自我与客体表征。是否需要一份书单，帮我们更深地谈论“心理的捕获”?' },
+        { role: 'human', label: '研究者', text: '需要。我们应把视线转向社会层面：不能只从教育心理学看问题；即使根源在个体，入口往往是集体的。' },
+        { role: 'ai', label: 'AI — 结构整理', text: '明白。这正是发展与教育心理学中长期争论的焦点：环境与自主如何衔接。不少人指出，仅有“说教式”的环境不够，需要一个能涵容潜能的发展性环境——温尼科特、鲍尔比、科胡特、马勒与罗杰斯等，都是关键的参照。' }
+      ],
+      methodNote: '<strong>方法说明：</strong>本诊断由人与人工智能的共生对话构建。人工智能不会思考：它组织信息、提出连接、推荐阅读。<strong>意义、问题、政治方向、解释与紧迫感都属于人类。</strong>“第三空间”是两种智能都无法独自抵达的地带。',
+      convEyebrow: '04 / 征集',
+      convTitle: '社群',
+      convDesc: '这片领土需要更多制图者。我们寻找来自不同学科的声音。',
+      profileRoles: ['临床心理学', '计算机科学', '政治哲学', '传播与媒体', '教育', '法律与公共政策'],
+      profileAreas: [
+        '当代主体性 · 技术临床 · 精神分析与数字文化',
+        '算法设计 · AI伦理 · 推荐系统架构 · 捕获系统',
+        '主体理论 · 数字生命政治 · 技术理性批判 · 认识论',
+        '信息生态 · 错误信息传播 · 平台研究 · 数字文化',
+        '批判教育学 · 媒体素养 · 教师培养 · 新童年研究',
+        '技术监管 · 数字权利 · 数据治理 · AI立法'
+      ],
+      formPlaceholders: ['姓名', '电子邮箱', '学科 / 机构', '你希望如何参与？', '可选留言：你能为这片领土带来什么？'],
+      formOptions: ['加入研究团队', '讨论本诊断', '传播项目', '联系作者'],
+      sendBtn: '加入这片领土 →',
+      convLabs: ['📧 contacto@soberaniacognitiva.org', '🌐 每两月开放会议'],
+      archEyebrow: '05 / 档案',
+      archTitle: '资源',
+      archDesc: '可下载资料库：文档、注释书目与批判指南。',
+      files: [
+        { type: 'PDF · 完整文档', name: '算法捕获的批判性诊断', desc: '完整文档。问题的五个维度、认知主权的政治地平线与研究方法。', status: 'PDF 即将发布' },
+        { type: 'PDF · 简版', name: '执行摘要', desc: '用于传播的压缩版本。以更易读格式呈现核心观点。', status: 'PDF 即将发布' },
+        { type: 'PDF · 参考书目', name: '关键作者与注释书目', desc: 'Sadin、Benasayag、Quattrociocchi、Gentili 等作者的批判性注释。', status: 'PDF 即将发布' },
+        { type: 'PDF · 批判指南', name: '对 FARO DIGITAL 手册的批判', desc: '对“轻量数字公民”框架局限性的批判分析：为何仅靠适应并不足够。', status: 'PDF 即将发布' }
+      ],
+      mediosEyebrow: '06 / 媒体与传播',
+      mediosTitle: '新闻与传播',
+      mediosDesc: '面向记者、文化管理者和对认知主权感兴趣的传播者的资源。',
+      mediaCards: [
+        { icon: '📰', name: '新闻资料包', desc: '执行摘要、关键引语和媒体联系方式。可下载 PDF。' },
+        { icon: '🎙️', name: '访谈', desc: '诊断作者接受访谈、圆桌会议和媒体合作邀约。' },
+        { icon: '📺', name: '视听材料', desc: '图形、动画和主视频片段，可用于社交网络或节目。' },
+        { icon: '📢', name: '宣传运动', desc: '在教育社区和公共空间中激发辩论的建议。' }
+      ],
+      mediaQuote: '“关于认知主权的辩论不能局限于课堂。我们需要媒体作为盟友来向公民发问。”',
+      mediaAttr: '— 研究团队',
+      mediaContacts: ['📧 prensa@soberaniacognitiva.org', '📞 +54 11 1234-5678 (媒体)'],
+      footerCredits: '诊断团队：<em>[Prof. Emmanuel Retamal - Prof. Anahí González Sendra - Prof. Ana Luisa Gauchat - Priscila Arandia]</em><br>在与人工智能的对话中构建<br>方法：共生涌现 · <a href="https://arxiv.org/abs/2601.12837" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2601.12837</a>',
+      footerLicense: 'Creative Commons<br>非商业 · 相同方式共享<br>CC BY-NC-SA 4.0'
     },
-    captura_atencional: {
-      term: 'Attentional capture',
-      origin: 'Critical synthesis — Sadin, Benasayag, attention economy',
-      def: 'The process by which platform architectures design flows to monopolize user attention by exploiting evolved cognitive biases. Attention, as a scarce resource, is the product being commercialized.'
+    pt: {
+      nav: ['Início', 'Diagnóstico', 'Horizonte', 'Método', 'Convocação', 'Arquivo', 'Mídia'],
+      heroTag: 'Diagnóstico Cultural Situado',
+      heroTitle: ['SOBERANIA', 'COGNITIVA', '/ TERRITÓRIO', 'EM DISPUTA'],
+      heroSub: 'Um diagnóstico crítico sobre a captura algorítmica da subjetividade contemporânea',
+      heroPhrase: '<em>"Antes dos algoritmos, já havia um território fragilizado."</em><br> e como todo território, merece uma soberania que o proteja',
+      heroBtn: 'Ler o diagnóstico →',
+      anchors: ['Diagnóstico', 'Horizonte', 'Método', 'Convocação', 'Arquivo', 'Mídia'],
+      kinetic: 'SUA ATENÇÃO É O PRODUTO',
+      ticker: ['Soberania Cognitiva', 'Sua atenção é o produto', 'Território em disputa', 'Falso Self patológico', 'Plataformas de eco', 'Rapto cognitivo', 'Epistemia'],
+      diagEyebrow: '01 / Diagnóstico',
+      diagTitle: 'O PROBLEMA',
+      diagDesc: 'Cinco camadas de um mesmo território fragilizado. Passe o cursor para explorar cada dimensão.',
+      diagCards: [
+        { num: '01.1', name: 'A PRÉ-HISTÓRIA DO EU FRATURADO', author: 'Gentili / massa crítica latino-americana', text: 'A fragilidade subjetiva não nasceu com as redes sociais. O terreno já estava preparado: sujeitos com baixa tolerância à frustração, identidades provisórias e eu empobrecido. Os algoritmos não inventaram a vulnerabilidade — exploraram.' },
+        { num: '01.2', name: 'O ECOSSISTEMA DA CAPTURA', author: 'Éric Sadin', text: 'As plataformas não são neutras. Projetadas para capturar atenção, exploram os mecanismos cognitivos mais primitivos.' },
+        { num: '01.3', name: 'O MECANISMO DE IMPLANTAÇÃO', author: 'Miguel Benasayag', text: 'A formatação digital constrói um "falso self coletivo": identidades delegadas às plataformas e subjetividades criadas para serem vistas.' },
+        { num: '01.4', name: 'A TEXTURA DO DISCURSO', author: 'Walter Quattrociocchi', text: 'O conceito de "epistemia" nomeia a estrutura do conhecimento compartilhado moldada pelos algoritmos.' },
+        { num: '01.5', name: 'O QUE SE PERDE', author: 'Síntese', text: 'O corpo que não se toca, o tempo que não se habita e a potência de agir transferida para uma interface.' }
+      ],
+      glossaryTitle: 'Glossário crítico — clique para definir',
+      glossaryTags: ['Rapto cognitivo', 'Epistemia', 'Falso self coletivo', 'Captura atencional', 'Delegação cognitiva', 'Plataformas de eco', 'Eu fraturado', 'Potência de agir'],
+      horizonEyebrow: '02 / Horizonte',
+      horizonTitle: 'A PROPOSTA',
+      horizonDesc: 'Por uma lei de Soberania Cognitiva: cinco dimensões para preservar a segurança cognitiva frente ao rapto cognitivo dos sistemas de espelho estatístico.',
+      dimNames: ['INDIVIDUAL', 'COLETIVA', 'INSTITUCIONAL', 'EPISTÊMICA', 'TÉCNICA'],
+      dimDescs: [
+        'Capacidade de cada sujeito de reconhecer e resistir aos mecanismos de captura. Autonomia de pensamento, tolerância à incerteza e potência de agir recuperada.',
+        'Construção de comunidades epistêmicas diversas. Disputar os marcos de sentido. Conhecimento como bem comum, não como produto algorítmico.',
+        'Políticas públicas, educação crítica e ecossistemas informativos robustos. O Estado como garantidor de condições para o pensamento livre.',
+        'Diversidade de fontes de conhecimento. Resistência à monocultura informativa. Crítica à "cidadania digital" como adaptação acrítica.',
+        'Regulação, transparência algorítmica e direito de não ser perfilado. A arquitetura tecnológica como decisão política, não como inevitabilidade.'
+      ],
+      horizonQuote: '"A cidadania digital nos ensina a adaptar-nos às plataformas. A soberania cognitiva pede que as questionemos para transformá-las."',
+      horizonAttr: '— Do diagnóstico',
+      methodEyebrow: '03 / Método',
+      methodTitle: 'O TERCEIRO ESPAÇO HÍBRIDO',
+      methodDesc: 'Como este diagnóstico foi construído. Inteligência amplificada: um diálogo entre subjetividade encarnada e um sistema de espelho estatístico.',
+      chatTitle: 'Exemplo de diálogo coemergente',
+      chatMsgs: [
+        { role: 'human', label: 'Pesquisadora', text: 'Acho que a "satellização" de Ausubel não alcança a profundidade conceitual para explicar o sistema de captura, ou a delegação cognitiva segundo Benasayag. Quais outros autores falam de um ambiente facilitador, de um sustento subjetivo?' },
+        { role: 'ai', label: 'IA — organização e conexão bibliográfica', text: 'Enquanto Ausubel se concentra em como um conceito se incorpora a uma hierarquia cognitiva existente, autores como Edith Jacobson ou D. W. Winnicott exploram como o ato de conhecer altera a representação que o ego tem de si e do objeto.' },
+        { role: 'human', label: 'Pesquisadora', text: 'Sim — é preciso redirecionar o olhar para o social; não pode ser visto apenas pela psicologia educacional. Embora a raiz possa ser individual, a porta de entrada é coletiva.' },
+        { role: 'ai', label: 'IA — organização', text: 'Entendido. A sua consulta toca um ponto central debatido na psicologia do desenvolvimento e na educação: como se articulam influência do ambiente e autonomia do sujeito. Muitos autores convergem ao dizer que, para um desenvolvimento saudável, não basta um ambiente que apenas "eduque" ou "modele"; é preciso um ambiente facilitador que nutra o potencial inato — figuras como Donald Winnicott, John Bowlby, Heinz Kohut, Margaret Mahler e Carl Rogers oferecem referências decisivas.' }
+      ],
+      methodNote: '<strong>Nota metodológica:</strong> Este diagnóstico foi construído em diálogo coemergente com inteligência artificial. A IA não pensa: organiza, propõe conexões e sugere leituras. <strong>Sentido, perguntas, direção política, interpretação e urgência são humanos.</strong> O Terceiro Espaço é o território onde nenhuma das duas inteligências chega sozinha.',
+      convEyebrow: '04 / Convocação',
+      convTitle: 'A COMUNIDADE',
+      convDesc: 'Este território precisa de mais cartógrafos. Buscamos vozes de diferentes disciplinas.',
+      profileRoles: ['PSICOLOGIA CLÍNICA', 'CIÊNCIAS DA COMPUTAÇÃO', 'FILOSOFIA POLÍTICA', 'COMUNICAÇÃO E MÍDIA', 'EDUCAÇÃO', 'DIREITO E POLÍTICAS PÚBLICAS'],
+      profileAreas: [
+        'Subjetividade contemporânea · Clínica das tecnologias · Psicanálise e cultura digital',
+        'Design de algoritmos · Ética da IA · Arquiteturas de recomendação · Sistemas de captura',
+        'Teoria do sujeito · Biopolítica digital · Crítica da razão técnica · Epistemologia',
+        'Ecossistemas informativos · Desinformação · Estudos de plataformas · Cultura digital',
+        'Pedagogia crítica · Alfabetização midiática · Formação docente · Novas infâncias',
+        'Regulação tecnológica · Direitos digitais · Governança de dados · Legislação de IA'
+      ],
+      formPlaceholders: ['Nome completo', 'E-mail', 'Disciplina / instituição', 'Como você quer participar?', 'Mensagem (opcional): o que você traz para este território?'],
+      formOptions: ['Juntar-se à equipe de pesquisa', 'Debater o diagnóstico', 'Divulgar o projeto', 'Contatar as autoras/es'],
+      sendBtn: 'Quero participar do território →',
+      convLabs: ['📧 contacto@soberaniacognitiva.org', '🌐 Encontros abertos a cada dois meses'],
+      archEyebrow: '05 / Arquivo',
+      archTitle: 'RECURSOS',
+      archDesc: 'Biblioteca para download. Documentos, bibliografia comentada e guias críticos.',
+      files: [
+        { type: 'PDF · Documento completo', name: 'DIAGNÓSTICO CRÍTICO SOBRE CAPTURA ALGORÍTMICA', desc: 'Documento integral. Cinco dimensões do problema, horizonte de soberania cognitiva e método de pesquisa.', status: 'PDF em breve' },
+        { type: 'PDF · Versão curta', name: 'SÍNTESE EXECUTIVA', desc: 'Versão condensada para difusão. Ideias-chave em formato acessível.', status: 'PDF em breve' },
+        { type: 'PDF · Bibliografia', name: 'AUTORES-CHAVE E BIBLIOGRAFIA COMENTADA', desc: 'Sadin, Benasayag, Quattrociocchi, Gentili e outros. Cada entrada com nota crítica.', status: 'PDF em breve' },
+        { type: 'PDF · Guia crítico', name: 'CRÍTICA AO MANUAL FARO DIGITAL', desc: 'Análise crítica dos limites da "cidadania digital" light. Por que a adaptação não é suficiente.', status: 'PDF em breve' }
+      ],
+      mediosEyebrow: '06 / Mídia e difusão',
+      mediosTitle: 'IMPRENSA E DIVULGAÇÃO',
+      mediosDesc: 'Recursos para jornalistas, gestores culturais e comunicadores interessados na Soberania Cognitiva.',
+      mediaCards: [
+        { icon: '📰', name: 'DOSSIÊ DE IMPRENSA', desc: 'Resumo executivo, citações-chave e contatos para cobertura midiática. Disponível para download em PDF.' },
+        { icon: '🎙️', name: 'ENTREVISTAS', desc: 'Os autores do diagnóstico estão disponíveis para entrevistas, mesas-redondas e colaborações.' },
+        { icon: '📺', name: 'MATERIAL AUDIOVISUAL', desc: 'Peças gráficas, animações e fragmentos do vídeo principal para usar em redes sociais ou programas.' },
+        { icon: '📢', name: 'CAMPANHAS DE SENSIBILIZAÇÃO', desc: 'Propostas para ativar o debate em comunidades educativas e espaços públicos.' }
+      ],
+      mediaQuote: '"O debate sobre a soberania cognitiva não pode ficar confinado às salas de aula. Precisamos que a mídia seja aliada para interpelar a cidadania."',
+      mediaAttr: '— Equipe de pesquisa',
+      mediaContacts: ['📧 imprensa@soberaniacognitiva.org', '📞 +54 11 1234-5678 (imprensa)'],
+      footerCredits: 'Equipe de diagnóstico: <em>[Prof. Emmanuel Retamal - Prof. Anahí González Sendra - Prof. Ana Luisa Gauchat - Priscila Arandia]</em><br>Construído em diálogo com inteligência sintética<br>Método: coemergência · <a href="https://arxiv.org/abs/2601.12837" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2601.12837</a>',
+      footerLicense: 'Creative Commons<br>Não comercial · Compartilhar igual<br>CC BY-NC-SA 4.0'
     },
-    delegacion: {
-      term: 'Cognitive delegation',
-      origin: 'Miguel Benasayag — Thinking with the hands',
-      def: 'The progressive transfer of cognitive functions — memory, orientation, judgment, decision — to technical systems. When habitual, it erodes personal capabilities and creates structural dependency.'
+    de: {
+      nav: ['Start', 'Diagnose', 'Horizont', 'Methode', 'Aufruf', 'Archiv', 'Medien'],
+      heroTag: 'Situierte Kulturdiagnose',
+      heroTitle: ['KOGNITIVE', 'SOUVERÄNITÄT', '/ GEBIET', 'IM STREIT'],
+      heroSub: 'Eine kritische Diagnose der algorithmischen Vereinnahmung zeitgenössischer Subjektivität',
+      heroPhrase: '<em>"Schon vor Algorithmen war dieses Gebiet fragil."</em><br>Und wie jedes Gebiet verdient es Souveränität, die es schützt.',
+      heroBtn: 'Diagnose lesen →',
+      anchors: ['Diagnose', 'Horizont', 'Methode', 'Aufruf', 'Archiv', 'Medien'],
+      kinetic: 'DEINE AUFMERKSAMKEIT IST DAS PRODUKT',
+      ticker: ['Kognitive Souveränität', 'Deine Aufmerksamkeit ist das Produkt', 'Umkämpftes Gebiet', 'Pathologisches falsches Selbst', 'Echo-Plattformen', 'Kognitive Entführung', 'Epistemia'],
+      diagEyebrow: '01 / Diagnose',
+      diagTitle: 'DAS PROBLEM',
+      diagDesc: 'Fünf Ebenen eines fragilen Territoriums. Bewege den Cursor, um jede Dimension zu erkunden.',
+      diagCards: [
+        { num: '01.1', name: 'VORGESCHICHTE DES FRAGMENTIERTEN SELBST', author: 'Gentili / lateinamerikanische kritische Masse', text: 'Subjektive Fragilität entstand nicht erst mit sozialen Netzwerken. Das Terrain war vorbereitet: geringe Frustrationstoleranz, vorläufige Identitäten, verarmtes Selbst. Algorithmen erfanden die Verletzlichkeit nicht — sie nutzen sie strukturell.' },
+        { num: '01.2', name: 'DAS ERFASSUNGS-ÖKOSYSTEM', author: 'Éric Sadin', text: 'Plattformen sind nicht neutral. Sie sind darauf ausgelegt, Aufmerksamkeit zu erfassen.' },
+        { num: '01.3', name: 'DER IMPLANTATIONSMECHANISMUS', author: 'Miguel Benasayag', text: 'Digitale Formatierung baut ein "kollektives falsches Selbst" auf.' },
+        { num: '01.4', name: 'DIE TEXTUR DES DISKURSES', author: 'Walter Quattrociocchi', text: 'Der Begriff "Epistemia" bezeichnet die Struktur geteilten Wissens, die Algorithmen formen.' },
+        { num: '01.5', name: 'WAS VERLOREN GEHT', author: 'Synthese', text: 'Der unberührte Körper, die unbewohnte Zeit und die an Interfaces übertragene Handlungsmacht.' }
+      ],
+      glossaryTitle: 'Kritisches Glossar — klicken zum Definieren',
+      glossaryTags: ['Kognitive Entführung', 'Epistemia', 'Kollektives falsches Selbst', 'Aufmerksamkeits-Erfassung', 'Kognitive Delegation', 'Echo-Plattformen', 'Fragmentiertes Selbst', 'Handlungsmacht'],
+      horizonEyebrow: '02 / Horizont',
+      horizonTitle: 'DER VORSCHLAG',
+      horizonDesc: 'Für ein Gesetz zur kognitiven Souveränität: fünf Dimensionen, um kognitive Sicherheit vor der kognitiven Entführung durch statistische Spiegelsysteme zu wahren.',
+      dimNames: ['INDIVIDUELL', 'KOLLEKTIV', 'INSTITUTIONELL', 'EPISTEMISCH', 'TECHNISCH'],
+      dimDescs: [
+        'Fähigkeit jedes Subjekts, Erfassungsmechanismen zu erkennen und ihnen zu widerstehen. Autonomie des Denkens, Toleranz gegenüber Unsicherheit und wiedergewonnene Handlungsmacht.',
+        'Aufbau vielfältiger epistemischer Gemeinschaften. Streit um Deutungsrahmen. Wissen als Gemeingut, nicht als algorithmisches Produkt.',
+        'Öffentliche Politik, kritische Bildung und robuste Informationsökosysteme. Der Staat als Garant für Bedingungen freien Denkens.',
+        'Vielfalt von Wissensquellen. Widerstand gegen informationelle Monokultur. Kritik an "digitaler Bürgerschaft" als unkritischer Anpassung.',
+        'Regulierung, algorithmische Transparenz und das Recht, nicht profiliert zu werden. Technische Architektur als politische Entscheidung.'
+      ],
+      horizonQuote: '"Digitale Bürgerschaft lehrt uns, uns an Plattformen anzupassen. Kognitive Souveränität verlangt, sie zu hinterfragen, um sie zu transformieren."',
+      horizonAttr: '— Aus der Diagnose',
+      methodEyebrow: '03 / Methode',
+      methodTitle: 'DER DRITTE HYBRIDE RAUM',
+      methodDesc: 'Wie diese Diagnose entstanden ist. Amplifizierte Intelligenz: ein Dialog zwischen verkörperter Subjektivität und einem statistischen Spiegelsystem.',
+      chatTitle: 'Beispiel des ko-emergenten Dialogs',
+      chatMsgs: [
+        { role: 'human', label: 'Forscherin', text: 'Ich glaube, Ausubels "Satellitenlernen" reicht begrifflich nicht aus, um das System der Erfassung — oder nach Benasayag die kognitive Delegation — zu klären. Welche anderen Autoren sprechen vom förderlichen Umfeld, von subjektivem Halten?' },
+        { role: 'ai', label: 'KI — Strukturierung und bibliografische Verknüpfung', text: 'Während Ausubel erklärt, wie sich ein Konzept in eine bestehende kognitive Hierarchie einfügt, untersuchen Edith Jacobson oder D. W. Winnicott, wie der Erkenntnisakt die Selbstrepräsentation von Ich und Objekt verschiebt.' },
+        { role: 'human', label: 'Forscherin', text: 'Ja — wir müssen den sozialen Blick schärfen. Es lässt sich nicht nur aus pädagogischer Psychologie beschreiben: bleiben die Ursachen individuell, so ist der Eintritt oft kollektiv.' },
+        { role: 'ai', label: 'KI — Strukturierung', text: 'Verstanden. Ihre Frage trifft einen vieldiskutierten Knotenpunkt von Entwicklungspsychologie und Bildung: Wie hängen Umweltwirkungen und Subjektautonomie zusammen? Mehrere Autoren betonen: gesunde Entwicklung braucht mehr als Modellierung — sie verlangt fördernde Bedingungen. Donald Winnicott, John Bowlby, Heinz Kohut, Margaret Mahler und Carl Rogers liefern dazu tragfähige Perspektiven.' }
+      ],
+      methodNote: '<strong>Methodischer Hinweis:</strong> Diese Diagnose entstand in einem ko-emergenten Dialog mit künstlicher Intelligenz. KI denkt nicht: Sie organisiert, schlägt Verbindungen vor und empfiehlt Lesarten. <strong>Sinn, Fragen, politische Richtung, Interpretation und Dringlichkeit sind menschlich.</strong> Der Dritte Raum ist ein Gebiet, das keine der beiden Intelligenzen allein erreicht.',
+      convEyebrow: '04 / Aufruf',
+      convTitle: 'DIE GEMEINSCHAFT',
+      convDesc: 'Dieses Territorium braucht mehr Kartografen. Wir suchen Stimmen aus verschiedenen Disziplinen.',
+      profileRoles: ['KLINISCHE PSYCHOLOGIE', 'INFORMATIK', 'POLITISCHE PHILOSOPHIE', 'KOMMUNIKATION UND MEDIEN', 'BILDUNG', 'RECHT UND ÖFFENTLICHE POLITIK'],
+      profileAreas: [
+        'Zeitgenössische Subjektivität · Klinik der Technologien · Psychoanalyse und Digitalkultur',
+        'Algorithmendesign · KI-Ethik · Empfehlungsarchitekturen · Erfassungssysteme',
+        'Subjekttheorie · Digitale Biopolitik · Kritik technischer Vernunft · Erkenntnistheorie',
+        'Informationsökosysteme · Desinformation · Plattformstudien · Digitalkultur',
+        'Kritische Pädagogik · Medienkompetenz · Lehrerbildung · Neue Kindheiten',
+        'Technologieregulierung · Digitale Rechte · Daten-Governance · KI-Gesetzgebung'
+      ],
+      formPlaceholders: ['Vollständiger Name', 'E-Mail', 'Disziplin / Institution', 'Wie möchten Sie teilnehmen?', 'Optionale Nachricht: Was bringen Sie in dieses Territorium ein?'],
+      formOptions: ['Dem Forschungsteam beitreten', 'Die Diagnose diskutieren', 'Das Projekt verbreiten', 'Autor:innen kontaktieren'],
+      sendBtn: 'Dem Territorium beitreten →',
+      convLabs: ['📧 kontakt@kognitive-souveränität.org', '🌐 Offene Treffen alle zwei Monate'],
+      archEyebrow: '05 / Archiv',
+      archTitle: 'RESSOURCEN',
+      archDesc: 'Download-Bibliothek. Dokumente, kommentierte Bibliografie und kritische Leitfäden.',
+      files: [
+        { type: 'PDF · Vollständiges Dokument', name: 'KRITISCHE DIAGNOSE ALGORITHMISCHER ERFASSUNG', desc: 'Gesamtdokument. Fünf Dimensionen des Problems, Horizont kognitiver Souveränität und Forschungsmethode.', status: 'PDF demnächst' },
+        { type: 'PDF · Kurzfassung', name: 'MANAGEMENT-ZUSAMMENFASSUNG', desc: 'Verdichtete Version zur Verbreitung. Kernideen in zugänglichem Format.', status: 'PDF demnächst' },
+        { type: 'PDF · Bibliografie', name: 'SCHLÜSSELAUTOREN UND KOMMENTIERTE BIBLIOGRAFIE', desc: 'Sadin, Benasayag, Quattrociocchi, Gentili und andere. Jeder Eintrag mit kritischer Einordnung.', status: 'PDF demnächst' },
+        { type: 'PDF · Kritischer Leitfaden', name: 'KRITIK DES FARO-DIGITAL-HANDBUCHS', desc: 'Kritische Analyse der Grenzen "digitaler Light-Bürgerschaft". Warum Anpassung nicht genügt.', status: 'PDF demnächst' }
+      ],
+      mediosEyebrow: '06 / Medien & Verbreitung',
+      mediosTitle: 'PRESSE & ÖFFENTLICHKEIT',
+      mediosDesc: 'Ressourcen für Journalisten, Kulturmanager und Kommunikatoren, die sich für kognitive Souveränität interessieren.',
+      mediaCards: [
+        { icon: '📰', name: 'PRESSEKIT', desc: 'Management Summary, Kernzitate und Kontaktdaten für Medienvertreter. Als PDF verfügbar.' },
+        { icon: '🎙️', name: 'INTERVIEWS', desc: 'Die Autoren der Diagnose stehen für Interviews, Podiumsdiskussionen und Kooperationen zur Verfügung.' },
+        { icon: '📺', name: 'AUDIOVISUELLES MATERIAL', desc: 'Grafiken, Animationen und Ausschnitte des Hauptvideos für soziale Netzwerke oder Sendungen.' },
+        { icon: '📢', name: 'SENSIBILISIERUNGSKAMPAGNEN', desc: 'Vorschläge, um die Debatte in Bildungsgemeinschaften und öffentlichen Räumen zu aktivieren.' }
+      ],
+      mediaQuote: '"Die Debatte über kognitive Souveränität kann nicht in den Klassenzimmern eingeschlossen werden. Wir brauchen die Medien als Verbündete, um die Bürgerschaft anzusprechen."',
+      mediaAttr: '— Forschungsteam',
+      mediaContacts: ['📧 presse@kognitive-souveränität.org', '📞 +54 11 1234-5678 (Presse)'],
+      footerCredits: 'Diagnoseteam: <em>[Prof. Emmanuel Retamal – Prof. Anahí González Sendra – Prof. Ana Luisa Gauchat – Priscila Arandia]</em><br>Entwickelt im Dialog mit synthetischer Intelligenz<br>Methode: Koemergenz · <a href="https://arxiv.org/abs/2601.12837" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2601.12837</a>',
+      footerLicense: 'Creative Commons<br>Nicht kommerziell · Weitergabe unter gleichen Bedingungen<br>CC BY-NC-SA 4.0'
     },
-    camara_eco: {
-      term: 'Echo chamber',
-      origin: 'Digital disinformation research — Quattrociocchi and others',
-      def: 'An informational environment where user beliefs are amplified by algorithmic repetition of aligned content, reducing exposure to divergent perspectives and reinforcing prior biases.'
-    },
-    plataforma_eco: {
-      term: 'Echo platforms',
-      origin: 'Critical synthesis — algorithmic ecosystems and statistical mirrors',
-      def: 'Platform stacks operating as algorithmic feedback loops: they concentrate exposure on similar content, shape feeds like statistical mirrors of past behavior, and thin out heterogeneous sources—echo dynamics at commercial interface scale.'
-    },
-    yo_resquebrajado: {
-      term: 'Fractured self',
-      origin: 'Gentili / Latin American critical mass — psychoanalysis and contemporary subjectivity',
-      def: 'A subjective configuration marked by low frustration tolerance, intense need for external validation, and difficulty sustaining stable identity narratives. It predates platforms but articulates perfectly with them.'
-    },
-    potencia: {
-      term: 'Power to act',
-      origin: 'Baruch Spinoza — reworked by Deleuze and Benasayag',
-      def: 'The capacity of a body or subject to produce effects in the world from its own desire and reflection. Algorithmic capture operates by reducing this power: we act, but through flows designed by the system.'
-    }
-  },
-  pt: {
-    rapto_cognitivo: { term: 'Rapto cognitivo', origin: 'Éric Sadin — IA e o desafio do século', def: 'Subtração ativa da atenção e da deliberação por plataformas digitais.' },
-    epistemia: { term: 'Epistemia', origin: 'Walter Quattrociocchi — desinformação digital', def: 'Estrutura profunda do conhecimento compartilhado moldada por plataformas.' },
-    falso_self: { term: 'Falso self coletivo', origin: 'Miguel Benasayag — contexto digital', def: 'Identidade social performada para plataformas e funcional à economia da atenção.' },
-    captura_atencional: { term: 'Captura atencional', origin: 'Síntese crítica', def: 'Arquiteturas que monopolizam atenção explorando vieses cognitivos.' },
-    delegacion: { term: 'Delegação cognitiva', origin: 'Miguel Benasayag', def: 'Transferência de funções cognitivas para sistemas técnicos.' },
-    camara_eco: { term: 'Câmara de eco', origin: 'Pesquisa em desinformação', def: 'Ambiente que reforça crenças por repetição algorítmica.' },
-    plataforma_eco: { term: 'Plataformas de eco', origin: 'Síntese crítica — ecossistemas algorítmicos e espelho estatístico', def: 'Camadas de plataforma como circuitos de retroalimentação: concentram exposição a conteúdos afins, tratam recomendações como espelhos estatísticos do comportamento passado e reduzem fontes heterogêneas.' },
-    yo_resquebrajado: { term: 'Eu fraturado', origin: 'Gentili / massa crítica latino-americana', def: 'Configuração subjetiva frágil que antecede as plataformas.' },
-    potencia: { term: 'Potência de agir', origin: 'Spinoza, Deleuze, Benasayag', def: 'Capacidade de agir no mundo a partir do próprio desejo e reflexão.' }
-  },
-  de: {
-    rapto_cognitivo: { term: 'Kognitive Entführung', origin: 'Éric Sadin', def: 'Aktive Entziehung von Aufmerksamkeit und Urteilsfähigkeit durch Plattformen.' },
-    epistemia: { term: 'Epistemia', origin: 'Walter Quattrociocchi', def: 'Tiefe Struktur geteilten Wissens, die durch Algorithmen geformt wird.' },
-    falso_self: { term: 'Kollektives falsches Selbst', origin: 'Miguel Benasayag', def: 'Für Plattformen performte Identität, funktional zur Aufmerksamkeitsökonomie.' },
-    captura_atencional: { term: 'Aufmerksamkeits-Erfassung', origin: 'Kritische Synthese', def: 'Architekturen, die Aufmerksamkeit durch kognitive Verzerrungen binden.' },
-    delegacion: { term: 'Kognitive Delegation', origin: 'Miguel Benasayag', def: 'Übertragung kognitiver Funktionen auf technische Systeme.' },
-    camara_eco: { term: 'Echokammer', origin: 'Desinformationsforschung', def: 'Informationsraum, der Überzeugungen algorithmisch verstärkt.' },
-    plataforma_eco: { term: 'Echo-Plattformen', origin: 'Kritische Synthese — algorithmische Ökosysteme und statistische Spiegel', def: 'Platform-Stacks als algorithmische Feedbackschleifen: Sie bündeln Reize auf ähnliche Inhalte, formen Empfehlungen wie statistische Spiegel früherer Nutzung und verringern Quellenvielfalt.' },
-    yo_resquebrajado: { term: 'Fragmentiertes Selbst', origin: 'Gentili / lateinamerikanische kritische Masse', def: 'Fragile Subjektkonfiguration, die Plattformlogiken begünstigt.' },
-    potencia: { term: 'Handlungsmacht', origin: 'Spinoza, Deleuze, Benasayag', def: 'Fähigkeit, aus eigenem Denken und Begehren wirksam zu handeln.' }
-  },
-  ru: {
-    rapto_cognitivo: { term: 'Когнитивный захват', origin: 'Эрик Саден', def: 'Активное изъятие внимания и способности к осмыслению платформами.' },
-    epistemia: { term: 'Эпистемия', origin: 'Вальтер Кваттрочокки', def: 'Глубинная структура общего знания, формируемая алгоритмами.' },
-    falso_self: { term: 'Коллективное ложное Я', origin: 'Мигель Бенасайяг', def: 'Идентичность, создаваемая для платформ и экономики внимания.' },
-    captura_atencional: { term: 'Захват внимания', origin: 'Критический синтез', def: 'Архитектуры, монополизирующие внимание через когнитивные искажения.' },
-    delegacion: { term: 'Когнитивная делегация', origin: 'Мигель Бенасайяг', def: 'Передача когнитивных функций техническим системам.' },
-    camara_eco: { term: 'Эхо-камера', origin: 'Исследования дезинформации', def: 'Среда, где убеждения усиливаются алгоритмическим повторением.' },
-    plataforma_eco: { term: 'Эхо-платформы', origin: 'Критический синтез — алгоритмические экосистемы и статистические зеркала', def: 'Цепочки платформ как контуры обратной связи: смещают выдачу к схожему контенту, строят ленты как статистическое отражение прошлого поведения и сужают многообразие источников.' },
-    yo_resquebrajado: { term: 'Надломленное Я', origin: 'Gentili / латиноамериканская критическая масса', def: 'Хрупкая субъективная конфигурация, предшествующая платформам.' },
-    potencia: { term: 'Способность действовать', origin: 'Спиноза, Делёз, Бенасайяг', def: 'Способность субъекта действовать из собственного желания и мысли.' }
-  },
-  zh: {
-    rapto_cognitivo: { term: '认知劫持', origin: 'Éric Sadin', def: '平台对注意力与思考能力的主动抽离。' },
-    epistemia: { term: '认知结构（Epistemia）', origin: 'Walter Quattrociocchi', def: '由算法塑造的共享知识深层结构。' },
-    falso_self: { term: '集体假自我', origin: 'Miguel Benasayag', def: '为平台表演而形成的社会身份。' },
-    captura_atencional: { term: '注意力捕获', origin: '批判综合', def: '通过认知偏差设计来垄断用户注意力。' },
-    delegacion: { term: '认知委托', origin: 'Miguel Benasayag', def: '将记忆、判断与决策等功能转移给技术系统。' },
-    camara_eco: { term: '回音室', origin: '虚假信息研究', def: '算法重复同类内容，强化既有信念。' },
-    plataforma_eco: { term: '回声平台', origin: '批判综合 — 算法生态与统计镜面', def: '多层平台形成算法反馈闭环：把曝光推向相似内容，把推荐做成过去行为的统计镜面，并收窄信源多样性。' },
-    yo_resquebrajado: { term: '破碎自我', origin: 'Gentili / 拉美批判主体方阵', def: '在平台出现前已存在的脆弱主体结构。' },
-    potencia: { term: '行动能力', origin: 'Spinoza / Deleuze / Benasayag', def: '主体基于自身欲望与反思而行动的能力。' }
-  }
-};
-
+    ru: {
+      nav: ['Главная', 'Диагностика', 'Горизонт', 'Метод', 'Призыв', 'Архив', 'Медиа'],
+      heroTag: 'Ситуированный культурный диагноз',
+      heroTitle: ['КОГНИТИВНЫЙ', 'СУВЕРЕНИТЕТ', '/ ТЕРРИТОРИЯ', 'СПОРА'],
+      heroSub: 'Критическая диагностика алгоритмического захвата современной субъективности',
+      heroPhrase: '<em>"Ещё до алгоритмов эта территория уже была уязвимой."</em><br>И как любая территория, она заслуживает суверенитета, который её защищает.',
+      heroBtn: 'Читать диагностику →',
+      anchors: ['Диагностика', 'Горизонт', 'Метод', 'Призыв', 'Архив', 'Медиа'],
+      kinetic: 'ВАШЕ ВНИМАНИЕ — ЭТО ПРОДУКТ',
+      ticker: ['Когнитивный суверенитет', 'Ваше внимание — это продукт', 'Территория спора', 'Патологическое ложное Я', 'Эхо-платформы', 'Когнитивный захват', 'Эпистемия'],
+      diagEyebrow: '01 / Диагностика',
+      diagTitle: 'ПРОБЛЕМА',
+      diagDesc: 'Пять слоев одной уязвимой территории. Наведите курсор, чтобы изучить каждое измерение.',
+      diagCards: [
+        { num: '01.1', name: 'ПРЕДЫСТОРИЯ НАДЛОМЛЕННОГО Я', author: 'Gentili / латиноамериканская критическая масса', text: 'Субъективная хрупкость началась не с соцсетей: почва была готова — низкая толерантность к фрустрации, временные идентичности, «обеднённое Я». Алгоритмы не изобрели уязвимость, а эксплуатировали её.' },
+        { num: '01.2', name: 'ЭКОСИСТЕМА ЗАХВАТА', author: 'Éric Sadin', text: 'Платформы не нейтральны. Они спроектированы, чтобы захватывать внимание.' },
+        { num: '01.3', name: 'МЕХАНИЗМ ИМПЛАНТАЦИИ', author: 'Miguel Benasayag', text: 'Цифровое форматирование создает "коллективное ложное Я".' },
+        { num: '01.4', name: 'ТЕКСТУРА ДИСКУРСА', author: 'Walter Quattrociocchi', text: 'Понятие "эпистемия" описывает структуру общего знания, формируемую алгоритмами.' },
+        { num: '01.5', name: 'ЧТО ТЕРЯЕТСЯ', author: 'Синтез', text: 'Тело, к которому не прикасаются, время, в котором не живут, и способность действовать, переданная интерфейсу.' }
+      ],
+      glossaryTitle: 'Критический глоссарий — нажмите для определения',
+      glossaryTags: ['Когнитивный захват', 'Эпистемия', 'Коллективное ложное Я', 'Захват внимания', 'Когнитивная делегация', 'Эхо-платформы', 'Надломленное Я', 'Способность действовать'],
+      horizonEyebrow: '02 / Горизонт',
+      horizonTitle: 'ПРЕДЛОЖЕНИЕ',
+      horizonDesc: 'Закон о когнитивном суверенитете: пять измерений для защиты когнитивной безопасности от когнитивного захвата систем статистического зеркала.',
+      dimNames: ['ИНДИВИДУАЛЬНОЕ', 'КОЛЛЕКТИВНОЕ', 'ИНСТИТУЦИОНАЛЬНОЕ', 'ЭПИСТЕМИЧЕСКОЕ', 'ТЕХНИЧЕСКОЕ'],
+      dimDescs: [
+        'Способность субъекта распознавать и сопротивляться механизмам захвата. Автономия мышления, терпимость к неопределенности и возвращенная способность действовать.',
+        'Формирование разнообразных эпистемических сообществ. Борьба за рамки смысла. Знание как общее благо, а не алгоритмический продукт.',
+        'Госполитики, критическое образование и устойчивые информационные экосистемы. Государство как гарант условий свободного мышления.',
+        'Разнообразие источников знания. Сопротивление информационной монокультуре. Критика "цифрового гражданства" как некритичной адаптации.',
+        'Регуляция, алгоритмическая прозрачность и право не быть профилированным. Технологическая архитектура как политическое решение.'
+      ],
+      horizonQuote: '"Цифровое гражданство учит нас приспосабливаться к платформам. Когнитивный суверенитет призывает подвергать их сомнению ради трансформации."',
+      horizonAttr: '— Из диагноза',
+      methodEyebrow: '03 / Метод',
+      methodTitle: 'ТРЕТЬЕ ГИБРИДНОЕ ПРОСТРАНСТВО',
+      methodDesc: 'Как был создан этот диагноз: усиленный интеллект — диалог между воплощённой субъективностью и системой статистического зеркала.',
+      chatTitle: 'Пример коэмергентного диалога',
+      chatMsgs: [
+        { role: 'human', label: 'Исследовательница', text: 'Кажется, субсумирующее обучение У. Осубела не даёт понятийной глубины, чтобы описать систему захвата или делегирование познания в логике Бенасайага. У каких авторов искать опору поддерживающей среды, субъективную опору?' },
+        { role: 'ai', label: 'ИИ — структурирование и поиск литературы', text: 'Если Осубель исследует, как понятие встраивается в существующую когнитивную иерархию, то Эдит Джейкобсон или Д. В. Уинникотт смотрят, как акт познания меняет представление Я о себе и об объекте.' },
+        { role: 'human', label: 'Исследовательница', text: 'Да — нужен поворот к социальному. Нельзя оставаться только в школьной психологии; даже при индивидуальных истоках точка входа бывает коллективной.' },
+        { role: 'ai', label: 'ИИ — структурирование', text: 'Понял. Вы задеваете ядро дискуссии в психологии развития и педагогике — как связать влияние среды и автономию субъекта. Многие сходятся: недостаточно среды, которая лишь «учит»; нужна содержащая среда, поддерживающая потенциал. Ориентиры: Дональд Уинникотт, Джон Болби, Хайнц Кохут, Маргарет Малер и Карл Роджерс.' }
+      ],
+      methodNote: '<strong>Методологическая заметка:</strong> Этот диагноз создан в коэмергентном диалоге с искусственным интеллектом. ИИ не мыслит: он организует, предлагает связи и подсказывает прочтения. <strong>Смысл, вопросы, политическое направление, интерпретация и срочность принадлежат человеку.</strong> Третье пространство — территория, куда ни одна из двух интеллектуальных сил не приходит в одиночку.',
+      convEyebrow: '04 / Призыв',
+      convTitle: 'СООБЩЕСТВО',
+      convDesc: 'Этой территории нужны новые картографы. Мы ищем голоса из разных дисциплин.',
+      profileRoles: ['КЛИНИЧЕСКАЯ ПСИХОЛОГИЯ', 'КОМПЬЮТЕРНЫЕ НАУКИ', 'ПОЛИТИЧЕСКАЯ ФИЛОСОФИЯ', 'КОММУНИКАЦИЯ И МЕДИА', 'ОБРАЗОВАНИЕ', 'ПРАВО И ПУБЛИЧНАЯ ПОЛИТИКА'],
+      profileAreas: [
+        'Современная субъективность · Клиника технологий · Психоанализ и цифровая культура',
+        'Проектирование алгоритмов · Этика ИИ · Рекомендательные архитектуры · Системы захвата',
+        'Теория субъекта · Цифровая биополитика · Критика технического разума · Эпистемология',
+        'Информационные экосистемы · Дезинформация · Исследования платформ · Цифровая культура',
+        'Критическая педагогика · Медиаграмотность · Подготовка преподавателей · Новые детства',
+        'Технологическое регулирование · Цифровые права · Управление данными · Законодательство об ИИ'
+      ],
+      formPlaceholders: ['Имя и фамилия', 'Электронная почта', 'Дисциплина / организация', 'Как вы хотите участвовать?', 'Сообщение (необязательно): что вы приносите в эту территорию?'],
+      formOptions: ['Присоединиться к исследовательской команде', 'Обсудить диагноз', 'Помочь с распространением проекта', 'Связаться с авторами'],
+      sendBtn: 'Присоединиться к территории →',
+      convLabs: ['📧 contacto@soberaniacognitiva.org', '🌐 Открытые встречи раз в два месяца'],
+      archEyebrow: '05 / Архив',
+      archTitle: 'РЕСУРСЫ',
+      archDesc: 'Библиотека
 function applyLanguage(lang) {
   const chosen = I18N[lang] ? lang : 'es';
   const t = I18N[chosen];
