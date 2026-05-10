@@ -2193,7 +2193,7 @@
       footerCredits: 'Diagnoseteam: <em>[Prof. Emmanuel Retamal – Prof. Anahí González Sendra – Prof. Ana Luisa Gauchat – Priscila Arandia]</em><br>Entwickelt im Dialog mit synthetischer Intelligenz<br>Methode: Koemergenz · <a href="https://arxiv.org/abs/2601.12837" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2601.12837</a>',
       footerLicense: 'Creative Commons<br>Nicht kommerziell · Weitergabe unter gleichen Bedingungen<br>CC BY-NC-SA 4.0'
     },
-    ru: {
+       ru: {
       nav: ['Главная', 'Диагностика', 'Горизонт', 'Метод', 'Призыв', 'Архив', 'Медиа'],
       heroTag: 'Ситуированный культурный диагноз',
       heroTitle: ['КОГНИТИВНЫЙ', 'СУВЕРЕНИТЕТ', '/ ТЕРРИТОРИЯ', 'СПОРА'],
@@ -2257,312 +2257,209 @@
       convLabs: ['📧 contacto@soberaniacognitiva.org', '🌐 Открытые встречи раз в два месяца'],
       archEyebrow: '05 / Архив',
       archTitle: 'РЕСУРСЫ',
-      archDesc: 'Библиотека
-function applyLanguage(lang) {
-  const chosen = I18N[lang] ? lang : 'es';
-  const t = I18N[chosen];
-  const c = CONTENT_I18N[chosen] || CONTENT_I18N.es;
-  const full = FULL_COPY[chosen] || FULL_COPY.es;
-  activeGlosData = GLOS_DATA_BY_LANG[chosen] || glosData;
+      archDesc: 'Библиотека для скачивания: документы, аннотированная библиография и критические руководства.',
+      files: [
+        { type: 'PDF · Полный документ', name: 'КРИТИЧЕСКАЯ ДИАГНОСТИКА АЛГОРИТМИЧЕСКОГО ЗАХВАТА', desc: 'Полный документ. Пять измерений проблемы, горизонт когнитивного суверенитета и метод исследования.', status: 'PDF скоро' },
+        { type: 'PDF · Краткая версия', name: 'ИСПОЛНИТЕЛЬНОЕ РЕЗЮМЕ', desc: 'Сжатая версия для распространения. Ключевые идеи в доступном формате.', status: 'PDF скоро' },
+        { type: 'PDF · Библиография', name: 'КЛЮЧЕВЫЕ АВТОРЫ И АННОТИРОВАННАЯ БИБЛИОГРАФИЯ', desc: 'Sadin, Benasayag, Quattrociocchi, Gentili и другие. Каждая запись с критической заметкой о вкладе.', status: 'PDF скоро' },
+        { type: 'PDF · Критическое руководство', name: 'КРИТИКА РУКОВОДСТВА FARO DIGITAL', desc: 'Критический анализ ограничений "легкого цифрового гражданства". Почему одной адаптации недостаточно.', status: 'PDF скоро' }
+      ],
+      mediosEyebrow: '06 / Медиа и распространение',
+      mediosTitle: 'ПРЕССА И КОММУНИКАЦИЯ',
+      mediosDesc: 'Ресурсы для журналистов, культурных менеджеров и коммуникаторов, заинтересованных в когнитивном суверенитете.',
+      mediaCards: [
+        { icon: '📰', name: 'ПРЕСС-КИТ', desc: 'Резюме, ключевые цитаты и контактная информация для СМИ. Доступно для скачивания в PDF.' },
+        { icon: '🎙️', name: 'ИНТЕРВЬЮ', desc: 'Авторы диагностики доступны для интервью, круглых столов и сотрудничества со СМИ.' },
+        { icon: '📺', name: 'АУДИОВИЗУАЛЬНЫЕ МАТЕРИАЛЫ', desc: 'Графика, анимация и фрагменты основного видео для использования в соцсетях и программах.' },
+        { icon: '📢', name: 'ИНФОРМАЦИОННЫЕ КАМПАНИИ', desc: 'Предложения по активизации дискуссии в образовательных сообществах и общественных пространствах.' }
+      ],
+      mediaQuote: '"Дискуссия о когнитивном суверенитете не может быть заключена в стенах классов. Нам нужны СМИ как союзники, чтобы обращаться к гражданскому обществу."',
+      mediaAttr: '— Исследовательская группа',
+      mediaContacts: ['📧 prensa@soberaniacognitiva.org', '📞 +54 11 1234-5678 (пресса)'],
+      footerCredits: 'Диагностическая группа: <em>[Проф. Эммануэль Ретамаль - Проф. Анаи Гонсалес Сендра - Проф. Ана Луиза Гаушат - Присцила Арандия]</em><br>Разработано в диалоге с синтетическим интеллектом<br>Метод: совозникновение · <a href="https://arxiv.org/abs/2601.12837" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2601.12837</a>',
+      footerLicense: 'Creative Commons<br>Некоммерческое использование · На тех же условиях<br>CC BY-NC-SA 4.0'
+    }
+  };
 
-  const navIds = ['nav-home', 'nav-diag', 'nav-horizonte', 'nav-metodo', 'nav-conv', 'nav-archivo'];
-  navIds.forEach((id, idx) => {
-    const el = document.getElementById(id);
-    if (el) el.textContent = t.nav[idx];
-  });
+  // === FUNCIÓN PARA APLICAR IDIOMA ===
+  function applyLanguage(lang) {
+    const t = TRANSLATIONS[lang];
+    if (!t) return;
 
-  const heroTag = document.querySelector('.hero-tag');
-  if (heroTag) heroTag.textContent = t.heroTag;
-  const navLogo = document.querySelector('.nav-logo');
-  if (navLogo) {
-    navLogo.setAttribute('data-subtitle', full.logoSubtitle);
-    navLogo.setAttribute('aria-label', full.homeAria);
-  }
-  const navLinks = document.querySelector('.nav-links');
-  if (navLinks) navLinks.setAttribute('aria-label', full.navAria);
-
-  const heroTitle = document.querySelector('.hero-title');
-  if (heroTitle) {
-    heroTitle.innerHTML = `
-      <span class="line-red">${t.heroTitle[0]}</span><br>
-      <span>${t.heroTitle[1]}</span><br>
-      <span class="line-dim">${t.heroTitle[2]}</span><br>
-      <span class="line-dim">${t.heroTitle[3]}</span>
-    `;
-  }
-
-  const heroSub = document.querySelector('.hero-sub');
-  if (heroSub) heroSub.textContent = t.heroSub;
-
-  const heroPhrase = document.querySelector('.hero-phrase');
-  if (heroPhrase) heroPhrase.innerHTML = t.heroPhrase;
-
-  const heroBtn = document.querySelector('.btn-primary');
-  if (heroBtn) heroBtn.textContent = t.heroBtn;
-
-  const anchorLabels = document.querySelectorAll('.anchor-label');
-  anchorLabels.forEach((el, idx) => {
-    if (t.anchors[idx]) el.textContent = t.anchors[idx];
-  });
-
-  const kineticText = document.querySelector('.kinetic-text');
-  if (kineticText) kineticText.textContent = t.kinetic;
-
-  const tickerInner = document.querySelector('.ticker-inner');
-  if (tickerInner && Array.isArray(t.ticker)) {
-    const items = [...t.ticker, ...t.ticker]
-      .map((item) => `<span class="ticker-item">${item}<span class="sep">×</span></span>`)
-      .join('');
-    tickerInner.innerHTML = items;
-  }
-
-  const eyebrows = document.querySelectorAll('.section-eyebrow');
-  eyebrows.forEach((el, idx) => {
-    if (t.sectionEyebrows && t.sectionEyebrows[idx]) el.textContent = t.sectionEyebrows[idx];
-  });
-
-  const sectionTitles = document.querySelectorAll('.section-title');
-  sectionTitles.forEach((el, idx) => {
-    if (t.sectionTitles && t.sectionTitles[idx]) el.textContent = t.sectionTitles[idx];
-  });
-
-  const sectionDescs = document.querySelectorAll('.section-desc');
-  sectionDescs.forEach((el, idx) => {
-    if (c.sectionDescs && c.sectionDescs[idx]) el.textContent = c.sectionDescs[idx];
-  });
-
-  document.querySelectorAll('.diag-expand').forEach((el) => {
-    el.textContent = c.diagExpand;
-  });
-
-  const glossaryTitle = document.querySelector('.glossary-title');
-  if (glossaryTitle) glossaryTitle.textContent = c.glossaryTitle;
-
-  const chatTitle = document.querySelector('.chat-title');
-  if (chatTitle) chatTitle.textContent = c.chatTitle;
-
-  const metodoNote = document.querySelector('.metodo-note');
-  if (metodoNote) metodoNote.innerHTML = c.metodoNote;
-
-  const convName = document.getElementById('convName');
-  const convEmail = document.getElementById('convEmail');
-  const convDiscipline = document.getElementById('convDiscipline');
-  const convParticipation = document.getElementById('convParticipation');
-  const convMessage = document.getElementById('convMessage');
-  const formFields = [convName, convEmail, convDiscipline, convParticipation, convMessage];
-  formFields.forEach((field, idx) => {
-    if (field && c.formPlaceholders[idx]) field.placeholder = c.formPlaceholders[idx];
-  });
-
-  if (convParticipation && convParticipation.options.length >= 5) {
-    convParticipation.options[0].textContent = c.formPlaceholders[3];
-    c.formOptions.forEach((text, idx) => {
-      if (convParticipation.options[idx + 1]) convParticipation.options[idx + 1].textContent = text;
+    // Navegación
+    document.querySelectorAll('.nav-links button:not(.lang-switch)').forEach((btn, idx) => { if (t.nav[idx]) btn.textContent = t.nav[idx]; });
+    
+    // Hero
+    document.querySelector('.hero-tag').textContent = t.heroTag;
+    document.querySelector('.hero-title').innerHTML = `<span class="line-red">${t.heroTitle[0]}</span><br><span>${t.heroTitle[1]}</span><br><span class="line-dim">${t.heroTitle[2]}</span><br><span class="line-dim">${t.heroTitle[3]}</span>`;
+    document.querySelector('.hero-sub').textContent = t.heroSub;
+    document.querySelector('.hero-phrase').innerHTML = t.heroPhrase;
+    document.querySelector('.btn-primary').textContent = t.heroBtn;
+    document.querySelectorAll('.anchor-label').forEach((el, i) => { if (t.anchors[i]) el.textContent = t.anchors[i]; });
+    document.querySelector('.kinetic-text').textContent = t.kinetic;
+    
+    // Ticker
+    const tickerInner = document.querySelector('.ticker-inner');
+    if (tickerInner) tickerInner.innerHTML = [...t.ticker, ...t.ticker].map(item => `<span class="ticker-item">${item}<span class="sep">×</span></span>`).join('');
+    
+    // Diagnóstico
+    document.querySelector('#diag .section-eyebrow').textContent = t.diagEyebrow;
+    document.querySelector('#diag .section-title').textContent = t.diagTitle;
+    document.querySelector('#diag .section-desc').textContent = t.diagDesc;
+    document.querySelectorAll('.diag-card').forEach((card, idx) => {
+      if (t.diagCards[idx]) {
+        card.querySelector('.diag-num').textContent = t.diagCards[idx].num;
+        card.querySelector('.diag-name').textContent = t.diagCards[idx].name;
+        card.querySelector('.diag-author').textContent = t.diagCards[idx].author;
+        card.querySelector('.diag-text').textContent = t.diagCards[idx].text;
+      }
     });
+    document.querySelector('.glossary-title').textContent = t.glossaryTitle;
+    document.querySelectorAll('.glos-tag').forEach((tag, i) => { if (t.glossaryTags[i]) tag.textContent = t.glossaryTags[i]; });
+    
+    // Horizonte
+    document.querySelector('#horizonte .section-eyebrow').textContent = t.horizonEyebrow;
+    document.querySelector('#horizonte .section-title').textContent = t.horizonTitle;
+    document.querySelector('#horizonte .section-desc').textContent = t.horizonDesc;
+    document.querySelectorAll('.dim-name').forEach((el, i) => { if (t.dimNames[i]) el.textContent = t.dimNames[i]; });
+    document.querySelectorAll('.dim-desc').forEach((el, i) => { if (t.dimDescs[i]) el.textContent = t.dimDescs[i]; });
+    document.querySelector('.horizonte-q-text').textContent = t.horizonQuote;
+    document.querySelector('.horizonte-q-attr').textContent = t.horizonAttr;
+    
+    // Método
+    document.querySelector('#metodo .section-eyebrow').textContent = t.methodEyebrow;
+    document.querySelector('#metodo .section-title').textContent = t.methodTitle;
+    document.querySelector('#metodo .section-desc').textContent = t.methodDesc;
+    document.querySelector('.chat-title').textContent = t.chatTitle;
+    document.querySelectorAll('.msg').forEach((msg, i) => {
+      if (t.chatMsgs[i]) {
+        msg.querySelector('.msg-label').textContent = t.chatMsgs[i].label;
+        msg.querySelector('.msg-bubble').textContent = t.chatMsgs[i].text;
+      }
+    });
+    document.querySelector('.metodo-note').innerHTML = t.methodNote;
+    
+    // Convocatoria
+    document.querySelector('#conv .section-eyebrow').textContent = t.convEyebrow;
+    document.querySelector('#conv .section-title').textContent = t.convTitle;
+    document.querySelector('#conv .section-desc').textContent = t.convDesc;
+    document.querySelectorAll('.profile-role').forEach((el, i) => { if (t.profileRoles[i]) el.textContent = t.profileRoles[i]; });
+    document.querySelectorAll('.profile-areas').forEach((el, i) => { if (t.profileAreas[i]) el.textContent = t.profileAreas[i]; });
+    const form = document.querySelector('.conv-form');
+    if (form) {
+      form.querySelector('input[name="nombre"]').placeholder = t.formPlaceholders[0];
+      form.querySelector('input[name="email"]').placeholder = t.formPlaceholders[1];
+      form.querySelector('input[name="disciplina"]').placeholder = t.formPlaceholders[2];
+      const select = form.querySelector('select[name="participacion"]');
+      select.options[0].textContent = t.formPlaceholders[3];
+      t.formOptions.forEach((opt, idx) => { if (select.options[idx+1]) select.options[idx+1].textContent = opt; });
+      form.querySelector('textarea').placeholder = t.formPlaceholders[4];
+      form.querySelector('.btn-send').textContent = t.sendBtn;
+    }
+    document.querySelectorAll('#conv .conv-labs .lab-tag').forEach((el, i) => { if (t.convLabs[i]) el.textContent = t.convLabs[i]; });
+    
+    // Archivo
+    document.querySelector('#archivo .section-eyebrow').textContent = t.archEyebrow;
+    document.querySelector('#archivo .section-title').textContent = t.archTitle;
+    document.querySelector('#archivo .section-desc').textContent = t.archDesc;
+    document.querySelectorAll('.file-card').forEach((card, i) => {
+      if (t.files[i]) {
+        card.querySelector('.file-type').textContent = t.files[i].type;
+        card.querySelector('.file-name').textContent = t.files[i].name;
+        card.querySelector('.file-desc').textContent = t.files[i].desc;
+        card.querySelector('.file-dl').textContent = t.files[i].status;
+      }
+    });
+    
+    // Medios
+    document.querySelector('#medios .section-eyebrow').textContent = t.mediosEyebrow;
+    document.querySelector('#medios .section-title').textContent = t.mediosTitle;
+    document.querySelector('#medios .section-desc').textContent = t.mediosDesc;
+    document.querySelectorAll('#medios .dim-card').forEach((card, i) => {
+      if (t.mediaCards[i]) {
+        card.querySelector('.dim-icon').textContent = t.mediaCards[i].icon;
+        card.querySelector('.dim-name').textContent = t.mediaCards[i].name;
+        card.querySelector('.dim-desc').textContent = t.mediaCards[i].desc;
+      }
+    });
+    document.querySelector('#medios .horizonte-q-text').textContent = t.mediaQuote;
+    document.querySelector('#medios .horizonte-q-attr').textContent = t.mediaAttr;
+    const mediaLabs = document.querySelectorAll('#medios .conv-labs .lab-tag');
+    if (mediaLabs.length && t.mediaContacts) mediaLabs.forEach((el, i) => { if (t.mediaContacts[i]) el.textContent = t.mediaContacts[i]; });
+    
+    // Footer
+    document.querySelector('.footer-credits').innerHTML = t.footerCredits;
+    document.querySelector('.footer-license').innerHTML = t.footerLicense;
+    
+    // Guardar preferencia
+    localStorage.setItem('site_lang', lang);
+    if (lang === 'en') document.documentElement.lang = 'en';
+    else if (lang === 'zh') document.documentElement.lang = 'zh';
+    else if (lang === 'pt') document.documentElement.lang = 'pt';
+    else if (lang === 'de') document.documentElement.lang = 'de';
+    else if (lang === 'ru') document.documentElement.lang = 'ru';
+    else document.documentElement.lang = 'es';
   }
 
-  const sendBtn = document.querySelector('.conv-form .btn-send');
-  if (sendBtn) sendBtn.textContent = c.sendBtn;
-
-  const labs = document.querySelectorAll('.lab-tag');
-  labs.forEach((el, idx) => {
-    if (c.labs[idx]) el.textContent = c.labs[idx];
-  });
-
-  document.querySelectorAll('.file-dl').forEach((el) => {
-    el.textContent = c.fileSoon;
-  });
-
-  const footerCredits = document.querySelector('.footer-credits');
-  if (footerCredits) footerCredits.innerHTML = c.footerCredits;
-
-  const footerLicense = document.querySelector('.footer-license');
-  if (footerLicense) footerLicense.innerHTML = c.footerLicense;
-
-  const closeGlossaryBtn = document.querySelector('.glos-close');
-  if (closeGlossaryBtn) closeGlossaryBtn.setAttribute('aria-label', c.closeGlossaryLabel);
-
-  const dimNames = document.querySelectorAll('.dim-name');
-  dimNames.forEach((el, idx) => {
-    if (full.dimNames[idx]) el.textContent = full.dimNames[idx];
-  });
-  const dimDescs = document.querySelectorAll('.dim-desc');
-  dimDescs.forEach((el, idx) => {
-    if (full.dimDescs[idx]) el.textContent = full.dimDescs[idx];
-  });
-  const horizonteQText = document.querySelector('.horizonte-q-text');
-  if (horizonteQText) horizonteQText.textContent = full.horizonteQuote;
-  const horizonteQAttr = document.querySelector('.horizonte-q-attr');
-  if (horizonteQAttr) horizonteQAttr.textContent = full.horizonteAttr;
-
-  const msgLabels = document.querySelectorAll('.msg-label');
-  msgLabels.forEach((el, idx) => {
-    if (full.chatLabels[idx]) el.textContent = full.chatLabels[idx];
-  });
-  const msgBubbles = document.querySelectorAll('.chat-body .msg-bubble');
-  msgBubbles.forEach((el, idx) => {
-    if (full.chatBubbles[idx]) el.textContent = full.chatBubbles[idx];
-  });
-
-  const profileRoles = document.querySelectorAll('.profile-role');
-  profileRoles.forEach((el, idx) => {
-    if (full.profileRoles[idx]) el.textContent = full.profileRoles[idx];
-  });
-  const profileAreas = document.querySelectorAll('.profile-areas');
-  profileAreas.forEach((el, idx) => {
-    if (full.profileAreas[idx]) el.textContent = full.profileAreas[idx];
-  });
-
-  const fileTypes = document.querySelectorAll('.file-type');
-  fileTypes.forEach((el, idx) => {
-    if (full.fileTypes[idx]) el.textContent = full.fileTypes[idx];
-  });
-  const fileNames = document.querySelectorAll('.file-name');
-  fileNames.forEach((el, idx) => {
-    if (full.fileNames[idx]) el.textContent = full.fileNames[idx];
-  });
-  const fileDescs = document.querySelectorAll('.file-desc');
-  fileDescs.forEach((el, idx) => {
-    if (full.fileDescs[idx]) el.textContent = full.fileDescs[idx];
-  });
-
-  const glossaryTags = document.querySelectorAll('.glos-tag');
-  glossaryTags.forEach((el, idx) => {
-    if (full.glossaryTags[idx]) el.textContent = full.glossaryTags[idx];
-  });
-
-  const diagNames = document.querySelectorAll('.diag-name');
-  diagNames.forEach((el, idx) => {
-    if (full.diagNames[idx]) el.textContent = full.diagNames[idx];
-  });
-  const diagAuthors = document.querySelectorAll('.diag-author');
-  diagAuthors.forEach((el, idx) => {
-    if (full.diagAuthors[idx]) el.textContent = full.diagAuthors[idx];
-  });
-  const diagTexts = document.querySelectorAll('.diag-text');
-  diagTexts.forEach((el, idx) => {
-    if (full.diagTexts[idx]) el.textContent = full.diagTexts[idx];
-  });
-
-  document.documentElement.lang = chosen === 'eu' ? 'en' : chosen;
-  localStorage.setItem('site_lang', chosen);
-}
-
-const glosData = {
-  rapto_cognitivo: {
-    term: 'Rapto cognitivo',
-    origin: 'Éric Sadin — La inteligencia artificial o el desafío del siglo',
-    def: 'La sustracción activa y sistemática de la capacidad de atención y deliberación cognitiva por parte de las plataformas digitales. No es metáfora: es el diseño intencional de sistemas que interrumpen, fragmentan y redirigen el pensamiento hacia fines comerciales.'
-  },
-  epistemia: {
-    term: 'Epistemia',
-    origin: 'Walter Quattrociocchi — investigación sobre desinformación digital',
-    def: 'La estructura profunda del conocimiento compartido que organiza cómo una comunidad define qué cuenta como evidencia, qué fuentes son legítimas y qué marcos interpretativos son válidos. Los algoritmos no solo filtran contenidos: remodelan epistemias enteras.'
-  },
-  falso_self: {
-    term: 'Falso self colectivo',
-    origin: 'Miguel Benasayag — adaptación del concepto winnicottiano al contexto digital',
-    def: 'Una identidad social construida para ser performada en plataformas. No es la identidad del sujeto sino la que el ecosistema digital hace viable y refuerza. A escala colectiva, produce una subjetividad delegada, funcional a la economía de la atención.'
-  },
-  captura_atencional: {
-    term: 'Captura atencional',
-    origin: 'Síntesis crítica — Sadin, Benasayag, economía de la atención',
-    def: 'El proceso por el cual las arquitecturas de plataformas diseñan flujos para monopolizar la atención del usuario, explotando sesgos cognitivos evolutivos. La atención, como recurso escaso, es el producto que se comercializa.'
-  },
-  delegacion: {
-    term: 'Delegación cognitiva',
-    origin: 'Miguel Benasayag — Pensar con las manos',
-    def: 'La transferencia progresiva de funciones cognitivas —memoria, orientación, juicio, decisión— a sistemas técnicos. Cuando se vuelve habitual, erosiona las capacidades cognitivas propias y genera dependencia estructural.'
-  },
-  camara_eco: {
-    term: 'Cámara de eco',
-    origin: 'Investigación sobre desinformación digital — Quattrociocchi y otros',
-    def: 'Entorno informacional en el cual las creencias de un usuario son amplificadas y reforzadas por la repetición algorítmica de contenidos afines, reduciendo la exposición a perspectivas divergentes y reforzando sesgos preexistentes.'
-  },
-  plataforma_eco: {
-    term: 'Plataformas de eco',
-    origin: 'Síntesis crítica — ecosistemas algorítmicos y espejo estadístico',
-    def: 'Plataformas que operan como bucles de retroalimentación algorítmica: concentran exposición a contenidos afines, ofrecen información como espejo estadístico de la conducta previa y erosionan la heterogeneidad de fuentes, con efectos semejantes a una cámara de eco a escala de interfaz.'
-  },
-  yo_resquebrajado: {
-    term: 'Yo resquebrajado',
-    origin: 'Gentili / Masa crítica Latinoamericana — psicoanálisis y subjetividad contemporánea',
-    def: 'Configuración subjetiva caracterizada por baja tolerancia a la frustración, necesidad intensa de validación externa, dificultad para sostener narrativas identitarias estables. Precede a las plataformas pero articula perfectamente con ellas.'
-  },
-  potencia: {
-    term: 'Potencia de actuar',
-    origin: 'Baruch Spinoza — reelaborado por Deleuze, Benasayag',
-    def: 'La capacidad de un cuerpo o sujeto de producir efectos en el mundo desde su propio deseo y reflexión. La captura algorítmica opera precisamente reduciendo esta potencia: actúo, pero siguiendo los flujos que el sistema diseñó para mí.'
+  // === FUNCIONES GLOBALES ===
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
+    document.getElementById(id).classList.add('visible');
+    document.querySelectorAll('.nav-links button').forEach(b => {
+      b.classList.remove('active');
+      b.removeAttribute('aria-current');
+    });
+    const activeNav = document.getElementById('nav-' + id);
+    if (activeNav) {
+      activeNav.classList.add('active');
+      activeNav.setAttribute('aria-current', 'page');
+      activeNav.scrollIntoView({ block: 'nearest', inline: 'center' });
+    }
+    window.scrollTo(0, 0);
   }
-};
-let activeGlosData = glosData;
 
-let lastFocusedElement = null;
+  // GLOSARIO
+  const glosData = {
+    rapto_cognitivo: { term: 'Rapto cognitivo', origin: 'Éric Sadin — La inteligencia artificial o el desafío del siglo', def: 'La sustracción activa y sistemática de la capacidad de atención y deliberación cognitiva por parte de las plataformas digitales. No es metáfora: es el diseño intencional de sistemas que interrumpen, fragmentan y redirigen el pensamiento hacia fines comerciales.' },
+    epistemia: { term: 'Epistemia', origin: 'Walter Quattrociocchi — investigación sobre desinformación digital', def: 'La estructura profunda del conocimiento compartido que organiza cómo una comunidad define qué cuenta como evidencia, qué fuentes son legítimas y qué marcos interpretativos son válidos. Los algoritmos no solo filtran contenidos: remodelan epistemias enteras.' },
+    falso_self: { term: 'Falso self colectivo', origin: 'Miguel Benasayag — adaptación del concepto winnicottiano al contexto digital', def: 'Una identidad social construida para ser performada en plataformas. No es la identidad del sujeto sino la que el ecosistema digital hace viable y refuerza. A escala colectiva, produce una subjetividad delegada, funcional a la economía de la atención.' },
+    captura_atencional: { term: 'Captura atencional', origin: 'Síntesis crítica — Sadin, Benasayag, economía de la atención', def: 'El proceso por el cual las arquitecturas de plataformas diseñan flujos para monopolizar la atención del usuario, explotando sesgos cognitivos evolutivos. La atención, como recurso escaso, es el producto que se comercializa.' },
+    delegacion: { term: 'Delegación cognitiva', origin: 'Miguel Benasayag — Pensar con las manos', def: 'La transferencia progresiva de funciones cognitivas —memoria, orientación, juicio, decisión— a sistemas técnicos. Cuando se vuelve habitual, erosiona las capacidades cognitivas propias y genera dependencia estructural.' },
+    plataforma_eco: { term: 'Plataformas de eco', origin: 'Síntesis crítica — ecosistemas algorítmicos y espejo estadístico', def: 'Plataformas que operan como bucles de retroalimentación algorítmica: concentran exposición a contenidos afines, ofrecen información como espejo estadístico de la conducta previa y erosionan la heterogeneidad de fuentes, con efectos semejantes a una cámara de eco a escala de interfaz.' },
+    yo_resquebrajado: { term: 'Yo resquebrajado', origin: 'Gentili / Masa crítica Latinoamericana — psicoanálisis y subjetividad contemporánea', def: 'Configuración subjetiva caracterizada por baja tolerancia a la frustración, necesidad intensa de validación externa, dificultad para sostener narrativas identitarias estables. Precede a las plataformas pero articula perfectamente con ellas.' },
+    potencia: { term: 'Potencia de actuar', origin: 'Baruch Spinoza — reelaborado por Deleuze, Benasayag', def: 'La capacidad de un cuerpo o sujeto de producir efectos en el mundo desde su propio deseo y reflexión. La captura algorítmica opera precisamente reduciendo esta potencia: actúo, pero siguiendo los flujos que el sistema diseñó para mí.' }
+  };
+  let activeGlosData = glosData;
+  let lastFocusedElement = null;
 
-function showSection(id) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
-  document.getElementById(id).classList.add('visible');
-  document.querySelectorAll('.nav-links button').forEach(b => {
-    b.classList.remove('active');
-    b.removeAttribute('aria-current');
-  });
-  const activeNav = document.getElementById('nav-' + id);
-  if (activeNav) {
-    activeNav.classList.add('active');
-    activeNav.setAttribute('aria-current', 'page');
-    activeNav.scrollIntoView({ block: 'nearest', inline: 'center' });
+  function openGlos(key) {
+    const d = activeGlosData[key];
+    if (!d) return;
+    lastFocusedElement = document.activeElement;
+    document.getElementById('glosTerm').textContent = d.term;
+    document.getElementById('glosOrigin').textContent = d.origin;
+    document.getElementById('glosDef').textContent = d.def;
+    const modal = document.getElementById('glosModal');
+    modal.classList.add('open');
+    modal.querySelector('.glos-close').focus();
   }
-  window.scrollTo(0, 0);
-}
 
-function openGlos(key) {
-  const d = activeGlosData[key];
-  if (!d) return;
-  lastFocusedElement = document.activeElement;
-  document.getElementById('glosTerm').textContent = d.term;
-  document.getElementById('glosOrigin').textContent = d.origin;
-  document.getElementById('glosDef').textContent = d.def;
-  const modal = document.getElementById('glosModal');
-  modal.classList.add('open');
-  const closeButton = modal.querySelector('.glos-close');
-  if (closeButton) closeButton.focus();
-}
-
-function closeGlos() {
-  document.getElementById('glosModal').classList.remove('open');
-  if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
-    lastFocusedElement.focus();
+  function closeGlos() {
+    document.getElementById('glosModal').classList.remove('open');
+    if (lastFocusedElement && lastFocusedElement.focus) lastFocusedElement.focus();
   }
-}
 
-document.getElementById('glosModal').addEventListener('click', function(e) {
-  if (e.target === this) closeGlos();
-});
+  document.getElementById('glosModal').addEventListener('click', function(e) { if (e.target === this) closeGlos(); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && document.getElementById('glosModal').classList.contains('open')) closeGlos(); });
 
-document.addEventListener('keydown', function(e) {
-  const modal = document.getElementById('glosModal');
-  if (e.key === 'Escape' && modal.classList.contains('open')) {
-    closeGlos();
+  // INICIALIZACIÓN IDIOMA
+  const langSelect = document.getElementById('langSelect');
+  if (langSelect) {
+    const savedLang = localStorage.getItem('site_lang') || 'es';
+    langSelect.value = savedLang;
+    applyLanguage(savedLang);
+    langSelect.addEventListener('change', function(e) { applyLanguage(e.target.value); });
   }
-});
-
-document.getElementById('convForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  const status = document.getElementById('convFormStatus');
-  const activeLang = (localStorage.getItem('site_lang') || 'es');
-  const c = CONTENT_I18N[activeLang] || CONTENT_I18N.es;
-  status.textContent = c.formStatus;
-  this.reset();
-});
-
-const langSelect = document.getElementById('langSelect');
-if (langSelect) {
-  const savedLang = localStorage.getItem('site_lang');
-  const initialLang = savedLang || 'es';
-  langSelect.value = I18N[initialLang] ? initialLang : 'es';
-  applyLanguage(langSelect.value);
-  langSelect.addEventListener('change', (e) => applyLanguage(e.target.value));
-}
 </script>
 </body>
 </html>
