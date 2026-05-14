@@ -1740,7 +1740,11 @@
       <div class="dim-grid">
         <div class="dim-card"><div class="dim-icon">📰</div><div class="dim-name">DOSIER DE PRENSA</div><div class="dim-desc">Resumen ejecutivo, citas clave y datos de contacto para cobertura mediática. Disponible para descarga en PDF.</div></div>
         <div class="dim-card"><div class="dim-icon">🎙️</div><div class="dim-name">ENTREVISTAS</div><div class="dim-desc">Los autores del diagnóstico están disponibles para entrevistas, mesas redondas y colaboraciones con medios.</div></div>
-        <div class="dim-card"><div class="dim-icon">📺</div><div class="dim-name">MATERIAL AUDIOVISUAL</div><div class="dim-desc">Piezas gráficas, animaciones y fragmentos del video principal para usar en redes o programas.</div></div>
+        <div class="dim-card" style="cursor: pointer;" onclick="openDescargaModal()">
+  <div class="dim-icon">📺</div>
+  <div class="dim-name">MATERIAL AUDIOVISUAL</div>
+  <div class="dim-desc">Haz clic aquí para acceder a los archivos descargables.</div>
+</div>
         <div class="dim-card"><div class="dim-icon">📢</div><div class="dim-name">CAMPAÑAS DE SENSIBILIZACIÓN</div><div class="dim-desc">Propuestas para activar el debate en comunidades educativas y espacios públicos.</div></div>
       </div>
     </div>
@@ -1777,7 +1781,23 @@
     <div class="glos-def" id="glosDef"></div>
   </div>
 </div>
-
+<!-- MODAL DE DESCARGA DE MATERIAL AUDIOVISUAL -->
+<div class="glos-modal" id="descargaModal" role="dialog" aria-modal="true" aria-labelledby="descargaTitulo" aria-describedby="descargaLista">
+  <div class="glos-box" tabindex="-1">
+    <button type="button" class="glos-close" onclick="closeDescargaModal()" aria-label="Cerrar ventana de descargas">✕</button>
+    <div class="glos-term" id="descargaTitulo">MATERIAL AUDIOVISUAL</div>
+    <div class="glos-origin">Recursos para descargar</div>
+    <div class="glos-def" id="descargaLista">
+      <ul style="list-style: none; padding-left: 0;">
+        <li style="margin-bottom: 16px;">🎥 <a href="ruta/al/video_demo.mp4" download style="color: var(--neon-blue); text-decoration: none;">Video institucional (MP4, 120MB)</a></li>
+        <li style="margin-bottom: 16px;">📄 <a href="ruta/al/guion_presentacion.pdf" download style="color: var(--neon-blue); text-decoration: none;">Guion de presentación (PDF)</a></li>
+        <li style="margin-bottom: 16px;">🖼️ <a href="ruta/al/imagenes_prensa.zip" download style="color: var(--neon-blue); text-decoration: none;">Kit de imágenes prensa (ZIP)</a></li>
+        <li style="margin-bottom: 16px;">🎞️ <a href="ruta/al/animacion_corta.mp4" download style="color: var(--neon-blue); text-decoration: none;">Animación corta para redes (MP4)</a></li>
+      </ul>
+      <p style="margin-top: 20px; font-size: 12px; color: #888;">Los enlaces son ejemplos; reemplázalos por tus archivos reales.</p>
+    </div>
+  </div>
+</div>
 <script>
   // ========== TRADUCCIONES COMPLETAS (6 idiomas) ==========
   const TRANSLATIONS = {
@@ -2404,6 +2424,29 @@
     document.querySelector('#medios .horizonte-q-attr').textContent = t.mediaAttr;
     const mediaLabs = document.querySelectorAll('#medios .conv-labs .lab-tag');
     if (mediaLabs.length && t.mediaContacts) mediaLabs.forEach((el, i) => { if (t.mediaContacts[i]) el.textContent = t.mediaContacts[i]; });
+    // Funciones para el modal de descargas
+function openDescargaModal() {
+  document.getElementById('descargaModal').classList.add('open');
+  // Enfocar el botón de cerrar para accesibilidad
+  document.querySelector('#descargaModal .glos-close').focus();
+}
+
+function closeDescargaModal() {
+  document.getElementById('descargaModal').classList.remove('open');
+}
+
+// Cerrar con clic fuera del modal
+document.getElementById('descargaModal').addEventListener('click', function(e) {
+  if (e.target === this) closeDescargaModal();
+});
+
+// Cerrar con tecla Escape
+document.addEventListener('keydown', function(e) {
+  const modal = document.getElementById('descargaModal');
+  if (e.key === 'Escape' && modal.classList.contains('open')) {
+    closeDescargaModal();
+  }
+});
     
     // Footer
     document.querySelector('.footer-credits').innerHTML = t.footerCredits;
